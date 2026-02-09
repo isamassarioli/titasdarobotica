@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titãs da Robótica - Contato</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="images/logotitas.png" alt="Titãs da Robótica" class="logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="home.html" class="nav-item">HOME</a>
+                <div class="dropdown">
+                    <span class="nav-item">EQUIPES ↓</span>
+                    <div class="dropdown-content">
+                        <a href="equipes.html#cospace" class="dropdown-item">COSPACE</a>
+                        <a href="equipes.html#futebol2d" class="dropdown-item">FUTEBOL 2D</a>
+                        <a href="equipes.html#humanoide" class="dropdown-item">HUMANÓIDE</a>
+                        <a href="equipes.html#pesquisa" class="dropdown-item">PESQUISA</a>
+                        <a href="equipes.html#pratica" class="dropdown-item">PRÁTICA</a>
+                        <a href="equipes.html#seguidor" class="dropdown-item">SEGUIDOR DE LINHA</a>
+                        <a href="equipes.html#challenger" class="dropdown-item">SEK/CHALLENGER</a>
+                        <a href="equipes.html#teorica" class="dropdown-item">TEÓRICA</a>
+                    </div>
+                </div>
+                <a href="membros.html" class="nav-item">MEMBROS</a>
+                <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
+                <a href="blog.html" class="nav-item">BLOG</a>
+                <a href="sobre.html" class="nav-item">SOBRE</a>
+                <a href="apoio.html" class="nav-item">APOIO</a>
+                <a href="contato.html" class="nav-item">CONTATO</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menu Fixo (aparece ao rolar) -->
+    <nav class="fixed-nav">
+        <div class="fixed-nav-content">
+            <a href="home.html" class="fixed-nav-logo">
+                <img src="images/logotitas.png" alt="Titãs da Robótica">
+            </a>
+            <div class="fixed-nav-menu">
+                <a href="home.html" class="nav-item">HOME</a>
+                <div class="dropdown">
+                    <span class="nav-item">EQUIPES ↓</span>
+                    <div class="dropdown-content">
+                        <a href="equipes.html#cospace" class="dropdown-item">COSPACE</a>
+                        <a href="equipes.html#futebol2d" class="dropdown-item">FUTEBOL 2D</a>
+                        <a href="equipes.html#humanoide" class="dropdown-item">HUMANÓIDE</a>
+                        <a href="equipes.html#pesquisa" class="dropdown-item">PESQUISA</a>
+                        <a href="equipes.html#pratica" class="dropdown-item">PRÁTICA</a>
+                        <a href="equipes.html#seguidor" class="dropdown-item">SEGUIDOR DE LINHA</a>
+                        <a href="equipes.html#challenger" class="dropdown-item">SEK/CHALLENGER</a>
+                        <a href="equipes.html#teorica" class="dropdown-item">TEÓRICA</a>
+                    </div>
+                </div>
+                <a href="membros.html" class="nav-item">MEMBROS</a>
+                <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
+                <a href="blog.html" class="nav-item">BLOG</a>
+                <a href="sobre.html" class="nav-item">SOBRE</a>
+                <a href="apoio.html" class="nav-item">APOIO</a>
+                <a href="contato.html" class="nav-item">CONTATO</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <div class="form-container">
+            <h1 class="form-title">ENTRE EM CONTATO CONOSCO</h1>
+            <p class="form-subtitle">DEIXE SEU RECADO, APOIO OU COMENTÁRIO ABAIXO:</p>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        id="nome" 
+                        name="nome" 
+                        class="form-input" 
+                        placeholder="Nome completo"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="Seu melhor e-mail"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <textarea 
+                        id="mensagem" 
+                        name="mensagem" 
+                        class="form-textarea" 
+                        placeholder="Digite sua mensagem aqui..."
+                        required
+                    ></textarea>
+                </div>
+                
+                <button type="submit" class="form-button">ENVIAR MENSAGEM</button>
+            </form>
+        </div>
+
+        <!-- Informações de Contato -->
+        <section class="content-section bg-dark" style="border-radius: 10px; margin-top: 60px;">
+            <h2 class="section-title" style="font-size: 32px; margin-bottom: 40px;">Outras formas de contato</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; padding: 20px;">
+                <div class="card text-center">
+                    <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;"> E-mail</h3>
+                    <p style="font-size: 18px;">contato@titansrobotica.com.br</p>
+                </div>
+                <div class="card text-center">
+                    <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;"> Telefone</h3>
+                    <p style="font-size: 18px;">(27) 3177-5555</p>
+                </div>
+                <div class="card text-center">
+                    <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;"> Endereço</h3>
+                    <p style="font-size: 18px;">IFES - Campus Colatina<br>Colatina - ES</p>
+                </div>
+                <div class="card text-center">
+                    <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;"> Redes Sociais</h3>
+                    <p style="font-size: 18px;">@titansdarobotica</p>
+                </div>
+            </div>
+        </section>
+
+    <!-- Scripts -->
+    <script src="js/navigation.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
