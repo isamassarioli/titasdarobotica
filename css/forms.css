@@ -1,0 +1,177 @@
+/* Formulários */
+.form-container {
+    max-width: 1045px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.form-title {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-subtitle {
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #ddd;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    padding: 30px 25px;
+    background: #909090;
+    border: none;
+    border-radius: 26px;
+    font-size: 18px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #ddd;
+    opacity: 0.8;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    background: #a0a0a0;
+    box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.3);
+}
+
+.form-textarea {
+    min-height: 329px;
+    resize: vertical;
+    padding-top: 25px;
+}
+
+.form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 25px center;
+    padding-right: 55px;
+}
+
+.form-select option {
+    background: #333;
+    color: white;
+    padding: 10px;
+}
+
+.form-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.form-checkbox {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    accent-color: #FFA500;
+}
+
+.form-checkbox-label {
+    font-size: 16px;
+    cursor: pointer;
+    color: #ddd;
+}
+
+.form-button {
+    width: 100%;
+    padding: 25px;
+    background: linear-gradient(135deg, #FF6B00, #FFA500);
+    border: none;
+    border-radius: 26px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+}
+
+.form-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(255, 107, 0, 0.4);
+    background: linear-gradient(135deg, #FFA500, #FF6B00);
+}
+
+.form-button:active {
+    transform: translateY(-1px);
+}
+
+.form-button:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-error {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+.form-group.error .form-error {
+    display: block;
+}
+
+.form-group.error .form-input,
+.form-group.error .form-textarea,
+.form-group.error .form-select {
+    border: 2px solid #ff6b6b;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-title {
+        font-size: 28px;
+    }
+    
+    .form-subtitle {
+        font-size: 20px;
+    }
+    
+    .form-input,
+    .form-textarea,
+    .form-select {
+        padding: 20px 18px;
+        font-size: 16px;
+    }
+    
+    .form-textarea {
+        min-height: 200px;
+    }
+    
+    .form-button {
+        padding: 20px;
+        font-size: 20px;
+    }
+}

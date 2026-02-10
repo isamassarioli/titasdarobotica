@@ -1,0 +1,373 @@
+/* Estilos Específicos de Páginas */
+
+/* Página de Equipes */
+.team-card {
+    background: #1a1a1a;
+    border-radius: 29px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 16px rgba(255, 165, 0, 0.2);
+}
+
+.team-image {
+    width: 100%;
+    height: 333px;
+    object-fit: cover;
+}
+
+.team-content {
+    padding: 30px;
+}
+
+.team-name {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #FFA500;
+}
+
+.team-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.team-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.team-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.team-stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFA500;
+}
+
+.team-stat-label {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Página de Membros */
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.member-card {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(255, 165, 0, 0.2);
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    object-fit: cover;
+    border: 4px solid #FFA500;
+}
+
+.member-name {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.member-role {
+    font-size: 16px;
+    color: #FFA500;
+    margin-bottom: 15px;
+}
+
+.member-bio {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.5;
+}
+
+/* Página de Editais */
+.editais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 40px 20px;
+}
+
+.edital-card {
+    background: #1a1a1a;
+    border-radius: 29px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
+
+.edital-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 16px rgba(255, 165, 0, 0.2);
+}
+
+.edital-image {
+    width: 100%;
+    height: 333px;
+    object-fit: cover;
+}
+
+.edital-content {
+    padding: 30px;
+}
+
+.edital-title {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.edital-date {
+    font-size: 15px;
+    font-weight: 500;
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.edital-status {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #4CAF50;
+    color: white;
+}
+
+.edital-status.fechado {
+    background: #f44336;
+}
+
+/* Página de Blog */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 40px 20px;
+}
+
+.blog-card {
+    background: #1a1a1a;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 16px rgba(255, 165, 0, 0.2);
+}
+
+.blog-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.blog-content {
+    padding: 25px;
+}
+
+.blog-date {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.blog-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: white;
+    line-height: 1.3;
+}
+
+.blog-excerpt {
+    font-size: 16px;
+    color: #ddd;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.blog-read-more {
+    color: #FFA500;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: gap 0.3s ease;
+}
+
+.blog-card:hover .blog-read-more {
+    gap: 10px;
+}
+
+/* Página Sobre */
+.about-section {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 60px 40px;
+    flex-wrap: wrap;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-image img {
+    border-radius: 20px;
+    width: 100%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-text h2 {
+    font-size: 36px;
+    margin-bottom: 25px;
+    color: #FFA500;
+}
+
+.about-text p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.timeline {
+    padding: 60px 20px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.timeline-year {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFA500;
+    min-width: 100px;
+}
+
+.timeline-content {
+    flex: 1;
+    background: #1a1a1a;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.timeline-content h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    font-size: 16px;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+/* Página de Apoio */
+.sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    padding: 40px 20px;
+    align-items: center;
+}
+
+.sponsor-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.sponsor-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(255, 165, 0, 0.3);
+}
+
+.sponsor-card img {
+    max-width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .member-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .editais-grid,
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-section {
+        flex-direction: column;
+        gap: 30px;
+        padding: 40px 20px;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .sponsors-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+    }
+}
