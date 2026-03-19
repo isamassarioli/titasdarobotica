@@ -187,3 +187,33 @@ Para dúvidas sobre o código ou sugestões:
 ---
 
 Desenvolvido com ❤️ para a equipe Titãs da Robótica
+
+## 🚀 Deploy no Vercel
+
+Este repositório é um site estático (HTML/CSS/JS). Opcionalmente, adicionamos anteriormente um arquivo `vercel.json` para forçar o fallback de rotas para `index.html` (útil para SPAs).
+
+Passos rápidos:
+
+1. Pela interface web (mais simples):
+   - Acesse https://vercel.com e conecte sua conta ao GitHub.
+   - Importe o repositório `isamassarioli/titasdarobotica`.
+   - Framework Preset: "Other / Static Site".
+   - Build command: deixe em branco.
+   - Output directory: deixe em branco (ou `.`).
+   - Clique em Deploy.
+
+2. Pelo Vercel CLI (PowerShell no Windows):
+```powershell
+npm install -g vercel
+vercel login
+cd 'D:\Users\2024122760199\Documents\GitHub\titasdarobotica'
+vercel        # deploy de preview
+vercel --prod # deploy para produção
+```
+
+Observações:
+- Se o site usa rotas do lado cliente (History API), o `vercel.json` garante fallback para `index.html`.
+- Se você não usar rotas cliente, pode manter ou remover `vercel.json` (não fará mal).
+- Formulários que precisem de backend exigem funções serverless ou um endpoint externo.
+
+---
