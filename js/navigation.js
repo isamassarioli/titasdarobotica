@@ -105,7 +105,6 @@ function initNavigation() {
     initHeaderScroll();
     initActiveMenuItem();
     initMobileMenu();
-    initDropdownClose();
 }
 
 // Exportar para uso global

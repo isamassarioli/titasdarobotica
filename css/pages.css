@@ -112,6 +112,28 @@
     line-height: 1.5;
 }
 
+/* Orientadores (página de membros) */
+.orientadores-grid .member-card {
+    text-align: left;
+    border-left: 4px solid #FFA500;
+    background: linear-gradient(135deg, #161616 0%, #1c1c1c 100%);
+}
+
+.orientadores-grid .member-name {
+    margin-bottom: 12px;
+}
+
+.role-list {
+    margin: 12px 0 0;
+    padding-left: 0;
+    display: grid;
+    gap: 6px;
+    color: #ccc;
+    list-style: none;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
 /* Página de Editais */
 .editais-grid {
     display: grid;
