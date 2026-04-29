@@ -1,0 +1,128 @@
+/* Footer Styles */
+footer {
+    background-color: #0d0d0d;
+    border-top: 2px solid #FFA500;
+    margin-top: 80px;
+    padding: 50px 20px 30px 20px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-section h3 {
+    color: #FFA500;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.footer-section p,
+.footer-section a {
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #FFA500;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #1a1a1a;
+    border: 1px solid #FFA500;
+    border-radius: 50%;
+    color: #FFA500;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: #FFA500;
+    color: #0d0d0d;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 50px auto 0 auto;
+    padding-top: 30px;
+    border-top: 1px solid #333;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: #888;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.footer-bottom a {
+    color: #FFA500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+    color: #fff;
+}
+
+.copyright {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    padding-top: 20px;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 40px 15px 25px 15px;
+        margin-top: 60px;
+    }
+
+    .footer-content {
+        gap: 30px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+
+    .footer-section p,
+    .footer-section a {
+        font-size: 13px;
+    }
+
+    .footer-bottom {
+        margin-top: 30px;
+        gap: 20px;
+    }
+}
