@@ -35,7 +35,6 @@
                 </div>
                 <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
                 <a href="blog.html" class="nav-item">BLOG</a>
-                <a href="conquistas.html" class="nav-item">CONQUISTAS</a>
                 <a href="apoio.html" class="nav-item">APOIO</a>
                 <a href="contato.html" class="nav-item">CONTATO</a>
             </nav>
@@ -66,7 +65,7 @@
                 </div>
                 <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
                 <a href="blog.html" class="nav-item">BLOG</a>
-                <a href="conquistas.html" class="nav-item">CONQUISTAS</a>
+
                 <a href="apoio.html" class="nav-item">APOIO</a>
                 <a href="contato.html" class="nav-item">CONTATO</a>
             </div>
@@ -74,90 +73,6 @@
     </nav>
 
     <main class="main-container">
-
-        <section class="content-section">
-            <h2 class="section-title">Últimas Notícias</h2>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <img src="https://via.placeholder.com/355x250/1a1a1a/FFA500?text=OBR+2025" alt="OBR 2025" class="blog-image">
-                    <div class="blog-content">
-                        <p class="blog-date">05 de Fevereiro de 2026</p>
-                        <h3 class="blog-title">Conquista Histórica na OBR 2025</h3>
-                        <p class="blog-excerpt">
-                            Nossa equipe conquistou o primeiro lugar na etapa nacional da Olimpíada Brasileira de Robótica, 
-                            garantindo vaga para a competição internacional em julho.
-                        </p>
-                        <a href="#" class="blog-read-more">Leia mais →</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <img src="https://via.placeholder.com/355x250/1a1a1a/FFA500?text=Workshop" alt="Workshop" class="blog-image">
-                    <div class="blog-content">
-                        <p class="blog-date">28 de Janeiro de 2026</p>
-                        <h3 class="blog-title">Workshop de Arduino para Iniciantes</h3>
-                        <p class="blog-excerpt">
-                            Realizamos um workshop de introdução ao Arduino para alunos do 1º ano, 
-                            com mais de 30 participantes aprendendo os conceitos básicos de eletrônica.
-                        </p>
-                        <a href="#" class="blog-read-more">Leia mais →</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <img src="https://via.placeholder.com/355x250/1a1a1a/FFA500?text=Novo+Robô" alt="Novo Robô" class="blog-image">
-                    <div class="blog-content">
-                        <p class="blog-date">15 de Janeiro de 2026</p>
-                        <h3 class="blog-title">Novo Robô Humanóide em Desenvolvimento</h3>
-                        <p class="blog-excerpt">
-                            A equipe de humanóides está desenvolvendo um novo robô com sensores avançados 
-                            e capacidade de reconhecimento de voz para a próxima temporada.
-                        </p>
-                        <a href="#" class="blog-read-more">Leia mais →</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <img src="https://via.placeholder.com/355x250/1a1a1a/FFA500?text=Patrocínio" alt="Patrocínio" class="blog-image">
-                    <div class="blog-content">
-                        <p class="blog-date">10 de Janeiro de 2026</p>
-                        <h3 class="blog-title">Novo Patrocinador Oficial</h3>
-                        <p class="blog-excerpt">
-                            Firmamos parceria com a Empresa XYZ, que passa a ser nosso patrocinador oficial, 
-                            fornecendo recursos para novos projetos e participação em competições.
-                        </p>
-                        <a href="#" class="blog-read-more">Leia mais →</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <img src="https://via.placeholder.com/355x250/1a1a1a/FFA500?text=Feira+Tecnológica" alt="Feira" class="blog-image">
-                    <div class="blog-content">
-                        <p class="blog-date">20 de Dezembro de 2025</p>
-                        <h3 class="blog-title">Participação na Feira Tecnológica do ES</h3>
-                        <p class="blog-excerpt">
-                            Apresentamos nossos projetos na Feira Tecnológica do Espírito Santo, 
-                            recebendo elogios do público e despertando interesse de novos alunos.
-                        </p>
-                        <a href="#" class="blog-read-more">Leia mais →</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <img src="https://via.placeholder.com/355x250/1a1a1a/FFA500?text=Treinamento" alt="Treinamento" class="blog-image">
-                    <div class="blog-content">
-                        <p class="blog-date">15 de Dezembro de 2025</p>
-                        <h3 class="blog-title">Treinamento Intensivo de Férias</h3>
-                        <p class="blog-excerpt">
-                            Durante as férias de janeiro, realizamos treinamento intensivo para preparar 
-                            as equipes para as competições do primeiro semestre de 2026.
-                        </p>
-                        <a href="#" class="blog-read-more">Leia mais →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Categorias -->
         <section class="content-section bg-dark" style="border-radius: 10px;">
             <h2 class="section-title">Categorias</h2>
@@ -171,6 +86,93 @@
             </div>
         </section>
     </main>
+    
+        <section class="content-section">
+            <h2 class="section-title">Últimas Notícias</h2>
+            <div class="blog-carousel" style="position: relative;">
+                <!-- Slide 1 -->
+                <div class="hero-slide" style="display: none;">
+                    <div class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                        <div class="blog-card">
+                            <img src="images/image.png" alt="OBR 2025" class="blog-image">
+                            <div class="blog-content">
+                                <p class="blog-date">05 de Fevereiro de 2026</p>
+                                <h3 class="blog-title">Conquista Histórica na OBR 2025</h3>
+                                <p class="blog-excerpt">Nossa equipe conquistou o primeiro lugar na etapa nacional da Olimpíada Brasileira de Robótica, garantindo vaga para a competição internacional em julho.</p>
+                                <a href="#" class="blog-read-more">Leia mais →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <img src="images/image.png" alt="Workshop" class="blog-image">
+                            <div class="blog-content">
+                                <p class="blog-date">28 de Janeiro de 2026</p>
+                                <h3 class="blog-title">Workshop de Arduino para Iniciantes</h3>
+                                <p class="blog-excerpt">Realizamos um workshop de introdução ao Arduino para alunos do 1º ano, com mais de 30 participantes aprendendo os conceitos básicos de eletrônica.</p>
+                                <a href="#" class="blog-read-more">Leia mais →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <img src="images/image.png" alt="Novo Robô" class="blog-image">
+                            <div class="blog-content">
+                                <p class="blog-date">15 de Janeiro de 2026</p>
+                                <h3 class="blog-title">Novo Robô Humanóide em Desenvolvimento</h3>
+                                <p class="blog-excerpt">A equipe de humanóides está desenvolvendo um novo robô com sensores avançados e capacidade de reconhecimento de voz para a próxima temporada.</p>
+                                <a href="#" class="blog-read-more">Leia mais →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="hero-slide" style="display: none;">
+                    <div class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                        <div class="blog-card">
+                            <img src="images/image.png" alt="Patrocínio" class="blog-image">
+                            <div class="blog-content">
+                                <p class="blog-date">10 de Janeiro de 2026</p>
+                                <h3 class="blog-title">Novo Patrocinador Oficial</h3>
+                                <p class="blog-excerpt">Firmamos parceria com a Empresa XYZ, que passa a ser nosso patrocinador oficial, fornecendo recursos para novos projetos e participação em competições.</p>
+                                <a href="#" class="blog-read-more">Leia mais →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <img src="images/image.png" alt="Feira" class="blog-image">
+                            <div class="blog-content">
+                                <p class="blog-date">20 de Dezembro de 2025</p>
+                                <h3 class="blog-title">Participação na Feira Tecnológica do ES</h3>
+                                <p class="blog-excerpt">Apresentamos nossos projetos na Feira Tecnológica do Espírito Santo, recebendo elogios do público e despertando interesse de novos alunos.</p>
+                                <a href="#" class="blog-read-more">Leia mais →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <img src="images/image.png" alt="Treinamento" class="blog-image">
+                            <div class="blog-content">
+                                <p class="blog-date">15 de Dezembro de 2025</p>
+                                <h3 class="blog-title">Treinamento Intensivo de Férias</h3>
+                                <p class="blog-excerpt">Durante as férias de janeiro, realizamos treinamento intensivo para preparar as equipes para as competições do primeiro semestre de 2026.</p>
+                                <a href="#" class="blog-read-more">Leia mais →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-prev" aria-label="Anterior" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:36px;background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;">‹</button>
+                <button class="carousel-next" aria-label="Próximo" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:36px;background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;">›</button>
+
+                <!-- Indicators -->
+                <div class="carousel-indicators" style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 8px;">
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                </div>
+            </div>
+        </section>
+
+        
 
     <!-- Footer -->
     <footer>
@@ -194,7 +196,6 @@
                 <a href="equipes.html">Nossas Equipes</a>
                 <a href="inscreva-se.html">Inscrições</a>
                 <a href="blog.html">Blog</a>
-                <a href="conquistas.html">Conquistas</a>
                 <a href="apoio.html">Apoio</a>
             </div>
 
@@ -238,3 +239,21 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="js/navigation.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        // Inicializa carrossel de notícias e conecta botões
+        const blogCarousel = new Carousel('.blog-carousel');
+        const container = document.querySelector('.blog-carousel');
+        if (container && blogCarousel) {
+            const prev = container.querySelector('.carousel-prev');
+            const next = container.querySelector('.carousel-next');
+            if (prev) prev.addEventListener('click', function(){ blogCarousel.prevSlide(); blogCarousel.resetAutoPlay(); });
+            if (next) next.addEventListener('click', function(){ blogCarousel.nextSlide(); blogCarousel.resetAutoPlay(); });
+        }
+    });
+    </script>

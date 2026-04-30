@@ -36,7 +36,6 @@
                 </div>
                 <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
                 <a href="blog.html" class="nav-item">BLOG</a>
-                <a href="conquistas.html" class="nav-item">CONQUISTAS</a>
                 <a href="apoio.html" class="nav-item">APOIO</a>
                 <a href="contato.html" class="nav-item">CONTATO</a>
             </nav>
@@ -67,7 +66,6 @@
                 </div>
                 <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
                 <a href="blog.html" class="nav-item">BLOG</a>
-                <a href="conquistas.html" class="nav-item">CONQUISTAS</a>
                 <a href="apoio.html" class="nav-item">APOIO</a>
                 <a href="contato.html" class="nav-item">CONTATO</a>
             </div>
@@ -209,47 +207,59 @@
             </div>
         </section>
 
-        <!-- Grandes Marcos e Histórias de Superação -->
+        <!-- Grandes Marcos - Carrossel -->
         <section class="content-section">
             <h2 class="section-title">Grandes Marcos: Momentos que Definiram Quem Somos</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 20px;">
-                <div class="card" style="border-left: 4px solid #FFA500;">
-                    <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">A Vitória Contra o ITA</h3>
-                    <p style="font-size: 16px; line-height: 1.6; font-style: italic; color: #ccc; margin-bottom: 15px;">
-                        "A vitória na LARC contra o ITA (que antes nos vencia por goleadas) foi o momento mais marcante. 
-                        Senti a dimensão do nosso progresso: a vitória não era apenas um título, mas a confirmação de que, 
-                        com trabalho duro e superação, somos capazes de chegar onde antes parecia impossível."
-                    </p>
-                    <p style="font-size: 14px; color: #FFA500; text-align: right;">— Maykel Rodrigues, Estudante</p>
-                    <p style="font-size: 15px; line-height: 1.6; margin-top: 15px;">
-                        Este foi o momento em que percebemos que podíamos chegar a qualquer lugar. De grandes derrotas 
-                        a vitórias contra os melhores, provamos que o espírito titã é feito de resiliência.
-                    </p>
-                </div>
+            <div class="marcos-carousel" id="marcosCarousel" style="position: relative;">
+                <!-- Slide 1 (3 marcos) -->
+                <div class="marcos-slide-group" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 20px;">
+                    <div class="card" style="border-left: 4px solid #FFA500;">
+                        <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">A Vitória Contra o ITA</h3>
+                        <p style="font-size: 16px; line-height: 1.6; font-style: italic; color: #ccc; margin-bottom: 15px;">
+                            "A vitória na LARC contra o ITA (que antes nos vencia por goleadas) foi o momento mais marcante. 
+                            Senti a dimensão do nosso progresso: a vitória não era apenas um título, mas a confirmação de que, 
+                            com trabalho duro e superação, somos capazes de chegar onde antes parecia impossível."
+                        </p>
+                        <p style="font-size: 14px; color: #FFA500; text-align: right;">— Maykel Rodrigues, Estudante</p>
+                        <p style="font-size: 15px; line-height: 1.6; margin-top: 15px;">
+                            Este foi o momento em que percebemos que podíamos chegar a qualquer lugar. De grandes derrotas 
+                            a vitórias contra os melhores, provamos que o espírito titã é feito de resiliência.
+                        </p>
+                    </div>
 
-                <div class="card" style="border-left: 4px solid #FFA500;">
-                    <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">Além da Engenharia: A Equipe Administrativa</h3>
-                    <p style="font-size: 16px; line-height: 1.6;">
-                        Em <strong>2018</strong>, percebemos que robótica não é só código e circuitos. Criamos a 
-                        <strong>Equipe Administrativa</strong> para cuidar de editais, marketing, captação de recursos e organização. 
-                        Foi um divisor de águas que mostrou que o projeto é <strong>multidisciplinar</strong> e acolhe 
-                        alunos de diferentes perfis — de Administração a Design.
-                    </p>
-                    <p style="font-size: 15px; line-height: 1.6; margin-top: 15px; color: #ccc;">
-                        Hoje, entendemos que gerenciar uma equipe de robótica é como gerenciar uma startup: 
-                        precisa de visão, planejamento e muita gente boa de diferentes áreas trabalhando junta.
-                    </p>
-                </div>
+                    <div class="card" style="border-left: 4px solid #FFA500;">
+                        <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">Além da Engenharia: A Equipe Administrativa</h3>
+                        <p style="font-size: 16px; line-height: 1.6;">
+                            Em <strong>2018</strong>, percebemos que robótica não é só código e circuitos. Criamos a 
+                            <strong>Equipe Administrativa</strong> para cuidar de editais, marketing, captação de recursos e organização. 
+                            Foi um divisor de águas que mostrou que o projeto é <strong>multidisciplinar</strong> e acolhe 
+                            alunos de diferentes perfis — de Administração a Design.
+                        </p>
+                        <p style="font-size: 15px; line-height: 1.6; margin-top: 15px; color: #ccc;">
+                            Hoje, entendemos que gerenciar uma equipe de robótica é como gerenciar uma startup: 
+                            precisa de visão, planejamento e muita gente boa de diferentes áreas trabalhando junta.
+                        </p>
+                    </div>
 
-                <div class="card" style="border-left: 4px solid #FFA500;">
-                    <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">A Primeira Competição: Poucos Recursos, Muito Coração</h3>
-                    <p style="font-size: 16px; line-height: 1.6; font-style: italic; color: #ccc; margin-bottom: 15px;">
-                        "Enfrentamos a competição com poucos recursos e chegamos a desmontar outros robôs para conseguir 
-                        peças para montar o nosso. A luta foi grande, e ser pioneiro nunca é fácil. Mas ali, mesmo sem o troféu, 
-                        olhei para meus colegas e vi orgulho nos olhos de cada um. Sabíamos que tínhamos dado o nosso melhor. 
-                        Estávamos juntos, e aquilo por si só já era uma grande vitória."
-                    </p>
-                    <p style="font-size: 14px; color: #FFA500; text-align: right;">— Brenda Comper, Estudante</p>
+                    <div class="card" style="border-left: 4px solid #FFA500;">
+                        <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">A Primeira Competição: Poucos Recursos, Muito Coração</h3>
+                        <p style="font-size: 16px; line-height: 1.6; font-style: italic; color: #ccc; margin-bottom: 15px;">
+                            "Enfrentamos a competição com poucos recursos e chegamos a desmontar outros robôs para conseguir 
+                            peças para montar o nosso. A luta foi grande, e ser pioneiro nunca é fácil. Mas ali, mesmo sem o troféu, 
+                            olhei para meus colegas e vi orgulho nos olhos de cada um. Sabíamos que tínhamos dado o nosso melhor. 
+                            Estávamos juntos, e aquilo por si só já era uma grande vitória."
+                        </p>
+                        <p style="font-size: 14px; color: #FFA500; text-align: right;">— Brenda Comper, Estudante</p>
+                    </div>
+                </div>
+                
+                <!-- Controles do Carrossel -->
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 30px;">
+                    <button class="carousel-prev" onclick="marcosCarouselInstance.prevSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">‹</button>
+                    <div class="marcos-indicators" style="display: flex; gap: 10px; justify-content: center;">
+                        <span class="marcos-indicator active" onclick="marcosCarouselInstance.goToSlide(0)" style="width: 12px; height: 12px; border-radius: 50%; background: #FFA500; cursor: pointer;"></span>
+                    </div>
+                    <button class="carousel-next" onclick="marcosCarouselInstance.nextSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">›</button>
                 </div>
             </div>
         </section>
@@ -305,7 +315,7 @@
         <section class="content-section bg-dark" style="border-radius: 10px;">
             <h2 class="section-title">Impacto e Conquistas</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; padding: 20px;">
-                <div class="card text-center">
+                <div class="card text-center">+ DE
                     <div class="counter team-stat-number" data-count="180">180</div>
                     <div class="team-stat-label">Alunos Formados</div>
                 </div>
@@ -317,62 +327,79 @@
                     <div class="counter team-stat-number" data-count="3">3</div>
                     <div class="team-stat-label">Mundiais Disputados</div>
                 </div>
-                <div class="card text-center">
-                    <div class="counter team-stat-number" data-count="1000">+1000</div>
+                <div class="card text-center">+ DE
+                    <div class="counter team-stat-number" data-count="1000">1000</div>
                     <div class="team-stat-label">Pessoas Impactadas</div>
                 </div>
             </div>
         </section>
 
-        <!-- Robôs Históricos -->
+        <!-- Robôs Históricos - Carrossel -->
         <section class="content-section">
             <h2 class="section-title">Nossos Robôs Históricos</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 20px;">
-            <div class="card" style="overflow: hidden;">
-                <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 15px;">
-                <img src="images/carnica.png" alt="Carniça" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="robots-carousel" id="robotsCarousel" style="position: relative;">
+                <!-- Slide 1 (3 robôs) -->
+                <div class="robot-slide-group" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 20px;">
+                    <div class="card" style="overflow: hidden;">
+                        <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 15px;">
+                            <img src="images/carnica.png" alt="Carniça" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Carniça</h3>
+                        <p style="font-size: 16px; line-height: 1.6;">
+                            Robô histórico que marcou a trajetória da equipe nas primeiras competições.
+                        </p>
+                    </div>
+                    <div class="card" style="overflow: hidden;">
+                        <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 15px;">
+                            <img src="images/ligeirinho.png" alt="Ligeirinho" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Ligeirinho</h3>
+                        <p style="font-size: 16px; line-height: 1.6;">
+                            Utilizado em competições de alto desempenho, conhecido por sua velocidade e precisão.
+                        </p>
+                    </div>
+                    <div class="card" style="overflow: hidden;">
+                        <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 15px;">
+                            <img src="images/tristim.png" alt="Tristim" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Tristim</h3>
+                        <p style="font-size: 16px; line-height: 1.6;">
+                            Competiu na categoria Rescue Line na RoboCup 2025 em Salvador.
+                        </p>
+                    </div>
                 </div>
-                <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Carniça</h3>
-                <p style="font-size: 16px; line-height: 1.6;">
-                Robô histórico que marcou a trajetória da equipe nas primeiras competições.
-                </p>
-            </div>
-            <div class="card" style="overflow: hidden;">
-                <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 15px;">
-                <img src="images/ligeirinho.png" alt="Ligeirinho" style="width: 100%; height: 100%; object-fit: cover;">
+
+                <!-- Slide 2 (2 robôs restantes) -->
+                <div class="robot-slide-group" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 20px;">
+                    <div class="card" style="overflow: hidden;">
+                        <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 15px;">
+                            <img src="images/osorin.png" alt="OSORIN" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">OSORIN</h3>
+                        <p style="font-size: 16px; line-height: 1.6;">
+                            Plataforma robótica móvel para ensino de ROS (Robot Operating System) e SLAM.
+                        </p>
+                    </div>
+                    <div class="card" style="overflow: hidden;">
+                        <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 15px;">
+                            <img src="images/pollyy.png" alt="Polly" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Polly</h3>
+                        <p style="font-size: 16px; line-height: 1.6;">
+                            Robô de destaque na trajetória da equipe, com diversas participações em competições.
+                        </p>
+                    </div>
                 </div>
-                <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Ligeirinho</h3>
-                <p style="font-size: 16px; line-height: 1.6;">
-                Utilizado em competições de alto desempenho, conhecido por sua velocidade e precisão.
-                </p>
-            </div>
-            <div class="card" style="overflow: hidden;">
-                <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 15px;">
-                <img src="images/tristim.png" alt="Tristim" style="width: 100%; height: 100%; object-fit: cover;">
+                
+                <!-- Controles do Carrossel -->
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 30px;">
+                    <button class="carousel-prev" onclick="robotsCarouselInstance.prevSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">‹</button>
+                    <div class="robot-indicators" style="display: flex; gap: 10px; justify-content: center;">
+                        <span class="robot-indicator active" onclick="robotsCarouselInstance.goToSlide(0)" style="width: 12px; height: 12px; border-radius: 50%; background: #FFA500; cursor: pointer;"></span>
+                        <span class="robot-indicator" onclick="robotsCarouselInstance.goToSlide(1)" style="width: 12px; height: 12px; border-radius: 50%; background: #555; cursor: pointer;"></span>
+                    </div>
+                    <button class="carousel-next" onclick="robotsCarouselInstance.nextSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">›</button>
                 </div>
-                <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Tristim</h3>
-                <p style="font-size: 16px; line-height: 1.6;">
-                Competiu na categoria Rescue Line na RoboCup 2025 em Salvador.
-                </p>
-            </div>
-            <div class="card" style="overflow: hidden;">
-                <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 15px;">
-                <img src="images/osorin.png" alt="OSORIN" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">OSORIN</h3>
-                <p style="font-size: 16px; line-height: 1.6;">
-                Plataforma robótica móvel para ensino de ROS (Robot Operating System) e SLAM.
-                </p>
-            </div>
-            <div class="card" style="overflow: hidden;">
-                <div style="width: 100%; height: 250px; overflow: hidden; border-radius: 10px; margin-bottom: 15px;">
-                <img src="images/pollyy.png" alt="Polly" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Polly</h3>
-                <p style="font-size: 16px; line-height: 1.6;">
-                Robô de destaque na trajetória da equipe, com diversas participações em competições.
-                </p>
-            </div>
             </div>
         </section>
 
@@ -448,14 +475,7 @@
             </div>
         </section>
 
-        <!-- Corpo Docente e Orientadores -->
-        <section class="content-section">
-            <h2 class="section-title">Nossos Orientadores</h2>
-            <p style="text-align: center; font-size: 18px; margin-bottom: 30px; color: #ccc; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Ao longo de 10 anos, <strong>19 orientadores</strong> (16 homens e 3 mulheres) dedicaram seu tempo, 
-                conhecimento e paixão para transformar estudantes em campeões. Cada conquista é resultado da dedicação 
-                desses profissionais que acreditaram no potencial de cada aluno.
-            </p>
+       
             <!-- <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 20px;">
                 <div class="card text-center">
                     <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 10px;">Prof. Renan Osório Rios</h3>
@@ -539,7 +559,6 @@
                 <a href="equipes.html">Nossas Equipes</a>
                 <a href="inscreva-se.html">Inscrições</a>
                 <a href="blog.html">Blog</a>
-                <a href="conquistas.html">Conquistas</a>
                 <a href="apoio.html">Apoio</a>
             </div>
 
@@ -588,5 +607,91 @@
     <script src="js/forms.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
+    
+    <script>
+        // Classe genérica para Carrossel
+        class GenericCarousel {
+            constructor(containerSelector, groupSelector, indicatorSelector) {
+                this.container = document.querySelector(containerSelector);
+                this.slideGroups = this.container.querySelectorAll(groupSelector);
+                this.indicators = this.container.querySelectorAll(indicatorSelector);
+                this.currentSlide = 0;
+                this.autoPlayInterval = null;
+                this.init();
+            }
+            
+            init() {
+                if (this.slideGroups.length === 0) return;
+                this.showSlide(0);
+                this.initIndicators();
+                this.startAutoPlay();
+            }
+            
+            showSlide(index) {
+                this.currentSlide = (index + this.slideGroups.length) % this.slideGroups.length;
+                
+                this.slideGroups.forEach((group, i) => {
+                    group.style.display = i === this.currentSlide ? 'grid' : 'none';
+                });
+                
+                this.indicators.forEach((indicator, i) => {
+                    if (i === this.currentSlide) {
+                        indicator.style.background = '#FFA500';
+                    } else {
+                        indicator.style.background = '#555';
+                    }
+                });
+            }
+            
+            nextSlide() {
+                this.showSlide(this.currentSlide + 1);
+                this.resetAutoPlay();
+            }
+            
+            prevSlide() {
+                this.showSlide(this.currentSlide - 1);
+                this.resetAutoPlay();
+            }
+            
+            goToSlide(index) {
+                this.showSlide(index);
+                this.resetAutoPlay();
+            }
+            
+            initIndicators() {
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        this.goToSlide(index);
+                    });
+                });
+            }
+            
+            startAutoPlay(interval = 7000) {
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, interval);
+            }
+            
+            stopAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                }
+            }
+            
+            resetAutoPlay() {
+                this.stopAutoPlay();
+                this.startAutoPlay();
+            }
+        }
+        
+        // Instanciar carrosséis quando página carregar
+        let robotsCarouselInstance;
+        let marcosCarouselInstance;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            robotsCarouselInstance = new GenericCarousel('#robotsCarousel', '.robot-slide-group', '.robot-indicator');
+            marcosCarouselInstance = new GenericCarousel('#marcosCarousel', '.marcos-slide-group', '.marcos-indicator');
+        });
+    </script>
 </body>
 </html>

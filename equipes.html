@@ -27,42 +27,14 @@
                         <a href="#humanoide" class="dropdown-item">HUMANÓIDE</a>
                         <a href="#pesquisa" class="dropdown-item">PESQUISA</a>
                         <a href="#seguidor" class="dropdown-item">SEGUIDOR DE LINHA</a>
+                        <a href="#osorin" class="dropdown-item">OSORIN</a>
+                        <a href="#obrteórica" class="dropdown-item">OBR TEÓRICA</a>
                         <a href="#challenger" class="dropdown-item">CHALLENGER</a>
                         <a href="#coordenacao" class="dropdown-item">COORDENAÇÃO</a>
                     </div>
                 </div>
                 <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
                 <a href="blog.html" class="nav-item">BLOG</a>
-                <a href="conquistas.html" class="nav-item">CONQUISTAS</a>
-                <a href="apoio.html" class="nav-item">APOIO</a>
-                <a href="contato.html" class="nav-item">CONTATO</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Menu Fixo (aparece ao rolar) -->
-    <nav class="fixed-nav">
-        <div class="fixed-nav-content">
-            <a href="index.html" class="fixed-nav-logo">
-                <img src="images/logotitas.png" alt="Titãs da Robótica">
-            </a>
-            <div class="fixed-nav-menu">
-                <a href="index.html" class="nav-item">HOME</a>
-                <div class="dropdown">
-                    <a href="equipes.html" class="nav-item">EQUIPES ↓</a>
-                    <div class="dropdown-content">
-                        <a href="#cospace" class="dropdown-item">COSPACE</a>
-                        <a href="#futebol2d" class="dropdown-item">FUTEBOL 2D</a>
-                        <a href="#humanoide" class="dropdown-item">HUMANÓIDE</a>
-                        <a href="#pesquisa" class="dropdown-item">PESQUISA</a>
-                        <a href="#seguidor" class="dropdown-item">SEGUIDOR DE LINHA</a>
-                        <a href="#challenger" class="dropdown-item">CHALLENGER</a>
-                        <a href="#coordenacao" class="dropdown-item">COORDENAÇÃO</a>
-                    </div>
-                </div>
-                <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
-                <a href="blog.html" class="nav-item">BLOG</a>
-                <a href="conquistas.html" class="nav-item">CONQUISTAS</a>
                 <a href="apoio.html" class="nav-item">APOIO</a>
                 <a href="contato.html" class="nav-item">CONTATO</a>
             </div>
@@ -70,13 +42,13 @@
     </nav>
 
     <main class="main-container">
-        <div class="hero-simple">
+        <!-- <div class="hero-simple">
             <h1 class="hero-title">NOSSAS EQUIPES</h1>
-        </div>
+        </div> -->
 
         <!-- Equipes Principais -->
         <section class="content-section">
-            <h2 class="section-title">Equipes Principais</h2>
+            <h2 class="section-title">Equipes</h2>
             <div class="image-grid">
                 <div class="team-card" id="cospace">
                     <img src="images/cospace1.jpg" alt="CoSpace" class="team-image">
@@ -174,11 +146,25 @@
             <div class="image-grid">
 
 
+                <div class="team-card" id="osorin">
+                    <img src="images/equipeosorin.jpg" alt="Osorin" class="team-image">
+                    <div class="team-content">
+                        <h3 class="team-name">OSORIN</h3>
+                        <p class="team-description">Equipe de robótica teórica focada em simulação e desenvolvimento de algoritmos avançados.</p>
+                    </div>
+                </div>
                 <div class="team-card" id="pesquisa">
                     <img src="images/pesquisa2025.jpeg" alt="Pesquisa" class="team-image">
                     <div class="team-content">
                         <h3 class="team-name">PESQUISA</h3>
                         <p class="team-description">Desenvolvimento de projetos de pesquisa em robótica.</p>
+                    </div>
+                </div>
+                <div class="team-card" id="obrteórica">
+                    <img src="images/obrteórica.jpg" alt="OBR Teórica" class="team-image">
+                    <div class="team-content">
+                        <h3 class="team-name">OBR TEÓRICA</h3>
+                        <p class="team-description">Modalidades teóricas da Olimpíada Brasileira de Robótica com foco em programação e lógica.</p>
                     </div>
                 </div>
                 <div class="team-card" id="challenger">
@@ -195,61 +181,83 @@
         <section class="content-section">
             <h2 class="section-title">NOSSAS CONQUISTAS</h2>
             <p style="text-align: center; font-size: 18px; margin-bottom: 30px; color: #ccc;">
-                10 anos de história, 10 títulos nacionais e reconhecimento internacional
+                10 anos de história, 11 títulos nacionais e reconhecimento internacional
             </p>
 
-            <!-- Conquistas Internacionais -->
+            <!-- Conquistas Internacionais - Carrossel -->
             <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 20px; text-align: center;">Competições Internacionais</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmin(350px, 1fr)); gap: 30px; padding: 20px; margin-bottom: 40px;">
-                <div class="card" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #000;">
-                    <div style="text-align: center; font-size: 48px; margin-bottom: 10px;"></div>
-                    <h3 style="font-size: 28px; margin-bottom: 15px; text-align: center; color: #000;">1º Lugar Mundial</h3>
-                    <p style="font-size: 18px; line-height: 1.6; text-align: center;">
-                        <strong>RoboCup 2025 - Salvador, Brasil</strong><br>
-                        1º lugar internacional (SuperTeam)
-                    </p>
+            <div class="conquistas-int-carousel" id="conquistasIntCarousel" style="position: relative; margin-bottom: 40px;">
+                <div class="conquistas-int-slide-group" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 20px;">
+                    <div class="card" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #000;">
+                        <div style="text-align: center; font-size: 48px; margin-bottom: 10px;"></div>
+                        <h3 style="font-size: 28px; margin-bottom: 15px; text-align: center; color: #000;">1º Lugar Mundial</h3>
+                        <p style="font-size: 18px; line-height: 1.6; text-align: center;">
+                            <strong>RoboCup 2025 - Salvador, Brasil</strong><br>
+                            1º lugar internacional (SuperTeam)
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div style="text-align: center; font-size: 50px; margin-bottom: 15px;"></div>
+                        <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px; text-align: center;">RoboCup 2019</h3>
+                        <p style="font-size: 16px; line-height: 1.6; text-align: center;">
+                            <strong>Sydney, Austrália</strong><br>
+                            Representando o Brasil
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div style="text-align: center; font-size: 50px; margin-bottom: 15px;"></div>
+                        <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px; text-align: center;">RoboCup 2024</h3>
+                        <p style="font-size: 16px; line-height: 1.6; text-align: center;">
+                            <strong>Eindhoven, Holanda</strong><br>
+                            Competição europeia
+                        </p>
+                    </div>
                 </div>
-                <div class="card">
-                    <div style="text-align: center; font-size: 50px; margin-bottom: 15px;"></div>
-                    <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px; text-align: center;">RoboCup 2019</h3>
-                    <p style="font-size: 16px; line-height: 1.6; text-align: center;">
-                        <strong>Sydney, Austrália</strong><br>
-                        Representando o Brasil
-                    </p>
-                </div>
-                <div class="card">
-                    <div style="text-align: center; font-size: 50px; margin-bottom: 15px;"></div>
-                    <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px; text-align: center;">RoboCup 2024</h3>
-                    <p style="font-size: 16px; line-height: 1.6; text-align: center;">
-                        <strong>Eindhoven, Holanda</strong><br>
-                        Competição europeia
-                    </p>
+                
+                <!-- Controles -->
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px;">
+                    <button onclick="conquistasIntCarouselInstance.prevSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">‹</button>
+                    <div style="display: flex; gap: 10px;">
+                        <span class="conquistas-int-indicator active" onclick="conquistasIntCarouselInstance.goToSlide(0)" style="width: 12px; height: 12px; border-radius: 50%; background: #FFA500; cursor: pointer;"></span>
+                    </div>
+                    <button onclick="conquistasIntCarouselInstance.nextSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">›</button>
                 </div>
             </div>
 
-            <!-- Títulos Nacionais -->
-            <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 20px; text-align: center;">🇧🇷 Títulos Nacionais</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; padding: 20px; margin-bottom: 40px;">
-                <div class="card text-center">
-                    <div style="font-size: 50px; margin-bottom: 15px;"></div>
-                    <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">Futebol 2D</h3>
-                    <div class="counter team-stat-number" data-count="5">5</div>
-                    <div class="team-stat-label">Títulos de 1º Lugar na CBR/LARC</div>
+            <!-- Títulos Nacionais - Carrossel -->
+            <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 20px; text-align: center;">Títulos Nacionais</h3>
+            <div class="titulos-carousel" id="titulosCarousel" style="position: relative; margin-bottom: 40px;">
+                <div class="titulos-slide-group" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 20px;">
+                    <div class="card text-center">
+                        <div style="font-size: 50px; margin-bottom: 15px;"></div>
+                        <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">Futebol 2D</h3>
+                        <div class="counter team-stat-number" data-count="5">5</div>
+                        <div class="team-stat-label">Títulos de 1º Lugar na CBR/LARC</div>
+                    </div>
+                    <div class="card text-center">
+                        <div style="font-size: 50px; margin-bottom: 15px;"></div>
+                        <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">SEK/Challenge</h3>
+                        <div class="counter team-stat-number" data-count="5">5</div>
+                        <div class="team-stat-label">Títulos de 1º Lugar na CBR</div>
+                    </div>
+                    <div class="card text-center" style="background: rgba(255, 165, 0, 0.1);">
+                        <div style="font-size: 50px; margin-bottom: 15px;"></div>
+                        <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">CBR 2025</h3>
+                        <p style="font-size: 16px; line-height: 1.6;">
+                            <strong>Campeões Nacionais</strong><br>
+                            Categoria Challenge<br>
+                            Espírito Santo
+                        </p>
+                    </div>
                 </div>
-                <div class="card text-center">
-                    <div style="font-size: 50px; margin-bottom: 15px;"></div>
-                    <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">SEK/Challenge</h3>
-                    <div class="counter team-stat-number" data-count="5">5</div>
-                    <div class="team-stat-label">Títulos de 1º Lugar na CBR</div>
-                </div>
-                <div class="card text-center" style="background: rgba(255, 165, 0, 0.1);">
-                    <div style="font-size: 50px; margin-bottom: 15px;"></div>
-                    <h3 style="color: #FFA500; font-size: 22px; margin-bottom: 15px;">CBR 2025</h3>
-                    <p style="font-size: 16px; line-height: 1.6;">
-                        <strong>Campeões Nacionais</strong><br>
-                        Categoria Challenge<br>
-                        Espírito Santo
-                    </p>
+                
+                <!-- Controles -->
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px;">
+                    <button onclick="titulosCarouselInstance.prevSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">‹</button>
+                    <div style="display: flex; gap: 10px;">
+                        <span class="titulos-indicator active" onclick="titulosCarouselInstance.goToSlide(0)" style="width: 12px; height: 12px; border-radius: 50%; background: #FFA500; cursor: pointer;"></span>
+                    </div>
+                    <button onclick="titulosCarouselInstance.nextSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">›</button>
                 </div>
             </div>
 
@@ -275,108 +283,149 @@
         </section>
 
         <!-- Coordenação e Orientadores -->
+        <!-- Corpo Docente e Orientadores -->
+        <section class="content-section">
+            <h2 class="section-title">Nossos Orientadores</h2>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 30px; color: #ccc; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Ao longo de 10 anos, <strong>20 orientadores</strong> dedicaram seu tempo, 
+                conhecimento e paixão para transformar estudantes em campeões. Cada conquista é resultado da dedicação 
+                desses profissionais que acreditaram no potencial de cada aluno.
+            </p>
         <section id="coordenacao" class="content-section">
             <h2 class="section-title">Coordenação e Orientadores</h2>
-            <div class="member-grid orientadores-grid">
-                <div class="member-card">
-                    <h3 class="member-name">📦 SEK (Standard Educational Kit)</h3>
-                    <p class="member-role">Orientadores</p>
-                    <ul class="role-list">
-                        <li>Igor Carlos Pulini</li>
-                        <li>Renan Osório Rios</li>
-                    </ul>
+            <div class="orientadores-carousel" id="orientadoresCarousel" style="position: relative;">
+                <!-- Slide 1 (4 cards) -->
+                <div class="orientadores-slide-group" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 20px;">
+                    <div class="member-card">
+                        <h3 class="member-name">📦 SEK (Standard Educational Kit)</h3>
+                        <p class="member-role">Orientadores</p>
+                        <ul class="role-list">
+                            <li>Igor Carlos Pulini</li>
+                            <li>Renan Osório Rios</li>
+                        </ul>
+                    </div>
+
+                    <div class="member-card">
+                        <h3 class="member-name">⚽ Futebol 2D</h3>
+                        <p class="member-role">Orientadores</p>
+                        <ul class="role-list">
+                            <li>Jean Eduardo Glazar</li>
+                            <li>Giovany Frossard Teixeira</li>
+                        </ul>
+                    </div>
+
+                    <div class="member-card">
+                        <h3 class="member-name">🛰️ CoSpace</h3>
+                        <p class="member-role">Orientador</p>
+                        <ul class="role-list">
+                            <li>Jean Eduardo Glazar</li>
+                        </ul>
+                    </div>
+
+                    <div class="member-card">
+                        <h3 class="member-name">🤖 Humanóide</h3>
+                        <p class="member-role">Orientador</p>
+                        <ul class="role-list">
+                            <li>Julio César Goldner Vendramini</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="member-card">
-                    <h3 class="member-name">⚽ Futebol 2D</h3>
-                    <p class="member-role">Orientadores</p>
-                    <ul class="role-list">
-                        <li>Jean Eduardo Glazar</li>
-                        <li>Giovany Frossard Teixeira</li>
-                    </ul>
+                <!-- Slide 2 (4 cards) -->
+                <div class="orientadores-slide-group" style="display: none; grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 20px;">
+                    <div class="member-card">
+                        <h3 class="member-name">〰️ Seguidor de Linha</h3>
+                        <p class="member-role">Orientadores</p>
+                        <ul class="role-list">
+                            <li>Diego Rossi Mafioletti</li>
+                            <li>Julio César Goldner Vendramini</li>
+                        </ul>
+                    </div>
+
+                    <div class="member-card">
+                        <h3 class="member-name">📑 ADM (Administrativa)</h3>
+                        <p class="member-role">Orientadora</p>
+                        <ul class="role-list">
+                            <li>Joanita Araújo Espanhol</li>
+                        </ul>
+                    </div>
+
+                    <div class="member-card">
+                        <h3 class="member-name">🧱 Lego Sumô</h3>
+                        <p class="member-role">Orientadores</p>
+                        <ul class="role-list">
+                            <li>Igor Carlos Pulini</li>
+                            <li>Renan Osório Rios</li>
+                        </ul>
+                    </div>
+
+                    <div class="member-card">
+                        <h3 class="member-name">🚁 Drone</h3>
+                        <p class="member-role">Orientadores</p>
+                        <ul class="role-list">
+                            <li>Igor Carlos Pulini</li>
+                            <li>Renan Osório Rios</li>
+                            <li>Gustavo Ludovico Guidoni</li>
+                        </ul>
+                    </div>
                 </div>
 
+                <!-- Slide 3 (4 cards) -->
+                <div class="orientadores-slide-group" style="display: none; grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 20px;">
+                    <div class="member-card">
+                        <h3 class="member-name">🧠 Osorin</h3>
+                        <p class="member-role">Orientadores</p>
+                        <ul class="role-list">
+                            <li>Ailton Souza Duarte</li>
+                            <li>Alextian Bartholomeu Liberato</li>
+                            <li>Ricardo Tedesco da Silva</li>
+                            <li>Eduardo Max Amaro Amaral</li>
+                        </ul>
+                    </div>
 
-                <div class="member-card">
-                    <h3 class="member-name">🛰️ CoSpace</h3>
-                    <p class="member-role">Orientador</p>
-                    <ul class="role-list">
-                        <li>Jean Eduardo Glazar</li>
-                    </ul>
+                    <div class="member-card">
+                        <h3 class="member-name">🏆 Challenger</h3>
+                        <p class="member-role">Orientador</p>
+                        <ul class="role-list">
+                            <li>Julio César Goldner Vendramini</li>
+                        </ul>
+                    </div>
+
+                    <div class="member-card">
+                        <h3 class="member-name">🔬 Pesquisa</h3>
+                        <p class="member-role">Orientadores</p>
+                        <ul class="role-list">
+                            <li>Eduardo Max Amaro Amaral</li>
+                            <li>Igor Carlos Pulini</li>
+                            <li>Renan Osório Rios</li>
+                        </ul>
+                    </div>
+
+                    <div class="member-card">
+                        <h3 class="member-name">📚 OBR Teórica</h3>
+                        <p class="member-role">Orientadores</p>
+                        <ul class="role-list">
+                            <li>Alan Balardino</li>
+                            <li>André Avelino</li>
+                            <li>Arthur Belato</li>
+                            <li>Dione Souza Albuquerque de Lima</li>
+                            <li>Fabio Bigati</li>
+                            <li>Jaimel de Oliveira Lima</li>
+                            <li>Josiane Dalmasio Clabunde</li>
+                            <li>Luis Fernando Reinoso</li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="member-card">
-                    <h3 class="member-name">🤖 Humanóide</h3>
-                    <p class="member-role">Orientador</p>
-                    <ul class="role-list">
-                        <li>Julio César Goldner Vendramini</li>
-                    </ul>
-                </div>
-
-                <div class="member-card">
-                    <h3 class="member-name">〰️ Seguidor de Linha</h3>
-                    <p class="member-role">Orientadores</p>
-                    <ul class="role-list">
-                        <li>Diego Rossi Mafioletti</li>
-                        <li>Julio César Goldner Vendramini</li>
-                    </ul>
-                </div>
-
-                <div class="member-card">
-                    <h3 class="member-name">📑 ADM (Administrativa)</h3>
-                    <p class="member-role">Orientadora</p>
-                    <ul class="role-list">
-                        <li>Joanita Araújo Espanhol</li>
-                    </ul>
-                </div>
-
-                <div class="member-card">
-                    <h3 class="member-name">🧱 Lego Sumô</h3>
-                    <p class="member-role">Orientadores</p>
-                    <ul class="role-list">
-                        <li>Igor Carlos Pulini</li>
-                        <li>Renan Osório Rios</li>
-                    </ul>
-                </div>
-
-                <div class="member-card">
-                    <h3 class="member-name">🚁 Drone</h3>
-                    <p class="member-role">Orientadores</p>
-                    <ul class="role-list">
-                        <li>Igor Carlos Pulini</li>
-                        <li>Renan Osório Rios</li>
-                        <li>Gustavo Ludovico Guidoni</li>
-                    </ul>
-                </div>
-
-                <div class="member-card">
-                    <h3 class="member-name">🧠 Osorin</h3>
-                    <p class="member-role">Orientadores</p>
-                    <ul class="role-list">
-                        <li>Ailton Souza Duarte</li>
-                        <li>Alextian Bartholomeu Liberato</li>
-                        <li>Ricardo Tedesco da Silva</li>
-                        <li>Eduardo Max Amaro Amaral</li>
-                    </ul>
-                </div>
-
-                <div class="member-card">
-                    <h3 class="member-name">🏆 Challenge</h3>
-                    <p class="member-role">Orientador</p>
-                    <ul class="role-list">
-                        <li>Julio César Goldner Vendramini</li>
-                    </ul>
-                </div>
-
-                <div class="member-card">
-                    <h3 class="member-name">🔬 Pesquisa</h3>
-                    <p class="member-role">Orientadores</p>
-                    <ul class="role-list">
-                        <li>Eduardo Max Amaro Amaral</li>
-                        <li>Igor Carlos Pulini</li>
-                        <li>Jaimel de Oliveira Lima</li>
-                        <li>Renan Osório Rios</li>
-                    </ul>
+                
+                <!-- Controles -->
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 30px;">
+                    <button onclick="orientadoresCarouselInstance.prevSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">‹</button>
+                    <div style="display: flex; gap: 10px;">
+                        <span class="orientadores-indicator active" onclick="orientadoresCarouselInstance.goToSlide(0)" style="width: 12px; height: 12px; border-radius: 50%; background: #FFA500; cursor: pointer;"></span>
+                        <span class="orientadores-indicator" onclick="orientadoresCarouselInstance.goToSlide(1)" style="width: 12px; height: 12px; border-radius: 50%; background: #555; cursor: pointer;"></span>
+                        <span class="orientadores-indicator" onclick="orientadoresCarouselInstance.goToSlide(2)" style="width: 12px; height: 12px; border-radius: 50%; background: #555; cursor: pointer;"></span>
+                    </div>
+                    <button onclick="orientadoresCarouselInstance.nextSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">›</button>
                 </div>
             </div>
         </section>
@@ -404,7 +453,6 @@
                 <a href="equipes.html">Nossas Equipes</a>
                 <a href="inscreva-se.html">Inscrições</a>
                 <a href="blog.html">Blog</a>
-                <a href="conquistas.html">Conquistas</a>
                 <a href="apoio.html">Apoio</a>
             </div>
 
@@ -448,3 +496,91 @@
     </footer>
 
     <!-- Scripts -->
+    <script>
+        // Classe genérica para Carrossel
+        class GenericCarousel {
+            constructor(containerSelector, groupSelector, indicatorSelector) {
+                this.container = document.querySelector(containerSelector);
+                this.slideGroups = this.container.querySelectorAll(groupSelector);
+                this.indicators = this.container.querySelectorAll(indicatorSelector);
+                this.currentSlide = 0;
+                this.autoPlayInterval = null;
+                this.init();
+            }
+            
+            init() {
+                if (this.slideGroups.length === 0) return;
+                this.showSlide(0);
+                this.initIndicators();
+                this.startAutoPlay();
+            }
+            
+            showSlide(index) {
+                this.currentSlide = (index + this.slideGroups.length) % this.slideGroups.length;
+                
+                this.slideGroups.forEach((group, i) => {
+                    group.style.display = i === this.currentSlide ? 'grid' : 'none';
+                });
+                
+                this.indicators.forEach((indicator, i) => {
+                    if (i === this.currentSlide) {
+                        indicator.style.background = '#FFA500';
+                    } else {
+                        indicator.style.background = '#555';
+                    }
+                });
+            }
+            
+            nextSlide() {
+                this.showSlide(this.currentSlide + 1);
+                this.resetAutoPlay();
+            }
+            
+            prevSlide() {
+                this.showSlide(this.currentSlide - 1);
+                this.resetAutoPlay();
+            }
+            
+            goToSlide(index) {
+                this.showSlide(index);
+                this.resetAutoPlay();
+            }
+            
+            initIndicators() {
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        this.goToSlide(index);
+                    });
+                });
+            }
+            
+            startAutoPlay(interval = 7000) {
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, interval);
+            }
+            
+            stopAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                }
+            }
+            
+            resetAutoPlay() {
+                this.stopAutoPlay();
+                this.startAutoPlay();
+            }
+        }
+        
+        // Instanciar carrosséis quando página carregar
+        let conquistasIntCarouselInstance;
+        let titulosCarouselInstance;
+        let orientadoresCarouselInstance;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            conquistasIntCarouselInstance = new GenericCarousel('#conquistasIntCarousel', '.conquistas-int-slide-group', '.conquistas-int-indicator');
+            titulosCarouselInstance = new GenericCarousel('#titulosCarousel', '.titulos-slide-group', '.titulos-indicator');
+            orientadoresCarouselInstance = new GenericCarousel('#orientadoresCarousel', '.orientadores-slide-group', '.orientadores-indicator');
+        });
+    </script>
+
