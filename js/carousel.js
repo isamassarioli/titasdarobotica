@@ -22,6 +22,7 @@ class Carousel {
         this.initIndicators();
         this.startAutoPlay();
         this.initSwipe();
+        this.bindControls();
     }
     
     showSlide(index) {
@@ -107,6 +108,26 @@ class Carousel {
         };
         
         this.handleSwipe = handleSwipe;
+    }
+
+    bindControls() {
+        // Vincula botões prev/next se existirem dentro do container
+        this.prevBtn = this.container.querySelector('.carousel-prev');
+        this.nextBtn = this.container.querySelector('.carousel-next');
+
+        if (this.prevBtn) {
+            this.prevBtn.addEventListener('click', () => {
+                this.prevSlide();
+                this.resetAutoPlay();
+            });
+        }
+
+        if (this.nextBtn) {
+            this.nextBtn.addEventListener('click', () => {
+                this.nextSlide();
+                this.resetAutoPlay();
+            });
+        }
     }
 }
 
