@@ -3,7 +3,7 @@
  * Carrega posts e editais dinamicamente
  */
 
-const API_URL = 'http://localhost:8000/api'; // Mude para produção
+const API_URL = 'https://titasdarobotica-admin.up.railway.app/api'; // Produção (Railway)
 
 class BlogApiClient {
     constructor(baseUrl = API_URL) {
