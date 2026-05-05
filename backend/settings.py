@@ -14,6 +14,15 @@ SECRET_KEY = config('SECRET_KEY', default='fkd1hi&tuh2edb6xj683d5b1=eh*4$l@rs)iu
 DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='https://titasdarobotica-admin.up.railway.app', cast=Csv())
 
+# During local development, allow localhost addresses when DEBUG is True
+if DEBUG:
+    # `config(..., cast=Csv())` usually returns a list, but handle string defensively
+    if isinstance(ALLOWED_HOSTS, str):
+        ALLOWED_HOSTS = [h.strip() for h in ALLOWED_HOSTS.split(',') if h.strip()]
+    for _host in ('127.0.0.1', 'localhost'):
+        if _host not in ALLOWED_HOSTS:
+            ALLOWED_HOSTS.append(_host)
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
