@@ -99,6 +99,11 @@ Ver também: [RAILWAY-SETUP.md](RAILWAY-SETUP.md)
 - Django já tem `whitenoise` configurado
 - Coleta automática na hora do deploy via Procfile `release` command
 
+Se a interface do admin aparecer sem estilo (apenas HTML cru), significa que os arquivos estáticos não foram coletados. Garanta que você fez push com o `Procfile` atualizado e permita que o deploy rode novamente — ou execute manualmente no shell do serviço:
+
+```bash
+python manage.py collectstatic --noinput
+```
 ## Arquivo .gitignore
 Confirme que você tem `.gitignore` com:
 ```

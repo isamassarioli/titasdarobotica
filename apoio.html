@@ -203,4 +203,42 @@
         </div>
     </footer>
 
+    <!-- Admin Hidden Access -->
+    <div id="admin-access" style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        opacity: 0.15;
+        cursor: pointer;
+        transition: opacity 0.3s;
+        font-size: 24px;
+    " title="Admin (Ctrl+Shift+A)">⚙️</div>
+
+    <style>
+        #admin-access:hover {
+            opacity: 0.4;
+        }
+    </style>
+
+    <script>
+        // Admin button access
+        const adminBtn = document.getElementById('admin-access');
+        
+        // Click access
+        adminBtn.addEventListener('click', function() {
+            window.location.href = 'admin.html';
+        });
+
+        // Keyboard shortcut: Ctrl+Shift+A
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                window.location.href = 'admin.html';
+            }
+        });
+    </script>
+
     <!-- Scripts -->
+</body>
+</html>
