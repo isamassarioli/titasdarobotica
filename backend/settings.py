@@ -143,9 +143,16 @@ SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=not DEBUG, cast=
 CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=not DEBUG, cast=bool)
 
 # CORS configuration
-CORS_ALLOWED_ORIGINS = config(
-    'CORS_ALLOWED_ORIGINS',
-    default='https://titasdarobotica-admin.up.railway.app,http://localhost:8000,http://127.0.0.1:8000',
-    cast=Csv()
-)
-CORS_ALLOW_CREDENTIALS = config('CORS_ALLOW_CREDENTIALS', default=False, cast=bool)
+if DEBUG:
+    # Em desenvolvimento, permitir CORS de qualquer origem
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    # Em produção, usar origens específicas
+    CORS_ALLOWED_ORIGINS = config(
+        'CORS_ALLOWED_ORIGINS',
+        default='https://titasdarobotica-admin.up.railway.app,http://localhost:8000,http://127.0.0.1:8000',
+        cast=Csv()
+    )
+    CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOW_CREDENTIALS = True
