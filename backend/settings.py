@@ -153,6 +153,10 @@ else:
         default='https://titasdarobotica-admin.up.railway.app,http://localhost:8000,http://127.0.0.1:8000',
         cast=Csv()
     )
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        r'^https://.*\.vercel\.app$',
+        r'^https://.*\.vercel\.dev$',
+    ]
     CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOW_CREDENTIALS = True

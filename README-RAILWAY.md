@@ -29,14 +29,14 @@ Na página do projeto Railway:
 DEBUG=False
 SECRET_KEY=eypvrbor9wa6&ula2v2r(0@a@vd_xc(v=273-rpie=2jmiiq6y
 ALLOWED_HOSTS=seu-app.railway.app
-CORS_ALLOWED_ORIGINS=https://seu-app.railway.app,http://localhost:8000
+CORS_ALLOWED_ORIGINS=https://seu-app.railway.app,https://seu-projeto.vercel.app,http://localhost:8000,http://127.0.0.1:8000
 SECURE_SSL_REDIRECT=True
 SESSION_COOKIE_SECURE=True
 CSRF_COOKIE_SECURE=True
 SECURE_HSTS_SECONDS=31536000
 ```
 
-**Importante:** Substitua `seu-app.railway.app` pelo seu domínio exato (sem `https://`, apenas o hostname).
+**Importante:** Substitua `seu-app.railway.app` pelo seu domínio exato (sem `https://`, apenas o hostname). Se o admin/frontend estiver no Vercel, adicione a URL exata do Vercel em `CORS_ALLOWED_ORIGINS`.
 
 ## Passo 4: Database PostgreSQL
 
