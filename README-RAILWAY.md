@@ -16,31 +16,37 @@ Este guia cobre apenas o backend Django. O frontend estático pode continuar sep
 5. Clique em "Deploy Now"
 
 ## Passo 3: Configurar Variáveis de Ambiente
+
+⚠️ **CRÍTICO:** Este passo é obrigatório. Sem essas variáveis, o deploy falhará com "Application failed to respond".
+
 Na página do projeto Railway:
 
-1. Clique em "Variables" ou acesse Settings
-2. Adicione as seguintes variáveis:
+1. Clique em **Variables** ou **Settings**
+2. Clique em **New Variable** para cada linha abaixo
+3. Copie EXATAMENTE (substitua `seu-app` pelo seu domínio Railway):
 
 ```
 DEBUG=False
-SECRET_KEY=seu-secret-key-gerado (você tem em .env local)
-ALLOWED_HOSTS=seu-app.railway.app,localhost
-DATABASE_URL=postgresql://user:password@host:port/dbname
+SECRET_KEY=eypvrbor9wa6&ula2v2r(0@a@vd_xc(v=273-rpie=2jmiiq6y
+ALLOWED_HOSTS=seu-app.railway.app
+CORS_ALLOWED_ORIGINS=https://seu-app.railway.app,http://localhost:8000
+SECURE_SSL_REDIRECT=True
+SESSION_COOKIE_SECURE=True
+CSRF_COOKIE_SECURE=True
+SECURE_HSTS_SECONDS=31536000
 ```
 
-### Para gerar nova SECRET_KEY (se não tiver):
-```python
-from django.core.management.utils import get_random_secret_key
-print(get_random_secret_key())
-```
+**Importante:** Substitua `seu-app.railway.app` pelo seu domínio exato (sem `https://`, apenas o hostname).
 
 ## Passo 4: Database PostgreSQL
-Railway oferece PostgreSQL gratuito:
 
-1. No painel do projeto, clique em "+ New Service"
-2. Selecione "Database" → "PostgreSQL"
-3. Railway automaticamente adiciona `DATABASE_URL` às variáveis
-4. ✅ Pronto! Django usará PostgreSQL automaticamente
+Railway oferece PostgreSQL gratuito. **Este passo cria a variável `DATABASE_URL` automaticamente:**
+
+1. No painel do projeto, clique em **+ New Service**
+2. Selecione **Database** → **PostgreSQL**
+3. Aguarde criar (leva ~30 segundos)
+4. Railway **automaticamente** adiciona `DATABASE_URL` às suas variables
+5. ✅ Pronto! Django usará PostgreSQL automaticamente
 
 ## Passo 5: Deploy Automático
 - Sempre que você fizer `git push`, Railway redeploya automaticamente
@@ -64,18 +70,30 @@ Ou pelo painel:
 
 ## Troubleshooting
 
+### Application failed to respond
+**Causa mais comum:** Variáveis de ambiente não configuradas no Railway.
+
+**Solução:**
+1. Acesse **Logs** no deployment com erro
+2. Procure por `DisallowedHost`, `ImproperlyConfigured`, ou `OperationalError`
+3. Verifique que TODAS as 8 variáveis foram configuradas corretamente (ver Passo 3)
+4. Confirme que `ALLOWED_HOSTS=seu-app.railway.app` (sem protocolo)
+5. Se configurou tudo, faça `git push` novamente (Railway vai redeploy automaticamente)
+
+Ver também: [RAILWAY-SETUP.md](RAILWAY-SETUP.md)
+
 ### Build falha com erro de Python
 - Railway pode estar usando versão errada
 - Confirme `runtime.txt` tem: `python-3.14.3`
 
 ### 500 Error no acesso
-- Verifique `DEBUG=False` está setado
-- Cheque `ALLOWED_HOSTS` inclui seu domínio Railway
+- Verifique `DEBUG=False` está setado em Variables
+- Cheque `ALLOWED_HOSTS` inclui seu domínio Railway (exatamente)
 - Veja logs: "Deployments" → "Logs"
 
 ### Database não conecta
-- DATABASE_URL é adicionado automaticamente pelo Railway
-- Se não aparecer, recrie o PostgreSQL service
+- DATABASE_URL é adicionado automaticamente pelo Railway PostgreSQL service
+- Se não aparecer nas Variables, recrie o PostgreSQL service
 
 ### Static files não carregam
 - Django já tem `whitenoise` configurado
