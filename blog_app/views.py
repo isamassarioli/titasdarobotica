@@ -103,8 +103,9 @@ class EditalViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def closed(self, request):
         """Retorna editais fechados"""
-        closed_editals = self.get_queryset().filter(
-            status__in=['closed', 'archived']
-        )
+        if request.user.is_authenticated and request.user.is_staff:
+            closed_editals = self.get_queryset().filter(status__in=['closed', 'archived'])
+        else:
+            closed_editals = Edital.objects.filter(status__in=['closed', 'archived'])
         serializer = self.get_serializer(closed_editals, many=True)
         return Response(serializer.data)

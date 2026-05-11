@@ -51,6 +51,15 @@ class EditalSerializer(serializers.ModelSerializer):
     def get_is_open(self, obj):
         return obj.is_open
 
+    def validate(self, attrs):
+        start_date = attrs.get('start_date', getattr(self.instance, 'start_date', None))
+        end_date = attrs.get('end_date', getattr(self.instance, 'end_date', None))
+
+        if start_date and end_date and end_date < start_date:
+            raise serializers.ValidationError({'end_date': 'Data de término deve ser maior ou igual à data de início.'})
+
+        return attrs
+
     def create(self, validated_data):
         validated_data.pop('author_id', None)
         edital = Edital.objects.create(**validated_data)

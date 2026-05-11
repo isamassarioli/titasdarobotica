@@ -2,6 +2,18 @@ from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 
+
+def _unique_slug(model_cls, title, current_pk=None):
+    base_slug = slugify(title) or 'item'
+    slug = base_slug
+    index = 2
+
+    while model_cls.objects.filter(slug=slug).exclude(pk=current_pk).exists():
+        slug = f'{base_slug}-{index}'
+        index += 1
+
+    return slug
+
 class Post(models.Model):
     """Modelo para Blog Posts"""
     STATUS_CHOICES = [
@@ -40,7 +52,7 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = _unique_slug(Post, self.title, self.pk)
         super().save(*args, **kwargs)
 
 
@@ -76,7 +88,7 @@ class Edital(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = _unique_slug(Edital, self.title, self.pk)
         super().save(*args, **kwargs)
 
     @property

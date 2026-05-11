@@ -142,26 +142,14 @@ Com suas credenciais de super-usuário você pode:
 
 ## 🔐 Autenticação e Permissões
 
-### Token Authentication
-
-Para usar a API com permissão de edição, obtenha um token:
-
-```bash
-curl -X POST http://localhost:8000/api-token-auth/ \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "sua-senha"}'
-```
-
-Use o token em requisições:
-
-```bash
-curl -H "Authorization: Token seu-token-aqui" \
-  http://localhost:8000/api/posts/
-```
-
 ### Session Authentication
 
-Ou faça login via browser e use cookies de sessão.
+A edição de conteúdo usa sessão do Django.
+
+Fluxo recomendado:
+1. Faça login em `/admin/`
+2. Crie/edite conteúdo no Django Admin
+3. A API pública (`/api/posts/`, `/api/editals/`) é consumida pelo frontend
 
 ---
 
@@ -171,7 +159,7 @@ Ou faça login via browser e use cookies de sessão.
 
 ```bash
 curl -X POST http://localhost:8000/api/posts/ \
-  -H "Authorization: Token seu-token" \
+  -b "sessionid=SEU_SESSIONID" \
   -F "title=Meu Post" \
   -F "category=competicoes" \
   -F "summary=Resumo curto" \
@@ -184,7 +172,7 @@ curl -X POST http://localhost:8000/api/posts/ \
 
 ```bash
 curl -X POST http://localhost:8000/api/editals/ \
-  -H "Authorization: Token seu-token" \
+  -b "sessionid=SEU_SESSIONID" \
   -F "title=Edital 2026" \
   -F "description=Descrição" \
   -F "rules=Regulamento aqui" \

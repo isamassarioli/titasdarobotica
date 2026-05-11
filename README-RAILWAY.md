@@ -1,5 +1,7 @@
 # Deploy Django no Railway
 
+Este guia cobre apenas o backend Django. O frontend estático pode continuar separado no Vercel ou em outro host de arquivos estáticos.
+
 ## Passo 1: Criar Conta Railway
 1. Vá para https://railway.app
 2. Clique em "Login/Signup"

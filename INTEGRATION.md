@@ -229,38 +229,15 @@ blogApi.getOpenEditals().then(editals => {
 
 ## 🔐 Autenticação (Para Admin)
 
-Se quiser criar/editar posts via JavaScript (para painel admin customizado):
+A área administrativa oficial é o Django Admin com login de sessão.
 
-**Obter token:**
-```javascript
-const response = await fetch('http://localhost:8000/api-token-auth/', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    username: 'admin',
-    password: 'sua-senha'
-  })
-});
-const { token } = await response.json();
-```
+Fluxo recomendado:
+1. Acesse `http://localhost:8000/admin/`
+2. Faça login com superusuário
+3. Crie/edite Posts e Editais no painel
+4. O frontend consome automaticamente os dados via API pública
 
-**Usar token em requisições:**
-```javascript
-fetch('http://localhost:8000/api/posts/', {
-  method: 'POST',
-  headers: {
-    'Authorization': `Token ${token}`,
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    title: 'Novo Post',
-    category: 'competicoes',
-    summary: 'Resumo',
-    body: 'Conteúdo',
-    status: 'published'
-  })
-})
-```
+Se precisar editar pela API de forma manual, use sessão autenticada (cookie de sessão do Django) em vez de token no frontend.
 
 ---
 

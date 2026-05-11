@@ -190,7 +190,11 @@ Desenvolvido com ❤️ para a equipe Titãs da Robótica
 
 ## 🚀 Deploy no Vercel
 
-Este repositório é um site estático (HTML/CSS/JS). Opcionalmente, adicionamos anteriormente um arquivo `vercel.json` para forçar o fallback de rotas para `index.html` (útil para SPAs).
+Este repositório, no uso recomendado, é o frontend estático (HTML/CSS/JS). O backend Django deve ser publicado separadamente no Railway ou serviço similar.
+
+Vercel é adequado para o frontend estático e não para hospedar este backend Django completo com admin, uploads e migrations.
+
+Opcionalmente, o arquivo `vercel.json` pode manter o fallback para `index.html` se você usar rotas cliente.
 
 Passos rápidos:
 
@@ -214,6 +218,6 @@ vercel --prod # deploy para produção
 Observações:
 - Se o site usa rotas do lado cliente (History API), o `vercel.json` garante fallback para `index.html`.
 - Se você não usar rotas cliente, pode manter ou remover `vercel.json` (não fará mal).
-- Formulários que precisem de backend exigem funções serverless ou um endpoint externo.
+- Formulários que precisem de backend devem apontar para o Railway ou outro backend Django externo.
 
 ---
