@@ -1,178 +1,204 @@
 # 🤖 Titãs da Robótica - Website Oficial
 
-Site oficial da equipe Titãs da Robótica do Instituto Federal do Espírito Santo - Campus Colatina.
+Website estático + admin client-only da equipe Titãs da Robótica do Instituto Federal do Espírito Santo - Campus Colatina.
 
 ## 📁 Estrutura do Projeto
 
 ```
-Figma Code/
-├── css/                    # Arquivos CSS organizados
-│   ├── reset.css          # Reset CSS
-│   ├── header.css         # Estilos do cabeçalho e navegação
-│   ├── hero.css           # Estilos da seção hero
-│   ├── components.css     # Componentes reutilizáveis
-│   ├── forms.css          # Estilos de formulários
-│   ├── pages.css          # Estilos específicos de páginas
-│   └── main.css           # CSS principal (importa todos os outros)
+titasdarobotica/
+├── static/                 # Assets estáticos
+│   ├── css/               # Estilos
+│   │   ├── reset.css
+│   │   ├── header.css
+│   │   ├── hero.css
+│   │   ├── components.css
+│   │   ├── forms.css
+│   │   ├── pages.css
+│   │   ├── footer.css
+│   │   ├── contact.css
+│   │   └── admin.css
+│   ├── images/            # Imagens do site
+│   └── js/                # Scripts
+│       ├── config.js      # Config da API (fallback)
+│       ├── blog-api.js    # Carregador de posts (client-side)
+│       ├── edital-loader.js
+│       ├── blog-loader.js
+│       ├── admin.js       # Admin client-only (localStorage)
+│       ├── navigation.js
+│       ├── carousel.js
+│       ├── forms.js
+│       ├── animations.js
+│       └── main.js
 │
-├── js/                     # Arquivos JavaScript organizados
-│   ├── navigation.js      # Navegação e menu
-│   ├── carousel.js        # Carrossel de imagens
-│   ├── forms.js           # Validação de formulários
-│   ├── animations.js      # Animações e interações
-│   └── main.js            # Script principal
-│
-├── images/                 # Imagens do site
-│   ├── Group 3.png        # Logo da equipe
-│   └── [outras imagens]
-│
-├── home.html              # Página inicial
-├── contato.html           # Página de contato
-├── inscreva-se.html       # Página de inscrições e editais
-├── sobre.html             # Página sobre a equipe
-├── membros.html           # Página de membros
-├── equipes.html           # Página de equipes
+├── index.html             # Página inicial
 ├── blog.html              # Página do blog
-└── apoio.html             # Página de apoiadores
-
+├── editais.html           # Página de editais
+├── contato.html           # Página de contato
+├── inscreva-se.html       # Inscrições
+├── depoimentos.html       # Depoimentos
+├── equipes.html           # Equipes
+├── apoio.html             # Apoiadores
+├── admin.html             # Admin (client-only, localStorage)
+│
+├── .env.example           # Variáveis de exemplo
+├── PROJECT-STRUCTURE.md   # Detalhes da arquitetura
+├── README.md              # Este arquivo
+└── vercel.json            # Config para deploy no Vercel
 ```
 
-## ✨ Funcionalidades
+## ✨ Características Principais
 
-### 🎨 Design e Interface
-- **Menu animado** com efeitos hover e transições suaves
-- **Design responsivo** que se adapta a diferentes tamanhos de tela
-- **Carrossel de imagens** com navegação automática e manual
-- **Animações ao scroll** para elementos da página
-- **Tema escuro** com cores laranja e preto da equipe
+### 🎨 Frontend Estático
+- **HTML5 semântico** com estrutura limpa
+- **CSS3 responsivo** com Grid/Flexbox
+- **JavaScript vanilla ES6+** sem dependências pesadas
+- **Sem banco de dados backend** — totalmente client-side
 
-### 📝 Formulários Funcionais
-- **Formulário de contato** com validação completa
-- **Newsletter** para inscrição de e-mails
-- **Validação em tempo real** de campos
-- **Mensagens de sucesso/erro** animadas
+### 📝 Admin Client-Only
+- **Gerenciador de posts** com localStorage
+- **CRUD completo** (criar, editar, deletar, listar posts)
+- **Upload de imagens** convertidas para base64
+- **Export/Import JSON** para migração de dados
+- **Senha simples** para proteger acesso (armazenada em localStorage)
 
-### 🎭 Interatividade
-- **Lightbox** para visualização de imagens
-- **Smooth scroll** para navegação interna
-- **Botão "Voltar ao topo"** em todas as páginas
-- **Dropdown animado** no menu de equipes
-- **Contadores animados** para estatísticas
+### 📰 Blog Dinâmico
+- Posts carregados via JavaScript (não requer servidor)
+- Filtragem por categoria e status
+- Preview de imagens em base64
+- Sem dependência de API backend
 
 ## 🚀 Como Usar
 
-### Desenvolvimento Local
-1. Abra o arquivo `home.html` no navegador
-2. Navegue pelas páginas usando o menu superior
-3. Teste os formulários e interações
+### 🌐 Abrir o Site Localmente
+1. Abra `index.html` no navegador (ou qualquer página HTML)
+2. Não requer servidor local — tudo roda no browser
+3. Navegue pelas páginas usando o menu
 
-### Personalização
+### 📝 Gerenciar Posts (Admin)
 
-#### Cores
-As cores principais estão definidas no CSS:
-- **Laranja:** `#FFA500` e `#FF6B00`
-- **Preto:** `#0D0D0D` e `#1a1a1a`
-- **Cinza:** `#909090` e `#aaa`
+#### Acessar Admin
+- Abra `admin.html` no navegador
+- **Login:** qualquer usuário
+- **Senha inicial:** `@Isadora100504`
 
-Para alterar, edite os arquivos em `css/`.
+#### Criar Post
+1. Clique em **➕ Novo Post**
+2. Preencha título, categoria, resumo, conteúdo
+3. Upload de imagem (será convertida para base64)
+4. Clique **Publicar** — salvo em `localStorage`
 
-#### Imagens
-Substitua os placeholders em cada página:
-- Logo: `images/Group 3.png`
-- Imagens das páginas: `images/[nome-pagina].png`
+#### Editar Post
+1. Aba **📝 Posts** mostra todos os posts
+2. Clique **✏️ Editar** para modificar
+3. Salve as alterações (atualiza `localStorage`)
 
-#### Conteúdo
-Edite diretamente os arquivos HTML para atualizar textos, links e informações.
+#### Deletar Post
+1. Clique **🗑️ Deletar** no card do post
+2. Confirme a exclusão
 
-## 📱 Responsividade
+#### Exportar Posts
+1. Clique **⬇️ Exportar posts**
+2. Baixa arquivo JSON com todos os posts (incluindo imagens em base64)
+3. Use para backup ou migração
 
-O site é totalmente responsivo e se adapta a:
-- **Desktop:** 1920px e acima
-- **Tablet:** 768px - 1024px
-- **Mobile:** 320px - 768px
+#### Importar Posts
+1. Clique **⬆️ Importar posts**
+2. Selecione arquivo JSON anterior
+3. Posts serão mesclados (evita duplicação por ID)
 
-## 🔧 Tecnologias Utilizadas
+### 🔑 Mudar Senha do Admin
+Abra o console do navegador (F12) e execute:
+```javascript
+localStorage.setItem('titas_admin_password', 'sua_nova_senha');
+```
 
-- **HTML5** - Estrutura semântica
-- **CSS3** - Estilização moderna com Grid e Flexbox
-- **JavaScript ES6+** - Funcionalidades interativas
-- **Google Fonts** - Tipografia (Inter)
+## 🎯 Organização de Posts (localStorage)
 
-## 📄 Páginas Disponíveis
+Os posts são armazenados em `localStorage` com a chave `titas_posts`.
 
-### 🏠 Home (`home.html`)
-- Hero section com carrossel
-- Histórico da equipe
-- Estatísticas
-- Galeria de atividades
+### Estrutura de um Post
+```json
+{
+  "id": "1715761234567",
+  "slug": "meu-primeiro-post",
+  "title": "Meu Primeiro Post",
+  "category": "competicoes",
+  "status": "published",
+  "summary": "Resumo do post",
+  "body": "Conteúdo completo do post",
+  "cover_image": "data:image/png;base64,...",
+  "created_at": "2026-05-14T10:00:00.000Z",
+  "updated_at": "2026-05-14T10:00:00.000Z"
+}
+```
 
-### 📞 Contato (`contato.html`)
-- Formulário de contato funcional
-- Informações de contato
-- Localização (mapa)
+### Categorias Disponíveis
+- `competicoes` — Competições
+- `workshops` — Workshops
+- `projetos` — Projetos
+- `eventos` — Eventos
+- `novidades` — Novidades
 
-### 📝 Inscreva-se (`inscreva-se.html`)
-- Editais abertos
-- Formulário de newsletter
-- Benefícios de participar
+### Status Disponíveis
+- `draft` — Rascunho (não aparece no blog público)
+- `published` — Publicado (visível no blog)
+- `archived` — Arquivado (oculto)
 
-### ℹ️ Sobre (`sobre.html`)
-- História da equipe
-- Missão e valores
-- Timeline de conquistas
+## 🔧 Tecnologias
 
-### 👥 Membros (`membros.html`)
-- Grid de membros da equipe
-- Fotos e cargos
-- Biografias
+- **HTML5** — Estrutura semântica
+- **CSS3** — Responsivo (Grid/Flexbox)
+- **JavaScript vanilla ES6+** — Sem frameworks pesados
+- **localStorage** — Armazenamento client-side
+- **Sem backend, sem banco de dados** — Totalmente estático
 
-### 🤖 Equipes (`equipes.html`)
-- Todas as equipes de competição
-- Descrições e conquistas
-- Fotos dos robôs
+## 📄 Páginas do Site
 
-### 📰 Blog (`blog.html`)
-- Artigos e notícias
-- Cobertura de eventos
-- Atualizações da equipe
+- **index.html** — Página inicial
+- **blog.html** — Blog com posts dinâmicos
+- **editais.html** — Editais e regulamentos
+- **contato.html** — Formulário de contato
+- **inscreva-se.html** — Inscrições
+- **depoimentos.html** — Depoimentos de membros
+- **equipes.html** — Equipes de competição
+- **apoio.html** — Apoiadores e patrocinadores
+- **admin.html** — Painel administrativo (client-only)
 
-### 🤝 Apoio (`apoio.html`)
-- Patrocinadores
-- Parceiros
-- Como apoiar
+## 📦 Deploy
 
-## 🎯 Próximos Passos
+### Vercel (Recomendado)
+1. Push para repositório GitHub
+2. Conecte repositório no [Vercel](https://vercel.com)
+3. Vercel detecta como site estático automaticamente
+4. Pronto! Deploy feito
 
-### Recomendações de Implementação:
+O arquivo `vercel.json` contém configuração para fallback a `index.html`.
 
-1. **Backend/API:**
-   - Integrar formulários com servidor (Node.js, PHP, etc.)
-   - Banco de dados para armazenar mensagens
-   - Sistema de gerenciamento de conteúdo (CMS)
+### Nginx / Apache (Alternativa)
+Configure fallback de SPA:
+```nginx
+try_files $uri $uri/ /index.html;
+```
 
-2. **Melhorias:**
-   - Sistema de busca no blog
-   - Área administrativa para membros
-   - Galeria de fotos interativa
-   - Integração com redes sociais
+## 💡 Dicas & Troubleshooting
 
-3. **Performance:**
-   - Otimizar imagens (WebP, lazy loading)
-   - Minificar CSS e JavaScript
-   - Implementar cache
-   - CDN para assets estáticos
+### Posts Não Aparecem no Blog
+- Certifique-se de que o post tem status **`published`**
+- Verifique se `blog.html` está carregando `blog-api.js`
+- Abra console (F12) e veja se há erros de JavaScript
 
-4. **SEO:**
-   - Meta tags para cada página
-   - Sitemap.xml
-   - robots.txt
-   - Schema markup
+### Resetar Admin (limpar tudo)
+Abra console e execute:
+```javascript
+window._titas_reset();
+```
 
-5. **Acessibilidade:**
-   - Atributos ARIA
-   - Contraste de cores WCAG
-   - Navegação por teclado
-   - Legendas em imagens
+### Acessar localStorage direto
+```javascript
+window._titas_readPosts();  // lê todos os posts
+localStorage.getItem('titas_posts');  // JSON bruto
+localStorage.getItem('titas_admin_password');  // senha
+```
 
 ## 📧 Contato
 
@@ -188,36 +214,4 @@ Para dúvidas sobre o código ou sugestões:
 
 Desenvolvido com ❤️ para a equipe Titãs da Robótica
 
-## 🚀 Deploy no Vercel
-
-Este repositório, no uso recomendado, é o frontend estático (HTML/CSS/JS). O backend Django deve ser publicado separadamente no Railway ou serviço similar.
-
-Vercel é adequado para o frontend estático e não para hospedar este backend Django completo com admin, uploads e migrations.
-
-Opcionalmente, o arquivo `vercel.json` pode manter o fallback para `index.html` se você usar rotas cliente.
-
-Passos rápidos:
-
-1. Pela interface web (mais simples):
-   - Acesse https://vercel.com e conecte sua conta ao GitHub.
-   - Importe o repositório `isamassarioli/titasdarobotica`.
-   - Framework Preset: "Other / Static Site".
-   - Build command: deixe em branco.
-   - Output directory: deixe em branco (ou `.`).
-   - Clique em Deploy.
-
-2. Pelo Vercel CLI (PowerShell no Windows):
-```powershell
-npm install -g vercel
-vercel login
-cd 'D:\Users\2024122760199\Documents\GitHub\titasdarobotica'
-vercel        # deploy de preview
-vercel --prod # deploy para produção
-```
-
-Observações:
-- Se o site usa rotas do lado cliente (History API), o `vercel.json` garante fallback para `index.html`.
-- Se você não usar rotas cliente, pode manter ou remover `vercel.json` (não fará mal).
-- Formulários que precisem de backend devem apontar para o Railway ou outro backend Django externo.
-
----
+**Site 100% estático + Admin client-only. Sem dependências externas, sem backend, sem banco de dados.**

@@ -48,6 +48,11 @@
                 <section id="posts-tab" class="tab active">
                     <div class="tab-header">
                         <h2>Posts</h2>
+                        <div class="export-import">
+                            <button class="btn btn-secondary" onclick="exportPosts()">⬇️ Exportar posts</button>
+                            <button class="btn btn-secondary" onclick="triggerImport()">⬆️ Importar posts</button>
+                            <input id="import-file" type="file" accept="application/json" style="display:none">
+                        </div>
                         <div class="filters">
                             <select id="filter-category" onchange="loadPosts()">
                                 <option value="">Todas as categorias</option>
