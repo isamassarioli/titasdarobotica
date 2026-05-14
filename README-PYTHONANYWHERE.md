@@ -33,6 +33,28 @@ pip install whitenoise gunicorn dj-database-url psycopg[binary]
 pip list | grep -E "Django|rest_framework|whitenoise|psycopg"
 ```
 
+### Se o comando `mkvirtualenv` não existir
+
+Algumas contas do PythonAnywhere usam um fluxo diferente de virtualenv. Se isso acontecer, use:
+
+```bash
+python3.10 -m venv ~/.virtualenvs/titasdarobotica
+source ~/.virtualenvs/titasdarobotica/bin/activate
+pip install -r requirements.txt
+```
+
+Depois, na aba **Web**, informe o caminho do ambiente como:
+
+```text
+/home/seuusuario/.virtualenvs/titasdarobotica
+```
+
+Se o painel aceitar só o nome, você também pode tentar:
+
+```text
+titasdarobotica
+```
+
 ## Passo 4: Criar Arquivo .env Local
 
 No Bash console:
@@ -50,6 +72,15 @@ EOF
 ```
 
 **Substitua `seususername` pelo seu username PythonAnywhere!**
+
+Se você também quiser ativar a sincronização com Supabase nesse ambiente, adicione estas variáveis no `.env` do projeto ou em Variables do PythonAnywhere:
+
+```bash
+SUPABASE_URL=https://trnxdkbkkgtkyuddtvaj.supabase.co
+SUPABASE_KEY=sua_chave_anon_ou_service_role_aqui
+```
+
+Se o frontend estiver separado no Vercel, o Supabase continua no backend Django do PythonAnywhere. O Vercel não precisa da `SUPABASE_KEY` secreta.
 
 ## Passo 5: Coletar Static Files
 
@@ -191,6 +222,18 @@ const baseUrl = 'https://seususername.pythonanywhere.com/api'
 ```
 
 E em `blog.html` também configure a URL correta.
+
+---
+
+## Fluxo Recomendado Para O Seu Caso
+
+Como vocês saíram da Railway, o fluxo mais limpo agora é:
+
+1. **PythonAnywhere**: hospeda o Django, o admin, a API e o Supabase no backend.
+2. **Vercel**: hospeda apenas o frontend estático, se vocês quiserem separar.
+3. **Supabase**: fica configurado no backend do PythonAnywhere, não no Vercel.
+
+Se você estiver usando apenas PythonAnywhere, pode ignorar o Vercel por enquanto e manter tudo no mesmo lugar.
 
 ---
 
