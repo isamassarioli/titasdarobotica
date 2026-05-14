@@ -8,22 +8,21 @@
 </head>
 <body>
     <div class="admin-container">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="logo">
                 <h1>Admin</h1>
                 <p>Titas da Robótica</p>
             </div>
             <nav class="nav">
-                <button class="nav-btn active" data-tab="posts">📝 Posts</button>
-                <button class="nav-btn" data-tab="novo">➕ Novo Post</button>
-                <button class="nav-btn logout" onclick="logout()">🚪 Sair</button>
+                <button class="nav-btn active" data-tab="posts">Posts</button>
+                <button class="nav-btn" data-tab="novo">Novo Post</button>
+                <button class="nav-btn" data-tab="editais">Editais</button>
+                <button class="nav-btn" data-tab="novo-edital">Novo Edital</button>
+                <button class="nav-btn logout" onclick="logout()">Sair</button>
             </nav>
         </aside>
 
-        <!-- Main Content -->
         <main class="main">
-            <!-- Login Form -->
             <section id="login-tab" class="tab active">
                 <div class="login-box">
                     <h2>Login Admin</h2>
@@ -42,15 +41,13 @@
                 </div>
             </section>
 
-            <!-- Dashboard (hidden until logged in) -->
             <div id="dashboard" class="dashboard" style="display: none;">
-                <!-- Posts Tab -->
                 <section id="posts-tab" class="tab active">
                     <div class="tab-header">
                         <h2>Posts</h2>
                         <div class="export-import">
-                            <button class="btn btn-secondary" onclick="exportPosts()">⬇️ Exportar posts</button>
-                            <button class="btn btn-secondary" onclick="triggerImport()">⬆️ Importar posts</button>
+                            <button class="btn btn-secondary" onclick="exportPosts()">Exportar posts</button>
+                            <button class="btn btn-secondary" onclick="triggerImport()">Importar posts</button>
                             <input id="import-file" type="file" accept="application/json" style="display:none">
                         </div>
                         <div class="filters">
@@ -75,7 +72,6 @@
                     </div>
                 </section>
 
-                <!-- New Post Tab -->
                 <section id="novo-tab" class="tab">
                     <h2>Criar Novo Post</h2>
                     <form id="post-form" onsubmit="handlePostSubmit(event)">
@@ -117,7 +113,7 @@
 
                         <div class="form-group">
                             <label for="cover_image">Imagem de Capa:</label>
-                            <input type="file" id="cover_image" accept="image/*" required>
+                            <input type="file" id="cover_image" accept="image/*">
                             <div id="image-preview" class="image-preview"></div>
                         </div>
 
@@ -125,26 +121,104 @@
                             <button type="submit" class="btn btn-primary">Publicar</button>
                             <button type="reset" class="btn btn-secondary">Limpar</button>
                         </div>
-                        <p id="form-message" class="form-message"></p>
+                    </form>
+                </section>
+
+                <section id="editais-tab" class="tab">
+                    <div class="tab-header">
+                        <h2>Editais</h2>
+                        <div class="export-import">
+                            <button class="btn btn-secondary" onclick="exportEditais()">Exportar editais</button>
+                            <button class="btn btn-secondary" onclick="triggerEditaisImport()">Importar editais</button>
+                            <input id="import-editais-file" type="file" accept="application/json" style="display:none">
+                        </div>
+                        <div class="filters">
+                            <select id="filter-edital-status" onchange="loadEditais()">
+                                <option value="">Todos os status</option>
+                                <option value="draft">Rascunho</option>
+                                <option value="published">Publicado</option>
+                                <option value="open">Aberto</option>
+                                <option value="closed">Fechado</option>
+                                <option value="archived">Arquivado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="editais-list" class="posts-list">
+                        <p class="loading">Carregando...</p>
+                    </div>
+                </section>
+
+                <section id="novo-edital-tab" class="tab">
+                    <h2>Criar Novo Edital</h2>
+                    <form id="edital-form" onsubmit="handleEditalSubmit(event)">
+                        <div class="form-group">
+                            <label for="edital-title">Título:</label>
+                            <input type="text" id="edital-title" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edital-status">Status:</label>
+                                <select id="edital-status" required>
+                                    <option value="draft">Rascunho</option>
+                                    <option value="published">Publicado</option>
+                                    <option value="open">Aberto</option>
+                                    <option value="closed">Fechado</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="edital-document">Link do documento:</label>
+                                <input type="url" id="edital-document" placeholder="https://...">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edital-start">Data de início:</label>
+                                <input type="date" id="edital-start" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edital-end">Data de término:</label>
+                                <input type="date" id="edital-end" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edital-description">Resumo:</label>
+                            <textarea id="edital-description" rows="3" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edital-body">Conteúdo:</label>
+                            <textarea id="edital-body" rows="8"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edital-image">Imagem:</label>
+                            <input type="file" id="edital-image" accept="image/*">
+                            <div id="edital-image-preview" class="image-preview"></div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Salvar edital</button>
+                            <button type="reset" class="btn btn-secondary">Limpar</button>
+                        </div>
                     </form>
                 </section>
             </div>
         </main>
     </div>
 
-    <!-- Modal para editar post -->
     <div id="edit-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close" onclick="closeEditModal()">&times;</span>
             <h2>Editar Post</h2>
             <form id="edit-form" onsubmit="handleEditSubmit(event)">
                 <input type="hidden" id="edit-id">
-                
                 <div class="form-group">
                     <label for="edit-title">Título:</label>
                     <input type="text" id="edit-title" required>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <label for="edit-category">Categoria:</label>
@@ -165,28 +239,80 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="edit-summary">Resumo:</label>
                     <textarea id="edit-summary" rows="3" required></textarea>
                 </div>
-
                 <div class="form-group">
                     <label for="edit-body">Conteúdo:</label>
                     <textarea id="edit-body" rows="8" required></textarea>
                 </div>
-
                 <div class="form-group">
                     <label for="edit-cover_image">Imagem de Capa:</label>
                     <input type="file" id="edit-cover_image" accept="image/*">
                     <div id="edit-image-preview" class="image-preview"></div>
                 </div>
-
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                     <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancelar</button>
                 </div>
-                <p id="edit-form-message" class="form-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-edital-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditalModal()">&times;</span>
+            <h2>Editar Edital</h2>
+            <form id="edit-edital-form" onsubmit="handleEditalEditSubmit(event)">
+                <input type="hidden" id="edit-edital-id">
+                <div class="form-group">
+                    <label for="edit-edital-title">Título:</label>
+                    <input type="text" id="edit-edital-title" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-edital-status">Status:</label>
+                        <select id="edit-edital-status" required>
+                            <option value="draft">Rascunho</option>
+                            <option value="published">Publicado</option>
+                            <option value="open">Aberto</option>
+                            <option value="closed">Fechado</option>
+                            <option value="archived">Arquivado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-edital-document">Link do documento:</label>
+                        <input type="url" id="edit-edital-document" placeholder="https://...">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-edital-start">Data de início:</label>
+                        <input type="date" id="edit-edital-start" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-edital-end">Data de término:</label>
+                        <input type="date" id="edit-edital-end" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit-edital-description">Resumo:</label>
+                    <textarea id="edit-edital-description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-edital-body">Conteúdo:</label>
+                    <textarea id="edit-edital-body" rows="8"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-edital-image">Imagem:</label>
+                    <input type="file" id="edit-edital-image" accept="image/*">
+                    <div id="edit-edital-image-preview" class="image-preview"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditalModal()">Cancelar</button>
+                </div>
             </form>
         </div>
     </div>
@@ -194,5 +320,3 @@
     <script src="/static/js/admin.js"></script>
 </body>
 </html>
-
-
