@@ -4,9 +4,15 @@
  */
 
 // Detectar se é desenvolvimento ou produção
-const isDev = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-const defaultApiUrl = isDev ? 'http://localhost:8000/api' : 'https://titasdarobotica-admin.up.railway.app/api';
+const isDev = window.location.protocol !== 'https:' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '');
+const defaultApiUrl = 'http://localhost:8000/api';
 const API_URL = localStorage.getItem('apiUrl') || defaultApiUrl;
+
+console.log('🔧 Debug - API Configuration:');
+console.log('  Hostname:', window.location.hostname);
+console.log('  Protocol:', window.location.protocol);
+console.log('  API_URL:', API_URL);
+console.log('  isDev:', isDev);
 
 let authToken = localStorage.getItem('authToken') || null;
 let isLoggedIn = false;
@@ -21,6 +27,7 @@ async function handleLogin(event) {
 
     try {
         errorMsg.textContent = 'Autenticando...';
+        console.log('🔐 Tentando login:', { username, apiUrl: API_URL });
         
         const response = await fetch(`${API_URL}/auth/login/`, {
             method: 'POST',
@@ -32,20 +39,35 @@ async function handleLogin(event) {
             body: JSON.stringify({ username, password })
         });
 
+        // Se a resposta não foi OK, tente ler o erro detalhado
         if (!response.ok) {
-            throw new Error('Credenciais inválidas');
+            let errorDetail = `HTTP ${response.status}`;
+            try {
+                const errorData = await response.json();
+                errorDetail = errorData.error || errorData.detail || errorDetail;
+            } catch (e) {
+                // Se não conseguir ler JSON, usa o status HTTP
+            }
+            throw new Error(`Erro no servidor: ${errorDetail}`);
         }
 
         const data = await response.json();
+        if (!data.token) {
+            throw new Error('Token não recebido do servidor');
+        }
+
         authToken = data.token;
         localStorage.setItem('authToken', authToken);
         localStorage.setItem('apiUrl', API_URL);
         
+        console.log('✅ Login bem-sucedido! Token:', authToken.substring(0, 10) + '...');
         errorMsg.textContent = '';
         showDashboard();
     } catch (error) {
-        errorMsg.textContent = `❌ ${error.message}`;
-        console.error('Erro no login:', error);
+        const msg = `❌ ${error.message}`;
+        errorMsg.textContent = msg;
+        console.error('🔴 Erro no login:', error);
+        console.error('📍 API URL:', API_URL);
     }
 }
 
