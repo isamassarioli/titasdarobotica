@@ -10,9 +10,17 @@ from decouple import config
 SUPABASE_URL = config('SUPABASE_URL', default='')
 SUPABASE_KEY = config('SUPABASE_KEY', default='')
 
-if SUPABASE_URL and SUPABASE_KEY:
-    supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
-else:
+supabase: Client = None
+
+try:
+    if SUPABASE_URL and SUPABASE_KEY:
+        supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+        print("✅ Cliente Supabase inicializado com sucesso")
+    else:
+        print("⚠️ Supabase não configurado - sincronização desativada")
+except Exception as e:
+    print(f"❌ Erro ao conectar com Supabase: {str(e)}")
+    print("   Verifique SUPABASE_URL e SUPABASE_KEY no arquivo .env")
     supabase = None
 
 

@@ -66,6 +66,7 @@ class Post(models.Model):
             from blog_app.supabase_client import supabase, insert_record, update_record
             
             if not supabase:
+                # Supabase não configurado - isso é normal em desenvolvimento
                 return
             
             post_data = {
@@ -90,7 +91,16 @@ class Post(models.Model):
                     # Salvar sem chamar sync novamente (evitar loop)
                     super().save(update_fields=['supabase_id'])
         except Exception as e:
-            print(f"Erro ao sincronizar post {self.id} com Supabase: {str(e)}")
+            error_msg = str(e)
+            if 'Invalid API key' in error_msg:
+                print(f"⚠️  Chave Supabase inválida - Verifique .env")
+                print(f"   Erro: {error_msg}")
+            elif 'Network' in error_msg or 'Connection' in error_msg:
+                print(f"⚠️  Erro de conexão com Supabase - Verificando conectividade...")
+            else:
+                print(f"⚠️  Erro ao sincronizar post '{self.title}' com Supabase:")
+                print(f"   {error_msg}")
+            # Não quebra - post continua funcionando localmente
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[self.slug])
@@ -164,7 +174,16 @@ class Edital(models.Model):
                     # Salvar sem chamar sync novamente (evitar loop)
                     super().save(update_fields=['supabase_id'])
         except Exception as e:
-            print(f"Erro ao sincronizar edital {self.id} com Supabase: {str(e)}")
+            error_msg = str(e)
+            if 'Invalid API key' in error_msg:
+                print(f"⚠️  Chave Supabase inválida - Verifique .env")
+                print(f"   Erro: {error_msg}")
+            elif 'Network' in error_msg or 'Connection' in error_msg:
+                print(f"⚠️  Erro de conexão com Supabase - Verificando conectividade...")
+            else:
+                print(f"⚠️  Erro ao sincronizar edital '{self.title}' com Supabase:")
+                print(f"   {error_msg}")
+            # Não quebra - edital continua funcionando localmente
 
     @property
     def is_open(self):
