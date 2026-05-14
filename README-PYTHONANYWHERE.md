@@ -127,7 +127,7 @@ import sys
 import django
 
 # Add your project directory to the sys.path
-project_home = '/home/seususername/titasdarobotica'
+project_home = '/home/isamassarioli/titasdarobotica'
 if project_home not in sys.path:
     sys.path.insert(0, project_home)
 
