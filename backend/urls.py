@@ -9,7 +9,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin-panel/', admin.site.urls),
+    path('admin/', TemplateView.as_view(template_name='admin.html'), name='admin_dashboard'),
     path('api/', include('blog_app.urls')),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('blog/', post_list_view, name='blog_list'),

@@ -116,6 +116,7 @@ class Edital(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='editals')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Atualizado em')
+    supabase_id = models.BigIntegerField(null=True, blank=True, verbose_name='ID no Supabase')
 
     class Meta:
         ordering = ['-start_date', '-created_at']
@@ -129,6 +130,41 @@ class Edital(models.Model):
         if not self.slug:
             self.slug = _unique_slug(Edital, self.title, self.pk)
         super().save(*args, **kwargs)
+        
+        # Sincronizar com Supabase após salvar
+        self._sync_to_supabase()
+
+    def _sync_to_supabase(self):
+        """Sincroniza edital com tabela Supabase"""
+        try:
+            from blog_app.supabase_client import supabase, insert_record, update_record
+            
+            if not supabase:
+                return
+            
+            edital_data = {
+                'title': self.title,
+                'slug': self.slug,
+                'description': self.description,
+                'rules': self.rules,
+                'status': self.status,
+                'start_date': self.start_date.isoformat() if self.start_date else None,
+                'end_date': self.end_date.isoformat() if self.end_date else None,
+                'author_id': self.author.id if self.author else None,
+            }
+            
+            if self.supabase_id:
+                # Atualizar registro existente
+                result = update_record('editals', self.supabase_id, edital_data)
+            else:
+                # Criar novo registro
+                result = insert_record('editals', edital_data)
+                if result.get('success') and result.get('data'):
+                    self.supabase_id = result['data'][0]['id']
+                    # Salvar sem chamar sync novamente (evitar loop)
+                    super().save(update_fields=['supabase_id'])
+        except Exception as e:
+            print(f"Erro ao sincronizar edital {self.id} com Supabase: {str(e)}")
 
     @property
     def is_open(self):

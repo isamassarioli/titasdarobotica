@@ -146,6 +146,8 @@ CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=not DEBUG, cast=bool)
 if DEBUG:
     # Em desenvolvimento, permitir CORS de qualquer origem
     CORS_ALLOW_ALL_ORIGINS = True
+    # Permitir credenciais em qualquer origem em dev
+    CORS_ALLOW_CREDENTIALS = True
 else:
     # Em produção, usar origens específicas
     CORS_ALLOWED_ORIGINS = config(
@@ -156,10 +158,23 @@ else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         r'^https://.*\.vercel\.app$',
         r'^https://.*\.vercel\.dev$',
+        r'^https://.*\.github\.dev$',
     ]
     CORS_ALLOW_ALL_ORIGINS = False
+    CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOW_CREDENTIALS = True
+# Headers permitidos para CORS
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 
 # Supabase Configuration
 SUPABASE_URL = config('SUPABASE_URL', default='')

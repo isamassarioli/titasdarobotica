@@ -164,7 +164,7 @@ def login_view(request):
 # ========== VIEWS TEMPLATES (FRONTEND) ==========
 def post_list_view(request):
     posts = Post.objects.filter(status='published').order_by('-published_at')
-    return render(request, 'blog_list.html', {'posts': posts})
+    return render(request, 'blog/list.html', {'posts': posts})
 
 
 def post_detail_view(request, slug):
@@ -172,12 +172,12 @@ def post_detail_view(request, slug):
         post = get_object_or_404(Post, slug=slug)
     else:
         post = get_object_or_404(Post, slug=slug, status='published')
-    return render(request, 'blog_detail.html', {'post': post})
+    return render(request, 'blog/detail.html', {'post': post})
 
 
 def edital_list_view(request):
     editais = Edital.objects.filter(status='published').order_by('-start_date')
-    return render(request, 'edital_list.html', {'editais': editais})
+    return render(request, 'editais/list.html', {'editais': editais})
 
 
 def edital_detail_view(request, slug):
@@ -185,4 +185,4 @@ def edital_detail_view(request, slug):
         edital = get_object_or_404(Edital, slug=slug)
     else:
         edital = get_object_or_404(Edital, slug=slug, status='published')
-    return render(request, 'edital_detail.html', {'edital': edital})
+    return render(request, 'editais/detail.html', {'edital': edital})

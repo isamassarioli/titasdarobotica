@@ -4,10 +4,10 @@ from .models import Post, Edital
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'status_badge', 'author', 'published_at', 'created_at')
+    list_display = ('title', 'category', 'status_badge', 'supabase_synced_badge', 'author', 'published_at', 'created_at')
     list_filter = ('status', 'category', 'created_at', 'published_at')
     search_fields = ('title', 'summary', 'body')
-    readonly_fields = ('slug', 'created_at', 'updated_at')
+    readonly_fields = ('slug', 'created_at', 'updated_at', 'supabase_id')
     fieldsets = (
         ('Informações Básicas', {
             'fields': ('title', 'category', 'status')
@@ -17,6 +17,10 @@ class PostAdmin(admin.ModelAdmin):
         }),
         ('Publicação', {
             'fields': ('author', 'published_at')
+        }),
+        ('Sincronização Supabase', {
+            'fields': ('supabase_id',),
+            'classes': ('collapse',)
         }),
         ('Timestamps', {
             'fields': ('created_at', 'updated_at'),
@@ -38,6 +42,17 @@ class PostAdmin(admin.ModelAdmin):
         )
     status_badge.short_description = 'Status'
 
+    def supabase_synced_badge(self, obj):
+        if obj.supabase_id:
+            return format_html(
+                '<span style="color: white; background-color: green; padding: 3px 10px; border-radius: 3px;">✓ Sincronizado</span>'
+            )
+        else:
+            return format_html(
+                '<span style="color: white; background-color: orange; padding: 3px 10px; border-radius: 3px;">⏳ Aguardando</span>'
+            )
+    supabase_synced_badge.short_description = 'Supabase'
+
     def save_model(self, request, obj, form, change):
         if not obj.author:
             obj.author = request.user
@@ -46,10 +61,10 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Edital)
 class EditalAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status_badge', 'start_date', 'end_date', 'is_open_badge', 'author', 'created_at')
+    list_display = ('title', 'status_badge', 'supabase_synced_badge', 'start_date', 'end_date', 'is_open_badge', 'author', 'created_at')
     list_filter = ('status', 'created_at', 'start_date', 'end_date')
     search_fields = ('title', 'description', 'rules')
-    readonly_fields = ('slug', 'created_at', 'updated_at', 'is_open_badge')
+    readonly_fields = ('slug', 'created_at', 'updated_at', 'supabase_id', 'is_open_badge')
     fieldsets = (
         ('Informações Básicas', {
             'fields': ('title', 'status', 'image')
@@ -62,6 +77,10 @@ class EditalAdmin(admin.ModelAdmin):
         }),
         ('Publicação', {
             'fields': ('author',)
+        }),
+        ('Sincronização Supabase', {
+            'fields': ('supabase_id',),
+            'classes': ('collapse',)
         }),
         ('Timestamps', {
             'fields': ('created_at', 'updated_at'),
@@ -83,6 +102,17 @@ class EditalAdmin(admin.ModelAdmin):
             obj.get_status_display()
         )
     status_badge.short_description = 'Status'
+
+    def supabase_synced_badge(self, obj):
+        if obj.supabase_id:
+            return format_html(
+                '<span style="color: white; background-color: green; padding: 3px 10px; border-radius: 3px;">✓ Sincronizado</span>'
+            )
+        else:
+            return format_html(
+                '<span style="color: white; background-color: orange; padding: 3px 10px; border-radius: 3px;">⏳ Aguardando</span>'
+            )
+    supabase_synced_badge.short_description = 'Supabase'
 
     def is_open_badge(self, obj):
         color = 'green' if obj.is_open else 'red'

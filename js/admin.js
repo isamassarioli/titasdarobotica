@@ -24,7 +24,11 @@ async function handleLogin(event) {
         
         const response = await fetch(`${API_URL}/auth/login/`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            credentials: 'include',
             body: JSON.stringify({ username, password })
         });
 
@@ -105,8 +109,10 @@ async function loadPosts() {
 
         const response = await fetch(url, {
             headers: {
-                'Authorization': `Token ${authToken}`
-            }
+                'Authorization': `Token ${authToken}`,
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            credentials: 'include'
         });
 
         if (!response.ok) throw new Error('Erro ao carregar posts');
@@ -177,8 +183,10 @@ async function handlePostSubmit(event) {
         const response = await fetch(`${API_URL}/posts/`, {
             method: 'POST',
             headers: {
-                'Authorization': `Token ${authToken}`
+                'Authorization': `Token ${authToken}`,
+                'X-Requested-With': 'XMLHttpRequest'
             },
+            credentials: 'include',
             body: data
         });
 
@@ -210,8 +218,10 @@ async function editPost(slug) {
     try {
         const response = await fetch(`${API_URL}/posts/${slug}/`, {
             headers: {
-                'Authorization': `Token ${authToken}`
-            }
+                'Authorization': `Token ${authToken}`,
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            credentials: 'include'
         });
 
         if (!response.ok) throw new Error('Erro ao carregar post');
@@ -263,8 +273,10 @@ async function handleEditSubmit(event) {
         const response = await fetch(`${API_URL}/posts/${slug}/`, {
             method: 'PATCH',
             headers: {
-                'Authorization': `Token ${authToken}`
+                'Authorization': `Token ${authToken}`,
+                'X-Requested-With': 'XMLHttpRequest'
             },
+            credentials: 'include',
             body: data
         });
 
@@ -302,8 +314,10 @@ async function deletePost(slug) {
         const response = await fetch(`${API_URL}/posts/${slug}/`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Token ${authToken}`
-            }
+                'Authorization': `Token ${authToken}`,
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            credentials: 'include'
         });
 
         if (!response.ok) throw new Error('Erro ao deletar post');

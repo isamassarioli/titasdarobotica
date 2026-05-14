@@ -47,17 +47,20 @@ def upload_post_cover(file_obj, post_id):
         return public_url
 ```
 
-### Opção 2: Sincronizar Dados com Supabase
+### Opção 2: Sincronizar Dados com Supabase (✅ Automático)
 
-No **blog_app/models.py**, adicione hook no `save()`:
+**Agora é automático!** Quando você cria/edita um Post ou Edital no admin:
 
-```python
-def save(self, *args, **kwargs):
-    super().save(*args, **kwargs)
-    # Sincronizar com Supabase
-    from blog_app.supabase_examples import example_sync_post_to_supabase
-    example_sync_post_to_supabase(self)
-```
+1. Django salva o registro no banco local
+2. Automaticamente sincroniza com a tabela Supabase
+3. O campo `supabase_id` é preenchido
+4. Admin mostra badge "✓ Sincronizado"
+
+**Como funciona internamente:**
+- Cada modelo (`Post`, `Edital`) tem método `_sync_to_supabase()`
+- Chamado automaticamente no `save()`
+- Cria novo registro ou atualiza existente
+- Evita loops infinitos com `update_fields=['supabase_id']`
 
 ### Opção 3: Consultar Dados do Supabase
 
@@ -78,80 +81,42 @@ Acesse **Storage** → **Create new bucket**:
 - Nome: `edital-documents` → Public
 - Nome: `edital-images` → Public
 
-### 2. Criar Tabelas (Opcional - para sync)
+### 2. Criar Tabelas (Agora com autosync ✅)
 
-Acesse **SQL Editor** → **Create a new query** → Cole:
+Acesse **SQL Editor** → **Create a new query** → Cole [blog_app/supabase_setup.sql](../blog_app/supabase_setup.sql):
 
-```sql
--- Tabela de Posts (sync)
-CREATE TABLE IF NOT EXISTS posts (
-  id BIGSERIAL PRIMARY KEY,
-  title TEXT NOT NULL,
-  slug TEXT UNIQUE NOT NULL,
-  body TEXT,
-  status TEXT DEFAULT 'draft',
-  published_at TIMESTAMP,
-  author_id BIGINT,
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
-);
-
--- Tabela de Editais (sync)
-CREATE TABLE IF NOT EXISTS editals (
-  id BIGSERIAL PRIMARY KEY,
-  title TEXT NOT NULL,
-  slug TEXT UNIQUE NOT NULL,
-  description TEXT,
-  rules TEXT,
-  status TEXT DEFAULT 'draft',
-  start_date TIMESTAMP,
-  end_date TIMESTAMP,
-  author_id BIGINT,
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
-);
-```
-
-### 3. Configurar RLS (Row Level Security) - Opcional
-
-Se quiser controlar acesso:
-
-1. Na tabela **posts**, clique em **RLS**
-2. Enable RLS
-3. Create policy:
-   - Name: "Public posts"
-   - USING: `(status = 'published' OR auth.uid() IS NOT NULL)`
+**Agora quando você cria/edita Posts ou Editais no Django Admin, eles sincronizam automaticamente com essas tabelas!**
 
 ## Teste Local
 
 1. **Ativar venv**:
    ```bash
    venv\Scripts\Activate.ps1
+   pip install -r requirements.txt
    ```
 
-2. **Testar conexão Supabase**:
+2. **Criar migrations e sincronizar banco Django**:
+   ```bash
+   python manage.py makemigrations blog_app
+   python manage.py migrate
+   ```
+
+3. **Testar conexão Supabase**:
    ```bash
    python manage.py shell
    >>> from blog_app.supabase_client import supabase
    >>> print(supabase)  # Deve mostrar Client object
    ```
 
-3. **Testar upload**:
-   ```python
-   >>> from blog_app.supabase_client import upload_file_to_supabase, get_public_url
-   >>> result = upload_file_to_supabase('blog-covers', 'test.txt', b'hello')
-   >>> print(result)
+4. **Criar superuser**:
+   ```bash
+   python manage.py createsuperuser
    ```
 
-## Arquivos Criados/Modificados
-
-| Arquivo | Mudança |
-|---------|---------|
-| `requirements.txt` | +supabase, +python-dotenv |
-| `.env` | +SUPABASE_URL, +SUPABASE_KEY |
-| `backend/settings.py` | +SUPABASE_URL, +SUPABASE_KEY config |
-| `blog_app/supabase_client.py` | **NOVO** - Cliente Supabase |
-| `blog_app/supabase_examples.py` | **NOVO** - Exemplos de uso |
+5. **Rodar servidor Django**:
+   ```bash
+   python manage.py runserver
+   ```
 
 ## Deploy em Railway/Render
 
@@ -159,7 +124,7 @@ Se quiser controlar acesso:
    - `SUPABASE_URL=https://...`
    - `SUPABASE_KEY=sb_...`
 
-2. **Nada mais muda** — as credenciais vêm do `.env` (Railway/Render injetam como env vars).
+2. **Nada mais muda** — as credenciais vêm do `.env`
 
 ## Referências
 
