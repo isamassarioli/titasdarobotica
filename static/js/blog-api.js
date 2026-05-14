@@ -3,7 +3,19 @@
  * Carrega posts e editais dinamicamente
  */
 
-const API_URL = 'https://titasdarobotica-admin.up.railway.app/api'; // Produção (Railway)
+const API_URL = (function() {
+    if (typeof window !== 'undefined') {
+        if (window.API_URL) return window.API_URL;
+        try {
+            const ls = localStorage.getItem('apiUrl');
+            if (ls) return ls;
+        } catch (e) {
+            // localStorage may be unavailable in some contexts
+        }
+        return `${window.location.origin}/api`;
+    }
+    return 'http://localhost:8000/api';
+})();
 
 class BlogApiClient {
     constructor(baseUrl = API_URL) {

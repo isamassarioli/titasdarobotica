@@ -2,9 +2,17 @@
  * Blog Loader - Carrega posts dinamicamente da API
  */
 
-const API_URL = window.location.protocol === 'https:' 
-    ? 'https://titasdarobotica-prod.up.railway.app/api'
-    : 'http://localhost:8000/api';
+const API_URL = (function() {
+    if (typeof window !== 'undefined') {
+        if (window.API_URL) return window.API_URL;
+        try {
+            const ls = localStorage.getItem('apiUrl');
+            if (ls) return ls;
+        } catch (e) {}
+        return `${window.location.origin}/api`;
+    }
+    return 'http://localhost:8000/api';
+})();
 
 async function loadBlogPosts() {
     try {
