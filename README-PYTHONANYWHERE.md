@@ -149,10 +149,13 @@ application = get_wsgi_application()
 
 1. Na página "Web", role para baixo até **Static files**
 2. Clique em "Add a new static files mapping"
-3. Preencha:
-   - **URL**: `/static/`
-   - **Directory**: `/home/seususername/titasdarobotica/staticfiles`
-4. Clique em "Add"
+3. Como o projeto usa `css/`, `js/` e `images/` na raiz, crie estes mapeamentos:
+    - **URL**: `/css/` → **Directory**: `/home/seususername/titasdarobotica/css`
+    - **URL**: `/js/` → **Directory**: `/home/seususername/titasdarobotica/js`
+    - **URL**: `/images/` → **Directory**: `/home/seususername/titasdarobotica/images`
+4. Se você também usar o Django admin, adicione ainda:
+    - **URL**: `/static/` → **Directory**: `/home/seususername/titasdarobotica/staticfiles`
+5. Clique em "Add"
 
 ## Passo 9: Recarregar Web App
 
@@ -172,8 +175,8 @@ Login com o superuser criado no Passo 7.
 ## Troubleshooting
 
 ### Admin sem estilo (sem CSS)
-- Certifique-se que `collectstatic --noinput` foi executado
-- Verifique que Static files mapping está correto (URL `/static/`, Directory `/staticfiles`)
+- Verifique os mapeamentos de static files para `/css/`, `/js/` e `/images/`
+- Se estiver usando o Django admin, execute `collectstatic --noinput` e confirme o mapeamento de `/static/`
 - Clique em "Reload"
 
 ### "DisallowedHost" ou "ALLOWED_HOSTS"
