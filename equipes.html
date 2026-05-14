@@ -7,15 +7,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
         <div class="header-content">
             <div class="logo-container">
-                <img src="images/logotitas.png" alt="Titãs da Robótica" class="logo">
+                <img src="/static/images/logotitas.png" alt="Titãs da Robótica" class="logo">
             </div>
             <nav class="nav-menu">
                 <a href="index.html" class="nav-item">HOME</a>
@@ -51,7 +51,7 @@
             <h2 class="section-title">Equipes</h2>
             <div class="image-grid">
                 <div class="team-card" id="cospace">
-                    <img src="images/cospace1.jpg" alt="CoSpace" class="team-image">
+                    <img src="/static/images/cospace1.jpg" alt="CoSpace" class="team-image">
                     <div class="team-content">
                         <h3 class="team-name">COSPACE RESCUE</h3>
                         <p class="team-description">Equipe de simulação 3D que compete na categoria CoSpace Rescue. Focada em programação de robôs virtuais para missões de resgate em ambientes simulados.</p>
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="team-card" id="seguidor">
-                    <img src="images/seguidordelinha.jpg" alt="Seguidor de Linha" class="team-image">
+                    <img src="/static/images/seguidordelinha.jpg" alt="Seguidor de Linha" class="team-image">
                     <div class="team-content">
                         <h3 class="team-name">SEGUIDOR DE LINHA</h3>
                         <p class="team-description">Categoria mais tradicional da OBR. Robôs autônomos que seguem uma linha preta, desviam de obstáculos e resgatam vítimas simuladas.</p>
@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="team-card" id="humanoide">
-                    <img src="images/humanoide.jpg" alt="Humanóide" class="team-image">
+                    <img src="/static/images/humanoide.jpg" alt="Humanóide" class="team-image">
                     <div class="team-content">
                         <h3 class="team-name">HUMANÓIDE</h3>
                         <p class="team-description">Robôs com forma humanoide que competem em diversas modalidades como caminhada, futebol e dança. Alta complexidade mecânica e de programação.</p>
@@ -117,7 +117,7 @@
                 </div>
 
                 <div class="team-card" id="futebol2d">
-                    <img src="images/futebol2d2025.jpg" alt="Futebol 2D" class="team-image">
+                    <img src="/static/images/futebol2d2025.jpg" alt="Futebol 2D" class="team-image">
                     <div class="team-content">
                         <h3 class="team-name">FUTEBOL 2D</h3>
                         <p class="team-description">Simulação de partidas de futebol com robôs virtuais. Envolve estratégia, inteligência artificial e programação colaborativa.</p>
@@ -147,28 +147,28 @@
 
 
                 <div class="team-card" id="osorin">
-                    <img src="images/equipeosorin.jpg" alt="Osorin" class="team-image">
+                    <img src="/static/images/equipeosorin.jpg" alt="Osorin" class="team-image">
                     <div class="team-content">
                         <h3 class="team-name">OSORIN</h3>
                         <p class="team-description">Equipe de robótica teórica focada em simulação e desenvolvimento de algoritmos avançados.</p>
                     </div>
                 </div>
                 <div class="team-card" id="pesquisa">
-                    <img src="images/pesquisa2025.jpeg" alt="Pesquisa" class="team-image">
+                    <img src="/static/images/pesquisa2025.jpeg" alt="Pesquisa" class="team-image">
                     <div class="team-content">
                         <h3 class="team-name">PESQUISA</h3>
                         <p class="team-description">Desenvolvimento de projetos de pesquisa em robótica.</p>
                     </div>
                 </div>
                 <div class="team-card" id="obrteórica">
-                    <img src="images/obrteórica.jpg" alt="OBR Teórica" class="team-image">
+                    <img src="/static/images/obrteórica.jpg" alt="OBR Teórica" class="team-image">
                     <div class="team-content">
                         <h3 class="team-name">OBR TEÓRICA</h3>
                         <p class="team-description">Modalidades teóricas da Olimpíada Brasileira de Robótica com foco em programação e lógica.</p>
                     </div>
                 </div>
                 <div class="team-card" id="challenger">
-                    <img src="images/challenger2025.jpg" alt="Challenger" class="team-image">
+                    <img src="/static/images/challenger2025.jpg" alt="Challenger" class="team-image">
                     <div class="team-content">
                         <h3 class="team-name">CHALLENGER</h3>
                         <p class="team-description">Desafios especiais e competições alternativas.</p>
@@ -608,17 +608,19 @@
         
         // Click access
         adminBtn.addEventListener('click', function() {
-            window.location.href = 'admin.html';
+            window.location.href = '/admin/';
         });
 
         // Keyboard shortcut: Ctrl+Shift+A
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.shiftKey && e.key === 'A') {
                 e.preventDefault();
-                window.location.href = 'admin.html';
+                window.location.href = '/admin/';
             }
         });
     </script>
 </body>
 </html>
+
+
 

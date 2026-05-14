@@ -7,14 +7,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">    
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <link rel="stylesheet" href="/static/css/pages.css">
+    <link rel="stylesheet" href="/static/css/contact.css">
+    </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo-container">
-                <img src="images/logotitas.png" alt="Titãs da Robótica" class="logo">
+                <img src="/static/images/logotitas.png" alt="Titãs da Robótica" class="logo">
             </div>
             <nav class="nav-menu">
                 <a href="index.html" class="nav-item">HOME</a>
@@ -44,7 +47,7 @@
     <nav class="fixed-nav">
         <div class="fixed-nav-content">
             <a href="index.html" class="fixed-nav-logo">
-                <img src="images/logotitas.png" alt="Titãs da Robótica">
+                <img src="/static/images/logotitas.png" alt="Titãs da Robótica">
             </a>
             <div class="fixed-nav-menu">
                 <a href="index.html" class="nav-item">HOME</a>
@@ -71,49 +74,78 @@
     </nav>
 
     <!-- Main Container -->
-    <main class="main-container">
-        <div class="form-container">
-            <h1 class="form-title">ENTRE EM CONTATO CONOSCO</h1>
-            <p class="form-subtitle">DEIXE SEU RECADO, APOIO OU COMENTÁRIO ABAIXO:</p>
-            
-            <form id="contactForm">
-                <div class="form-group">
-                    <input 
-                        type="text" 
-                        id="nome" 
-                        name="nome" 
-                        class="form-input" 
-                        placeholder="Nome completo"
-                        required
-                    >
+    <main class="contact-hero">
+        <section class="contact-shell">
+            <div class="contact-intro">
+                <div class="eyebrow">Contato direto</div>
+                <h1>Vamos conversar sobre robótica, parceria ou suporte.</h1>
+                <p>
+                    Use o formulário ao lado para enviar dúvidas, propostas, convites ou mensagens para a equipe.
+                    Nós respondemos com prioridade para assuntos de apoio, parcerias e participação em projetos.
+                </p>
+
+                <div class="contact-points">
+                    <div class="contact-point">
+                        <strong>E-mail oficial</strong>
+                        <span>contato@titasdarobotica.com.br</span>
+                    </div>
+                    <div class="contact-point">
+                        <strong>Atendimento</strong>
+                        <span>Segunda a sexta, em horário comercial</span>
+                    </div>
+                    <div class="contact-point">
+                        <strong>Localização</strong>
+                        <span>IFES Campus Colatina, Colatina - ES</span>
+                    </div>
+                    <div class="contact-point">
+                        <strong>Redes sociais</strong>
+                        <span>Instagram, YouTube, Facebook e LinkedIn</span>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        class="form-input" 
-                        placeholder="Seu melhor e-mail"
-                        required
-                    >
+            </div>
+
+            <div class="contact-card">
+                <h2>Envie sua mensagem</h2>
+                <p class="form-subtitle">Responda com o máximo de contexto possível para agilizar o retorno.</p>
+
+                <form id="contactForm">
+                    <div class="contact-grid">
+                        <div class="contact-field">
+                            <label for="nome">Nome completo</label>
+                            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                        </div>
+                        <div class="contact-field">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+                        </div>
+                        <div class="contact-field full">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" placeholder="Conte como podemos ajudar" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="contact-actions">
+                        <p class="contact-note">Ao enviar, você concorda em compartilhar seus dados para retorno da equipe.</p>
+                        <button type="submit" class="contact-button">Enviar mensagem</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="contact-band">
+            <div class="contact-band-inner">
+                <div>
+                    <strong>Quer falar mais rápido?</strong>
+                    <span>Envie um e-mail direto para contato@titasdarobotica.com.br</span>
                 </div>
-                
-                <div class="form-group">
-                    <textarea 
-                        id="mensagem" 
-                        name="mensagem" 
-                        class="form-textarea" 
-                        placeholder="Digite sua mensagem aqui..."
-                        required
-                    ></textarea>
+                <div>
+                    <strong>Parcerias e mídia</strong>
+                    <span>Também atendemos convites e colaborações institucionais</span>
                 </div>
-                
-                <button type="submit" class="form-button">ENVIAR MENSAGEM</button>
-            </form>
-        </div>
+            </div>
+        </section>
     </main>
-        <!-- Footer -->
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <!-- Redes Sociais -->
@@ -178,11 +210,11 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/navigation.js"></script>
-    <script src="js/carousel.js"></script>
-    <script src="js/forms.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/static/js/navigation.js"></script>
+    <script src="/static/js/carousel.js"></script>
+    <script src="/static/js/forms.js"></script>
+    <script src="/static/js/animations.js"></script>
+    <script src="/static/js/main.js"></script>
 
     <!-- Admin Hidden Access -->
     <div id="admin-access" style="
@@ -208,17 +240,19 @@
         
         // Click access
         adminBtn.addEventListener('click', function() {
-            window.location.href = 'admin.html';
+            window.location.href = '/admin/';
         });
 
         // Keyboard shortcut: Ctrl+Shift+A
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.shiftKey && e.key === 'A') {
                 e.preventDefault();
-                window.location.href = 'admin.html';
+                window.location.href = '/admin/';
             }
         });
     </script>
 
 </body>
 </html>
+
+

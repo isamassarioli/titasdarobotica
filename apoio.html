@@ -7,15 +7,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
         <div class="header-content">
             <div class="logo-container">
-                <img src="images/logotitas.png" alt="Titãs da Robótica" class="logo">
+                <img src="/static/images/logotitas.png" alt="Titãs da Robótica" class="logo">
             </div>
             <nav class="nav-menu">
                 <a href="index.html" class="nav-item">HOME</a>
@@ -45,7 +45,7 @@
     <nav class="fixed-nav">
         <div class="fixed-nav-content">
             <a href="index.html" class="fixed-nav-logo">
-                <img src="images/logotitas.png" alt="Titãs da Robótica">
+                <img src="/static/images/logotitas.png" alt="Titãs da Robótica">
             </a>
             <div class="fixed-nav-menu">
                 <a href="index.html" class="nav-item">HOME</a>
@@ -80,49 +80,49 @@
             <h2 class="section-title">Patrocinadores</h2>
             <div class="sponsors-grid">
                 <div class="sponsor-card">
-                    <img src="images/ifes.png" alt="IFES">
+                    <img src="/static/images/ifes.png" alt="IFES">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/apex.png" alt="Apex Partners">
+                    <img src="/static/images/apex.png" alt="Apex Partners">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/basis.png" alt="Basis Tecnologia">
+                    <img src="/static/images/basis.png" alt="Basis Tecnologia">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/frisa.png" alt="Frisa">
+                    <img src="/static/images/frisa.png" alt="Frisa">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/fulltech.png" alt="Fulltech">
+                    <img src="/static/images/fulltech.png" alt="Fulltech">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/im_digital.png" alt="Im Digital">
+                    <img src="/static/images/im_digital.png" alt="Im Digital">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/seek.png" alt="Seek Informática">
+                    <img src="/static/images/seek.png" alt="Seek Informática">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/vixteam.png" alt="Vixteam">
+                    <img src="/static/images/vixteam.png" alt="Vixteam">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/imagination_media.png" alt="Imagination Media">
+                    <img src="/static/images/imagination_media.png" alt="Imagination Media">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/matriz_sistemas.png" alt="Matriz Sistemas">
+                    <img src="/static/images/matriz_sistemas.png" alt="Matriz Sistemas">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/metalosa.png" alt="Metalosa">
+                    <img src="/static/images/metalosa.png" alt="Metalosa">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/moveedu.png" alt="Moveedu">
+                    <img src="/static/images/moveedu.png" alt="Moveedu">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/siad_sistemas.png" alt="SIAD">
+                    <img src="/static/images/siad_sistemas.png" alt="SIAD">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/smartirriga.png" alt="SmartIrriga">
+                    <img src="/static/images/smartirriga.png" alt="SmartIrriga">
                 </div>
                 <div class="sponsor-card">
-                    <img src="images/esquadrias_galon.png" alt="Fábrica de Esquadrias Galon">
+                    <img src="/static/images/esquadrias_galon.png" alt="Fábrica de Esquadrias Galon">
                 </div>
             </div>
         </section>
@@ -227,14 +227,14 @@
         
         // Click access
         adminBtn.addEventListener('click', function() {
-            window.location.href = 'admin.html';
+            window.location.href = '/admin/';
         });
 
         // Keyboard shortcut: Ctrl+Shift+A
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.shiftKey && e.key === 'A') {
                 e.preventDefault();
-                window.location.href = 'admin.html';
+                window.location.href = '/admin/';
             }
         });
     </script>
@@ -242,3 +242,5 @@
     <!-- Scripts -->
 </body>
 </html>
+
+
