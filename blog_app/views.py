@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate
 from django.utils import timezone
 from .models import Post, Edital
 from .serializers import PostSerializer, EditalSerializer
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 
 
 class IsEditorOrReadOnly(permissions.BasePermission):
@@ -157,3 +159,30 @@ def login_view(request):
             'is_staff': user.is_staff
         }
     })
+
+
+# ========== VIEWS TEMPLATES (FRONTEND) ==========
+def post_list_view(request):
+    posts = Post.objects.filter(status='published').order_by('-published_at')
+    return render(request, 'blog_list.html', {'posts': posts})
+
+
+def post_detail_view(request, slug):
+    if request.user.is_authenticated and request.user.is_staff:
+        post = get_object_or_404(Post, slug=slug)
+    else:
+        post = get_object_or_404(Post, slug=slug, status='published')
+    return render(request, 'blog_detail.html', {'post': post})
+
+
+def edital_list_view(request):
+    editais = Edital.objects.filter(status='published').order_by('-start_date')
+    return render(request, 'edital_list.html', {'editais': editais})
+
+
+def edital_detail_view(request, slug):
+    if request.user.is_authenticated and request.user.is_staff:
+        edital = get_object_or_404(Edital, slug=slug)
+    else:
+        edital = get_object_or_404(Edital, slug=slug, status='published')
+    return render(request, 'edital_detail.html', {'edital': edital})

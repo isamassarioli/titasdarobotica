@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog — Titãs da Robótica</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <main class="main-container">
+    <section class="content-section">
+      <h1>Blog</h1>
+      <div style="display:grid; gap:20px;">
+        {% for post in posts %}
+          <article class="card">
+            <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+            <p style="color:#999">{{ post.published_at }} — {{ post.author.username if post.author }}</p>
+            <p>{{ post.summary }}</p>
+          </article>
+        {% empty %}
+          <p>Nenhum post publicado ainda.</p>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+</body>
+</html>

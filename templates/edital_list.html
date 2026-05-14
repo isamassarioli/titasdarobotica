@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editais — Titãs da Robótica</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <main class="main-container">
+    <section class="content-section">
+      <h1>Editais</h1>
+      <div style="display:grid; gap:20px;">
+        {% for edital in editais %}
+          <article class="card">
+            <h2><a href="{{ edital.get_absolute_url }}">{{ edital.title }}</a></h2>
+            <p style="color:#999">{{ edital.start_date }} — {{ edital.end_date }}</p>
+            <p>{{ edital.description|truncatechars:200 }}</p>
+          </article>
+        {% empty %}
+          <p>Não há editais publicados no momento.</p>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+</body>
+</html>

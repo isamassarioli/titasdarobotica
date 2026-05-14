@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ post.title }} — Titãs da Robótica</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <main class="main-container">
+    <article class="content-section">
+      <h1>{{ post.title }}</h1>
+      <p style="color:#999">Por {{ post.author.username if post.author }} — {{ post.published_at }}</p>
+      {% if post.cover_image %}
+      <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" style="max-width:100%; height:auto;">
+      {% endif %}
+      <div style="margin-top:20px; white-space:pre-wrap;">{{ post.body|safe }}</div>
+      <p style="margin-top:30px;"><a href="/blog/">&larr; Voltar ao Blog</a></p>
+    </article>
+  </main>
+</body>
+</html>

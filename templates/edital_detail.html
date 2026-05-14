@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ edital.title }} — Titãs da Robótica</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <main class="main-container">
+    <article class="content-section">
+      <h1>{{ edital.title }}</h1>
+      <p style="color:#999">Período: {{ edital.start_date }} — {{ edital.end_date }}</p>
+      {% if edital.image %}
+      <img src="{{ edital.image.url }}" alt="{{ edital.title }}" style="max-width:100%; height:auto;">
+      {% endif %}
+      <div style="margin-top:20px; white-space:pre-wrap;">{{ edital.description|safe }}</div>
+      <h3 style="margin-top:20px">Regulamento</h3>
+      <div style="white-space:pre-wrap;">{{ edital.rules|safe }}</div>
+      {% if edital.document %}
+      <p style="margin-top:20px;"><a href="{{ edital.document.url }}" target="_blank">Abrir arquivo do edital (PDF)</a></p>
+      {% endif %}
+      <p style="margin-top:30px;"><a href="/editais/">&larr; Voltar a Editais</a></p>
+    </article>
+  </main>
+</body>
+</html>

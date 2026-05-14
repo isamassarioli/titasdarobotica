@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 def _unique_slug(model_cls, title, current_pk=None):
@@ -41,6 +42,7 @@ class Post(models.Model):
     published_at = models.DateTimeField(null=True, blank=True, verbose_name='Data de publicação')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Atualizado em')
+    supabase_id = models.BigIntegerField(null=True, blank=True, verbose_name='ID no Supabase')
 
     class Meta:
         ordering = ['-published_at', '-created_at']
@@ -54,7 +56,44 @@ class Post(models.Model):
         if not self.slug:
             self.slug = _unique_slug(Post, self.title, self.pk)
         super().save(*args, **kwargs)
+        
+        # Sincronizar com Supabase após salvar
+        self._sync_to_supabase()
 
+    def _sync_to_supabase(self):
+        """Sincroniza post com tabela Supabase"""
+        try:
+            from blog_app.supabase_client import supabase, insert_record, update_record
+            
+            if not supabase:
+                return
+            
+            post_data = {
+                'title': self.title,
+                'slug': self.slug,
+                'category': self.category,
+                'summary': self.summary,
+                'body': self.body,
+                'status': self.status,
+                'published_at': self.published_at.isoformat() if self.published_at else None,
+                'author_id': self.author.id if self.author else None,
+            }
+            
+            if self.supabase_id:
+                # Atualizar registro existente
+                result = update_record('posts', self.supabase_id, post_data)
+            else:
+                # Criar novo registro
+                result = insert_record('posts', post_data)
+                if result.get('success') and result.get('data'):
+                    self.supabase_id = result['data'][0]['id']
+                    # Salvar sem chamar sync novamente (evitar loop)
+                    super().save(update_fields=['supabase_id'])
+        except Exception as e:
+            print(f"Erro ao sincronizar post {self.id} com Supabase: {str(e)}")
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[self.slug])
 
 class Edital(models.Model):
     """Modelo para Editais e Regulamentos"""
@@ -96,3 +135,6 @@ class Edital(models.Model):
         from django.utils import timezone
         now = timezone.now()
         return self.start_date <= now <= self.end_date and self.status == 'published'
+
+    def get_absolute_url(self):
+        return reverse('edital_detail', args=[self.slug])
