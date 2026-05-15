@@ -77,11 +77,11 @@
         <!-- Status do Edital -->
         <section class="content-section bg-dark" style="border-radius: 10px;">
             <h2 class="section-title">Filtros</h2>
-            <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-                <span class="badge" style="cursor: pointer; padding: 12px 24px; font-size: 16px;">Todos</span>
-                <span class="badge" style="cursor: pointer; padding: 12px 24px; font-size: 16px;">Aberto</span>
-                <span class="badge" style="cursor: pointer; padding: 12px 24px; font-size: 16px;">Fechado</span>
-                <span class="badge" style="cursor: pointer; padding: 12px 24px; font-size: 16px;">Próximos</span>
+            <div class="edital-filters" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                <button type="button" class="badge edital-filter active" data-edital-filter="all" style="cursor: pointer; padding: 12px 24px; font-size: 16px; border: none;">Todos</button>
+                <button type="button" class="badge edital-filter" data-edital-filter="open" style="cursor: pointer; padding: 12px 24px; font-size: 16px; border: none;">Aberto</button>
+                <button type="button" class="badge edital-filter" data-edital-filter="closed" style="cursor: pointer; padding: 12px 24px; font-size: 16px; border: none;">Fechado</button>
+                <button type="button" class="badge edital-filter" data-edital-filter="upcoming" style="cursor: pointer; padding: 12px 24px; font-size: 16px; border: none;">Próximos</button>
             </div>
         </section>
     </main>

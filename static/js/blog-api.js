@@ -183,6 +183,46 @@ class BlogApiClient {
         }
     }
 
+    normalizeEditalStatus(status) {
+        return (status || '')
+            .toString()
+            .trim()
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+    }
+
+    isEditalVisible(edital, filter = 'all') {
+        const status = this.normalizeEditalStatus(edital.status);
+        const startDate = edital.start_date ? new Date(edital.start_date) : null;
+        const now = new Date();
+
+        if (filter === 'open') {
+            return status === 'open' || status === 'published' || status === 'aberto' || status === 'publicado';
+        }
+
+        if (filter === 'closed') {
+            return status === 'closed' || status === 'archived' || status === 'fechado';
+        }
+
+        if (filter === 'upcoming') {
+            return status === 'draft' || status === 'upcoming' || (startDate instanceof Date && !Number.isNaN(startDate.getTime()) && startDate > now);
+        }
+
+        return true;
+    }
+
+    async getEditalsForFilter(filter = 'all') {
+        try {
+            const editals = await this.getEditals();
+            const results = Array.isArray(editals?.results) ? editals.results : (Array.isArray(editals) ? editals : []);
+            return results.filter(edital => this.isEditalVisible(edital, filter));
+        } catch (error) {
+            console.error('Erro ao filtrar editais:', error);
+            return [];
+        }
+    }
+
     /**
      * Formata data ISO para formato brasileiro
      */
@@ -281,8 +321,32 @@ async function renderPostsCarousel(containerId = '.blog-carousel') {
 /**
  * Renderiza editais em uma lista
  */
-async function renderEditals(containerId = '#editals-container') {
-    const editals = await blogApi.getOpenEditals();
+let activeEditalFilter = 'all';
+
+function normalizeEditalLabel(label) {
+    return (label || '')
+        .toString()
+        .trim()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+}
+
+function getEditalFilterButtons() {
+    return Array.from(document.querySelectorAll('.edital-filter'));
+}
+
+function updateEditalFilterState() {
+    getEditalFilterButtons().forEach(button => {
+        const isActive = button.dataset.editalFilter === activeEditalFilter;
+        button.classList.toggle('active', isActive);
+        button.style.background = isActive ? '#FFA500' : '#333';
+        button.style.color = isActive ? '#0D0D0D' : '#FFA500';
+    });
+}
+
+async function renderEditals(containerId = '#editals-container', filter = activeEditalFilter) {
+    const editals = await blogApi.getEditalsForFilter(filter);
     const container = document.querySelector(containerId);
     
     if (!container) return;
@@ -290,7 +354,7 @@ async function renderEditals(containerId = '#editals-container') {
     container.innerHTML = '';
 
     if (editals.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #aaa;">Nenhum edital aberto no momento.</p>';
+        container.innerHTML = '<p style="text-align: center; color: #aaa; grid-column: 1 / -1;">Nenhum edital encontrado para este filtro.</p>';
         return;
     }
 
@@ -318,7 +382,7 @@ async function renderEditals(containerId = '#editals-container') {
                         Término: ${blogApi.formatDate(edital.end_date)}
                     </p>
                     <div style="margin-top: 15px; display: flex; gap: 10px;">
-                        <a href="edital-detail.html?slug=${edital.slug}" 
+                        <a href="edital-detail.html?slug=${encodeURIComponent(edital.slug || edital.id)}" 
                            class="btn" style="background: #FFA500; color: #000; padding: 8px 16px; border-radius: 5px; text-decoration: none; font-weight: bold;">
                             Ver Edital
                         </a>
@@ -338,6 +402,18 @@ async function renderEditals(containerId = '#editals-container') {
 // Inicializar ao carregar o DOM
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Blog API Client carregado');
+
+    const editalFilterButtons = getEditalFilterButtons();
+    if (editalFilterButtons.length) {
+        updateEditalFilterState();
+        editalFilterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                activeEditalFilter = button.dataset.editalFilter || 'all';
+                updateEditalFilterState();
+                renderEditals('#editals-container', activeEditalFilter);
+            });
+        });
+    }
     
     // Carregar posts no carousel se estiver em blog.html
     if (document.querySelector('.blog-carousel')) {
@@ -346,6 +422,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Carregar editais se estiver em inscreva-se.html
     if (document.querySelector('#editals-container')) {
-        renderEditals('#editals-container');
+        renderEditals('#editals-container', activeEditalFilter);
     }
 });
