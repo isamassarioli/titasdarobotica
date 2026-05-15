@@ -79,46 +79,9 @@
         <!-- Seção de Editais -->
         <section class="content-section">
             <h1 class="section-title">EDITAIS ABERTOS</h1>
-            
-            <div class="editais-grid">
-                <div class="edital-card">
-                    <img src="/static/images/image.png" alt="Edital" class="edital-image">
-                    <div class="edital-content">
-                        <span class="edital-status">Aberto</span>
-                        <h3 class="edital-title">Edital 01/2026: Inscrição para entrevistas para equipe Seguidor de Linha</h3>
-                        <p class="edital-date">Publicado em 01/02/2026</p>
-                        <p class="edital-description" style="margin-top: 15px; color: #ddd;">
-                            Processo seletivo para novos membros da equipe de Seguidor de Linha. 
-                            Inscrições até 28/02/2026.
-                        </p>
-                        <a href="#" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Saiba Mais</a>
-                    </div>
-                </div>
-                
-                <div class="edital-card">
-                    <img src="/static/images/image.png" alt="Edital" class="edital-image">
-                    <div class="edital-content">
-                        <span class="edital-status">Aberto</span>
-                        <h3 class="edital-title">Edital de apoio 02/2026: Inscrição para patrocínio para equipe Titãs da Robótica</h3>
-                        <p class="edital-date">Publicado em 15/01/2026</p>
-                        <p class="edital-description" style="margin-top: 15px; color: #ddd;">
-                            Chamada para empresas interessadas em patrocinar as atividades da equipe.
-                        </p>
-                        <a href="#" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Saiba Mais</a>
-                    </div>
-                </div>
-                
-                <div class="edital-card">
-                    <img src="/static/images/image.png" alt="Edital" class="edital-image">
-                    <div class="edital-content">
-                        <span class="edital-status">Aberto</span>
-                        <h3 class="edital-title">Edital 03/2026: Inscrição para entrevistas para equipe Humanóide</h3>
-                        <p class="edital-date">Publicado em 20/01/2026</p>
-                        <p class="edital-description" style="margin-top: 15px; color: #ddd;">
-                            Seleção de novos integrantes para a equipe de robôs humanóides.
-                        </p>
-                        <a href="#" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Saiba Mais</a>
-                    </div>
+            <div id="editals-container" class="editais-grid">
+                <div class="loading-state" style="text-align: center; padding: 40px; color: rgba(255,255,255,0.7); grid-column: 1 / -1;">
+                    <p style="font-size: 18px;">⏳ Carregando editais...</p>
                 </div>
             </div>
         </section>
@@ -269,6 +232,7 @@
     <script src="/static/js/forms.js"></script>
     <script src="/static/js/animations.js"></script>
     <script src="/static/js/main.js"></script>
+    <script src="/static/js/blog-api.js"></script>
 
     <!-- Admin Hidden Access -->
     <div id="admin-access" style="
