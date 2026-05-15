@@ -40,7 +40,6 @@ function normalizeEdital(edital) {
 async function fetchSupabaseEditais() {
     const params = new URLSearchParams({
         select: '*',
-        status: 'in.(published,open)',
         order: 'start_date.desc.nullslast,created_at.desc'
     });
 
@@ -58,7 +57,9 @@ async function fetchSupabaseEditais() {
 async function loadEditais() {
     try {
         console.log('Carregando editais do Supabase...');
-        const editals = (await fetchSupabaseEditais()).map(normalizeEdital);
+        const editals = (await fetchSupabaseEditais())
+            .map(normalizeEdital)
+            .filter(edital => edital.status === 'published' || edital.status === 'open');
 
         if (editals.length === 0) {
             showEmptyState();
@@ -140,14 +141,20 @@ function createEditalCarouselControls(container, slideCount) {
     prevBtn.setAttribute('aria-label', 'Anterior');
     prevBtn.style.cssText = 'position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:36px;background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;z-index:10;';
     prevBtn.innerHTML = '&lsaquo;';
-    prevBtn.onclick = previousEditalSlide;
+    prevBtn.onclick = () => {
+        previousEditalSlide();
+        restartEditalCarouselAutoplay();
+    };
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'carousel-next';
     nextBtn.setAttribute('aria-label', 'Proximo');
     nextBtn.style.cssText = 'position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:36px;background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;z-index:10;';
     nextBtn.innerHTML = '&rsaquo;';
-    nextBtn.onclick = nextEditalSlide;
+    nextBtn.onclick = () => {
+        nextEditalSlide();
+        restartEditalCarouselAutoplay();
+    };
 
     container.appendChild(prevBtn);
     container.appendChild(nextBtn);
@@ -197,11 +204,15 @@ function showEmptyState() {
 }
 
 let currentEditalSlide = 0;
+let editalCarouselTimer = null;
+const EDITAL_CAROUSEL_INTERVAL = 5000;
 
 function initializeEditalCarousel() {
     const slides = document.querySelectorAll('.edital-carousel .hero-slide');
     currentEditalSlide = 0;
     updateEditalCarouselDisplay(slides);
+    startEditalCarouselAutoplay();
+    setupEditalCarouselPause();
 }
 
 function nextEditalSlide() {
@@ -222,6 +233,7 @@ function goToEditalSlide(index) {
     currentEditalSlide = index;
     const slides = document.querySelectorAll('.edital-carousel .hero-slide');
     updateEditalCarouselDisplay(slides);
+    restartEditalCarouselAutoplay();
 }
 
 function updateEditalCarouselDisplay(slides) {
@@ -235,6 +247,40 @@ function updateEditalCarouselDisplay(slides) {
             ? 'rgba(255,255,255,0.9)'
             : 'rgba(255,255,255,0.5)';
     });
+}
+
+function startEditalCarouselAutoplay() {
+    const slides = document.querySelectorAll('.edital-carousel .hero-slide');
+    stopEditalCarouselAutoplay();
+
+    if (slides.length <= 1) return;
+
+    editalCarouselTimer = setInterval(() => {
+        nextEditalSlide();
+    }, EDITAL_CAROUSEL_INTERVAL);
+}
+
+function stopEditalCarouselAutoplay() {
+    if (editalCarouselTimer) {
+        clearInterval(editalCarouselTimer);
+        editalCarouselTimer = null;
+    }
+}
+
+function restartEditalCarouselAutoplay() {
+    stopEditalCarouselAutoplay();
+    startEditalCarouselAutoplay();
+}
+
+function setupEditalCarouselPause() {
+    const container = document.querySelector('.edital-carousel');
+    if (!container || container.dataset.carouselPauseReady === 'true') return;
+
+    container.dataset.carouselPauseReady = 'true';
+    container.addEventListener('mouseenter', stopEditalCarouselAutoplay);
+    container.addEventListener('mouseleave', startEditalCarouselAutoplay);
+    container.addEventListener('focusin', stopEditalCarouselAutoplay);
+    container.addEventListener('focusout', startEditalCarouselAutoplay);
 }
 
 document.addEventListener('DOMContentLoaded', loadEditais);
