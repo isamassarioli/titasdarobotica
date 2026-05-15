@@ -3,7 +3,7 @@
  * Mantem localStorage como fallback para edicao local/offline.
  */
 
-const SUPABASE_URL = 'https://bforbopayjtiaqvgvyzr.supabase.co';
+const SUPABASE_URL = 'https://mbpwppopfqensjeksxoy.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1icHdwcG9wZnFlbnNqZWtzeG95Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3OTI3MTEsImV4cCI6MjA5NDM2ODcxMX0.xkXGSgSlq1Vavtf5gULVD6h7M60C3h3SP3GLNLvT2nM';
 const POSTS_KEY = 'titas_posts';
 

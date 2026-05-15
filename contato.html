@@ -210,7 +210,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="/static/js/config.js"></script>
     <script src="/static/js/navigation.js"></script>
     <script src="/static/js/carousel.js"></script>
     <script src="/static/js/forms.js"></script>
@@ -241,14 +240,14 @@
         
         // Click access
         adminBtn.addEventListener('click', function() {
-            window.location.href = "/admin.html";
+            window.location.href = '/admin/';
         });
 
         // Keyboard shortcut: Ctrl+Shift+A
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.shiftKey && e.key === 'A') {
                 e.preventDefault();
-                window.location.href = "/admin.html";
+                window.location.href = '/admin/';
             }
         });
     </script>
