@@ -1,27 +1,26 @@
 /**
- * Edital Loader - Carrega editais do admin local e usa API somente como fallback.
+ * Edital Loader - carrega editais publicados do Supabase.
+ * Mantem localStorage como fallback para edicao local/offline.
  */
 
-const API_URL = (function() {
-    if (typeof window !== 'undefined') {
-        if (window.API_URL) return window.API_URL;
-        try {
-            const ls = localStorage.getItem('apiUrl');
-            if (ls) return ls;
-        } catch (e) {}
-        return `${window.location.origin}/api`;
-    }
-    return 'http://localhost:8000/api';
-})();
-
+const SUPABASE_URL = 'https://trnxdkbkkgtkyuddtvaj.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRybnhka2Jra2d0a3l1ZGR0dmFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0ODgyODQsImV4cCI6MjA5NDA2NDI4NH0.XKvVOzob-OAUypjJaF91zgpO2F_p0v3Md_4zwqJywr4';
 const EDITAIS_KEY = 'titas_editais';
+
+function supabaseHeaders(token = SUPABASE_ANON_KEY) {
+    return {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json'
+    };
+}
 
 function readLocalEditais() {
     try {
         const editais = JSON.parse(localStorage.getItem(EDITAIS_KEY) || '[]');
         return Array.isArray(editais) ? editais : [];
     } catch (e) {
-        console.warn('Editais locais inválidos:', e);
+        console.warn('Editais locais invalidos:', e);
         return [];
     }
 }
@@ -30,22 +29,27 @@ function normalizeEdital(edital) {
     return {
         ...edital,
         image: edital.image || edital.cover_image || null,
+        document: edital.document || null,
         description: edital.description || edital.summary || '',
+        body: edital.body || edital.rules || '',
         start_date: edital.start_date || edital.created_at || new Date().toISOString(),
         end_date: edital.end_date || edital.start_date || edital.created_at || new Date().toISOString()
     };
 }
 
-async function fetchJson(url, options = {}) {
-    const response = await fetch(url, options);
-    const contentType = response.headers.get('content-type') || '';
+async function fetchSupabaseEditais() {
+    const params = new URLSearchParams({
+        select: '*',
+        status: 'in.(published,open)',
+        order: 'start_date.desc.nullslast,created_at.desc'
+    });
+
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/editals?${params}`, {
+        headers: supabaseHeaders()
+    });
 
     if (!response.ok) {
-        throw new Error(`Erro ao carregar editais: ${response.status}`);
-    }
-
-    if (!contentType.includes('application/json')) {
-        throw new Error('A resposta da API não é JSON');
+        throw new Error(`Supabase editais: ${response.status}`);
     }
 
     return response.json();
@@ -53,7 +57,17 @@ async function fetchJson(url, options = {}) {
 
 async function loadEditais() {
     try {
-        console.log('Carregando editais...');
+        console.log('Carregando editais do Supabase...');
+        const editals = (await fetchSupabaseEditais()).map(normalizeEdital);
+
+        if (editals.length === 0) {
+            showEmptyState();
+            return;
+        }
+
+        renderEditals(editals);
+    } catch (error) {
+        console.error('Erro ao carregar editais do Supabase:', error);
 
         const localEditais = readLocalEditais()
             .filter(edital => edital.status === 'published' || edital.status === 'open')
@@ -65,24 +79,6 @@ async function loadEditais() {
             return;
         }
 
-        const data = await fetchJson(`${API_URL}/editals/?status=published`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            credentials: 'include'
-        });
-        const editals = (Array.isArray(data) ? data : (data.results || [])).map(normalizeEdital);
-
-        if (editals.length === 0) {
-            showEmptyState();
-            return;
-        }
-
-        renderEditals(editals);
-    } catch (error) {
-        console.error('Erro ao carregar editais:', error);
         showEmptyState();
     }
 }
@@ -91,7 +87,7 @@ function renderEditals(editals) {
     const editalContainer = document.querySelector('.edital-carousel');
 
     if (!editalContainer) {
-        console.warn('Container .edital-carousel não encontrado');
+        console.warn('Container .edital-carousel nao encontrado');
         return;
     }
 
@@ -124,7 +120,7 @@ function createEditalSlideHtml(slideContent) {
                 <p class="blog-date">${formatDateRange(edital.start_date, edital.end_date)}</p>
                 <h3 class="blog-title">${edital.title}</h3>
                 <p class="blog-excerpt">${edital.description}</p>
-                ${edital.document ? `<a href="${edital.document}" target="_blank" class="blog-read-more">Abrir edital →</a>` : `<a href="editais.html#${edital.slug || edital.id}" class="blog-read-more">Leia mais →</a>`}
+                ${edital.document ? `<a href="${edital.document}" target="_blank" class="blog-read-more">Abrir edital &rarr;</a>` : `<a href="editais.html#${edital.slug || edital.id}" class="blog-read-more">Leia mais &rarr;</a>`}
             </div>
         </div>
     `).join('');
@@ -143,14 +139,14 @@ function createEditalCarouselControls(container, slideCount) {
     prevBtn.className = 'carousel-prev';
     prevBtn.setAttribute('aria-label', 'Anterior');
     prevBtn.style.cssText = 'position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:36px;background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;z-index:10;';
-    prevBtn.textContent = '‹';
+    prevBtn.innerHTML = '&lsaquo;';
     prevBtn.onclick = previousEditalSlide;
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'carousel-next';
-    nextBtn.setAttribute('aria-label', 'Próximo');
+    nextBtn.setAttribute('aria-label', 'Proximo');
     nextBtn.style.cssText = 'position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:36px;background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;z-index:10;';
-    nextBtn.textContent = '›';
+    nextBtn.innerHTML = '&rsaquo;';
     nextBtn.onclick = nextEditalSlide;
 
     container.appendChild(prevBtn);
@@ -194,7 +190,7 @@ function showEmptyState() {
         container.innerHTML = `
             <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.7);">
                 <p style="font-size: 18px;">Nenhum edital aberto no momento</p>
-                <p style="font-size: 14px; margin-top: 10px;">Fique atento para os próximos editais!</p>
+                <p style="font-size: 14px; margin-top: 10px;">Fique atento para os proximos editais!</p>
             </div>
         `;
     }

@@ -1,27 +1,26 @@
 /**
- * Blog Loader - Carrega posts do admin local e usa API somente como fallback.
+ * Blog Loader - carrega posts publicados do Supabase.
+ * Mantem localStorage como fallback para edicao local/offline.
  */
 
-const API_URL = (function() {
-    if (typeof window !== 'undefined') {
-        if (window.API_URL) return window.API_URL;
-        try {
-            const ls = localStorage.getItem('apiUrl');
-            if (ls) return ls;
-        } catch (e) {}
-        return `${window.location.origin}/api`;
-    }
-    return 'http://localhost:8000/api';
-})();
-
+const SUPABASE_URL = 'https://trnxdkbkkgtkyuddtvaj.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRybnhka2Jra2d0a3l1ZGR0dmFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0ODgyODQsImV4cCI6MjA5NDA2NDI4NH0.XKvVOzob-OAUypjJaF91zgpO2F_p0v3Md_4zwqJywr4';
 const POSTS_KEY = 'titas_posts';
+
+function supabaseHeaders(token = SUPABASE_ANON_KEY) {
+    return {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json'
+    };
+}
 
 function readLocalPosts() {
     try {
         const posts = JSON.parse(localStorage.getItem(POSTS_KEY) || '[]');
         return Array.isArray(posts) ? posts : [];
     } catch (e) {
-        console.warn('Posts locais inválidos:', e);
+        console.warn('Posts locais invalidos:', e);
         return [];
     }
 }
@@ -35,16 +34,19 @@ function normalizePost(post) {
     };
 }
 
-async function fetchJson(url, options = {}) {
-    const response = await fetch(url, options);
-    const contentType = response.headers.get('content-type') || '';
+async function fetchSupabasePosts() {
+    const params = new URLSearchParams({
+        select: '*',
+        status: 'eq.published',
+        order: 'published_at.desc.nullslast,created_at.desc'
+    });
+
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/posts?${params}`, {
+        headers: supabaseHeaders()
+    });
 
     if (!response.ok) {
-        throw new Error(`Erro ao carregar posts: ${response.status}`);
-    }
-
-    if (!contentType.includes('application/json')) {
-        throw new Error('A resposta da API não é JSON');
+        throw new Error(`Supabase posts: ${response.status}`);
     }
 
     return response.json();
@@ -52,7 +54,17 @@ async function fetchJson(url, options = {}) {
 
 async function loadBlogPosts() {
     try {
-        console.log('Carregando posts do blog...');
+        console.log('Carregando posts do Supabase...');
+        const posts = (await fetchSupabasePosts()).map(normalizePost);
+
+        if (posts.length === 0) {
+            showEmptyState();
+            return;
+        }
+
+        renderBlogPosts(posts);
+    } catch (error) {
+        console.error('Erro ao carregar posts do Supabase:', error);
 
         const localPosts = readLocalPosts()
             .filter(post => post.status === 'published')
@@ -64,24 +76,6 @@ async function loadBlogPosts() {
             return;
         }
 
-        const data = await fetchJson(`${API_URL}/posts/?status=published`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            credentials: 'include'
-        });
-        const posts = (Array.isArray(data) ? data : (data.results || [])).map(normalizePost);
-
-        if (posts.length === 0) {
-            showEmptyState();
-            return;
-        }
-
-        renderBlogPosts(posts);
-    } catch (error) {
-        console.error('Erro ao carregar posts:', error);
         showErrorState('Nenhum post publicado ainda.');
     }
 }
@@ -90,7 +84,7 @@ function renderBlogPosts(posts) {
     const blogsContainer = document.querySelector('.blog-carousel');
 
     if (!blogsContainer) {
-        console.warn('Container .blog-carousel não encontrado');
+        console.warn('Container .blog-carousel nao encontrado');
         return;
     }
 
@@ -123,7 +117,7 @@ function createSlideHtml(slideContent) {
                 <p class="blog-date">${formatDate(post.published_at)}</p>
                 <h3 class="blog-title">${post.title}</h3>
                 <p class="blog-excerpt">${post.summary}</p>
-                <a href="blog.html#${post.slug || post.id}" class="blog-read-more">Leia mais →</a>
+                <a href="blog.html#${post.slug || post.id}" class="blog-read-more">Leia mais &rarr;</a>
             </div>
         </div>
     `).join('');
@@ -142,14 +136,14 @@ function createCarouselControls(container, slideCount) {
     prevBtn.className = 'carousel-prev';
     prevBtn.setAttribute('aria-label', 'Anterior');
     prevBtn.style.cssText = 'position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:36px;background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;z-index:10;';
-    prevBtn.textContent = '‹';
+    prevBtn.innerHTML = '&lsaquo;';
     prevBtn.onclick = previousSlide;
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'carousel-next';
-    nextBtn.setAttribute('aria-label', 'Próximo');
+    nextBtn.setAttribute('aria-label', 'Proximo');
     nextBtn.style.cssText = 'position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:36px;background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;z-index:10;';
-    nextBtn.textContent = '›';
+    nextBtn.innerHTML = '&rsaquo;';
     nextBtn.onclick = nextSlide;
 
     container.appendChild(prevBtn);
@@ -191,7 +185,7 @@ function showEmptyState() {
         blogsContainer.innerHTML = `
             <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.7);">
                 <p style="font-size: 18px;">Nenhum post publicado ainda</p>
-                <p style="font-size: 14px; margin-top: 10px;">Fique atento para as próximas novidades!</p>
+                <p style="font-size: 14px; margin-top: 10px;">Fique atento para as proximas novidades!</p>
             </div>
         `;
     }
