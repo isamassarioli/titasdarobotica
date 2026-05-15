@@ -1,60 +1,91 @@
--- Complemento para o admin do site Titas da Robotica.
--- Rode no SQL Editor do Supabase.
+-- Setup completo para o novo projeto Supabase dos Titas da Robotica.
+-- Rode este arquivo no Supabase: SQL Editor -> New query -> Run.
 
-ALTER TABLE posts
-ADD COLUMN IF NOT EXISTS cover_image TEXT;
+CREATE TABLE IF NOT EXISTS public.posts (
+  id BIGSERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  category TEXT DEFAULT 'novidades',
+  summary TEXT,
+  body TEXT,
+  status TEXT DEFAULT 'draft',
+  cover_image TEXT,
+  published_at TIMESTAMP,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
 
-ALTER TABLE editals
-ADD COLUMN IF NOT EXISTS image TEXT,
-ADD COLUMN IF NOT EXISTS document TEXT,
-ADD COLUMN IF NOT EXISTS body TEXT;
+CREATE TABLE IF NOT EXISTS public.editals (
+  id BIGSERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  description TEXT,
+  body TEXT,
+  rules TEXT,
+  status TEXT DEFAULT 'draft',
+  start_date TIMESTAMP,
+  end_date TIMESTAMP,
+  image TEXT,
+  document TEXT,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
 
--- Leitura publica para conteudo publicado.
-DROP POLICY IF EXISTS "Public posts" ON posts;
-CREATE POLICY "Public posts" ON posts
-  FOR SELECT
-  USING (status = 'published' OR auth.uid() IS NOT NULL);
+CREATE INDEX IF NOT EXISTS idx_posts_status ON public.posts(status);
+CREATE INDEX IF NOT EXISTS idx_posts_slug ON public.posts(slug);
+CREATE INDEX IF NOT EXISTS idx_posts_published_at ON public.posts(published_at);
 
-DROP POLICY IF EXISTS "Public editals" ON editals;
-CREATE POLICY "Public editals" ON editals
-  FOR SELECT
-  USING (status IN ('published', 'open') OR auth.uid() IS NOT NULL);
+CREATE INDEX IF NOT EXISTS idx_editals_status ON public.editals(status);
+CREATE INDEX IF NOT EXISTS idx_editals_slug ON public.editals(slug);
+CREATE INDEX IF NOT EXISTS idx_editals_start_date ON public.editals(start_date);
 
--- Escrita apenas para usuarios autenticados do Supabase Auth.
-DROP POLICY IF EXISTS "Authenticated users can insert posts" ON posts;
-CREATE POLICY "Authenticated users can insert posts" ON posts
-  FOR INSERT
-  TO authenticated
-  WITH CHECK (true);
+ALTER TABLE public.posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.editals ENABLE ROW LEVEL SECURITY;
 
-DROP POLICY IF EXISTS "Authenticated users can update posts" ON posts;
-CREATE POLICY "Authenticated users can update posts" ON posts
-  FOR UPDATE
-  TO authenticated
-  USING (true)
-  WITH CHECK (true);
+CREATE POLICY "public_read_posts"
+ON public.posts
+FOR SELECT
+USING (status = 'published' OR auth.uid() IS NOT NULL);
 
-DROP POLICY IF EXISTS "Authenticated users can delete posts" ON posts;
-CREATE POLICY "Authenticated users can delete posts" ON posts
-  FOR DELETE
-  TO authenticated
-  USING (true);
+CREATE POLICY "public_read_editals"
+ON public.editals
+FOR SELECT
+USING (status IN ('published', 'open') OR auth.uid() IS NOT NULL);
 
-DROP POLICY IF EXISTS "Authenticated users can insert editals" ON editals;
-CREATE POLICY "Authenticated users can insert editals" ON editals
-  FOR INSERT
-  TO authenticated
-  WITH CHECK (true);
+CREATE POLICY "auth_insert_posts"
+ON public.posts
+FOR INSERT
+TO authenticated
+WITH CHECK (true);
 
-DROP POLICY IF EXISTS "Authenticated users can update editals" ON editals;
-CREATE POLICY "Authenticated users can update editals" ON editals
-  FOR UPDATE
-  TO authenticated
-  USING (true)
-  WITH CHECK (true);
+CREATE POLICY "auth_update_posts"
+ON public.posts
+FOR UPDATE
+TO authenticated
+USING (true)
+WITH CHECK (true);
 
-DROP POLICY IF EXISTS "Authenticated users can delete editals" ON editals;
-CREATE POLICY "Authenticated users can delete editals" ON editals
-  FOR DELETE
-  TO authenticated
-  USING (true);
+CREATE POLICY "auth_delete_posts"
+ON public.posts
+FOR DELETE
+TO authenticated
+USING (true);
+
+CREATE POLICY "auth_insert_editals"
+ON public.editals
+FOR INSERT
+TO authenticated
+WITH CHECK (true);
+
+CREATE POLICY "auth_update_editals"
+ON public.editals
+FOR UPDATE
+TO authenticated
+USING (true)
+WITH CHECK (true);
+
+CREATE POLICY "auth_delete_editals"
+ON public.editals
+FOR DELETE
+TO authenticated
+USING (true);

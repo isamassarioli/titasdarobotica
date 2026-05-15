@@ -3,8 +3,8 @@
  * Mantem localStorage como fallback para edicao local/offline.
  */
 
-const SUPABASE_URL = 'https://trnxdkbkkgtkyuddtvaj.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRybnhka2Jra2d0a3l1ZGR0dmFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0ODgyODQsImV4cCI6MjA5NDA2NDI4NH0.XKvVOzob-OAUypjJaF91zgpO2F_p0v3Md_4zwqJywr4';
+const SUPABASE_URL = 'https://bforbopayjtiaqvgvyzr.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_SPmAGgjtAbaVc1SAf0l_KA_QhqLcQOn';
 const EDITAIS_KEY = 'titas_editais';
 
 function supabaseHeaders(token = SUPABASE_ANON_KEY) {
@@ -238,3 +238,4 @@ function updateEditalCarouselDisplay(slides) {
 }
 
 document.addEventListener('DOMContentLoaded', loadEditais);
+
