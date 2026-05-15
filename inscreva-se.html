@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titãs da Robótica - Inscreva-se</title>
+    <title>Titãs da Robótica - Editais</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,12 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo-container">
                 <img src="/static/images/logotitas.png" alt="Titãs da Robótica" class="logo">
-
             </div>
             <nav class="nav-menu">
                 <a href="index.html" class="nav-item">HOME</a>
@@ -37,6 +35,7 @@
                 </div>
                 <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
                 <a href="blog.html" class="nav-item">BLOG</a>
+                <a href="editais.html" class="nav-item">EDITAIS</a>
                 <a href="apoio.html" class="nav-item">APOIO</a>
                 <a href="contato.html" class="nav-item">CONTATO</a>
             </nav>
@@ -67,95 +66,33 @@
                 </div>
                 <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
                 <a href="blog.html" class="nav-item">BLOG</a>
-
+                <a href="editais.html" class="nav-item">EDITAIS</a>
                 <a href="apoio.html" class="nav-item">APOIO</a>
                 <a href="contato.html" class="nav-item">CONTATO</a>
             </div>
         </div>
     </nav>
 
-    <!-- Main Container -->
     <main class="main-container">
-        <!-- Seção de Editais -->
+        <!-- Status do Edital -->
+        <section class="content-section bg-dark" style="border-radius: 10px;">
+            <h2 class="section-title">Filtros</h2>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                <span class="badge" style="cursor: pointer; padding: 12px 24px; font-size: 16px;">Todos</span>
+                <span class="badge" style="cursor: pointer; padding: 12px 24px; font-size: 16px;">Aberto</span>
+                <span class="badge" style="cursor: pointer; padding: 12px 24px; font-size: 16px;">Fechado</span>
+                <span class="badge" style="cursor: pointer; padding: 12px 24px; font-size: 16px;">Próximos</span>
+            </div>
+        </section>
+    </main>
+
+    <main class="main-container">
         <section class="content-section">
-            <h1 class="section-title">EDITAIS ABERTOS</h1>
-            <div id="editals-container" class="editais-grid">
-                <div class="loading-state" style="text-align: center; padding: 40px; color: rgba(255,255,255,0.7); grid-column: 1 / -1;">
+            <h2 class="section-title">Editais</h2>
+            <div class="edital-carousel hero-section" style="position: relative;">
+                <!-- Editais carregados dinamicamente -->
+                <div class="loading-state" style="text-align: center; padding: 40px; color: rgba(255,255,255,0.7);">
                     <p style="font-size: 18px;">⏳ Carregando editais...</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Newsletter -->
-        <section class="content-section bg-dark" style="border-radius: 10px; margin-top: 60px;">
-            <div class="form-container">
-                <h2 class="form-title">INSCREVA-SE EM NOSSA NEWSLETTER</h2>
-                <p class="form-subtitle">E RECEBA NOVIDADES DIRETAMENTE EM SEU E-MAIL</p>
-                
-                <form id="newsletterForm">
-                    <div class="form-group">
-                        <input 
-                            type="text" 
-                            id="nomeNewsletter" 
-                            name="nome" 
-                            class="form-input" 
-                            placeholder="Nome completo"
-                            required
-                        >
-                    </div>
-                    
-                    <div class="form-group">
-                        <input 
-                            type="email" 
-                            id="emailNewsletter" 
-                            name="email" 
-                            class="form-input" 
-                            placeholder="Seu melhor e-mail"
-                            required
-                        >
-                    </div>
-                    
-                    <div class="form-group">
-                        <input 
-                            type="tel" 
-                            id="telefone" 
-                            name="telefone" 
-                            class="form-input" 
-                            placeholder="Telefone (opcional)"
-                        >
-                    </div>
-                    
-                    <button type="submit" class="form-button">INSCREVER-SE</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- Benefícios -->
-        <section class="content-section">
-            <h2 class="section-title" style="font-size: 36px; margin-bottom: 40px;">Por que se inscrever?</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; padding: 20px;">
-                <div class="card text-center">
-                    <div style="font-size: 60px; margin-bottom: 20px;"></div>
-                    <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Aprendizado</h3>
-                    <p style="font-size: 18px; line-height: 1.6;">Desenvolva habilidades em robótica, programação e trabalho em equipe</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div style="font-size: 60px; margin-bottom: 20px;"></div>
-                    <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Competições</h3>
-                    <p style="font-size: 18px; line-height: 1.6;">Participe de competições nacionais e internacionais de robótica</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div style="font-size: 60px; margin-bottom: 20px;"></div>
-                    <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Networking</h3>
-                    <p style="font-size: 18px; line-height: 1.6;">Conecte-se com estudantes, professores e profissionais da área</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div style="font-size: 60px; margin-bottom: 20px;"></div>
-                    <h3 style="color: #FFA500; font-size: 24px; margin-bottom: 15px;">Oportunidades</h3>
-                    <p style="font-size: 18px; line-height: 1.6;">Acesso a eventos, workshops e oportunidades de carreira</p>
                 </div>
             </div>
         </section>
@@ -172,7 +109,7 @@
                     <a href="https://www.instagram.com/titasdarobotica" target="_blank" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.facebook.com/titasdarobotica" target="_blank" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.youtube.com/@titasdarobotica" target="_blank" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.linkedin.com/company/tit%C3%A3s-da-rob%C3%B3tica/" target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/company/tit%C3%A3s-da-rob%C3%B3tica/ " target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
@@ -183,6 +120,7 @@
                 <a href="equipes.html">Nossas Equipes</a>
                 <a href="inscreva-se.html">Inscrições</a>
                 <a href="blog.html">Blog</a>
+                <a href="editais.html">Editais</a>
                 <a href="apoio.html">Apoio</a>
             </div>
 
@@ -232,44 +170,7 @@
     <script src="/static/js/forms.js"></script>
     <script src="/static/js/animations.js"></script>
     <script src="/static/js/main.js"></script>
-    <script src="/static/js/blog-api.js"></script>
-
-    <!-- Admin Hidden Access -->
-    <div id="admin-access" style="
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 9999;
-        opacity: 0.15;
-        cursor: pointer;
-        transition: opacity 0.3s;
-        font-size: 24px;
-    " title="Admin (Ctrl+Shift+A)">⚙️</div>
-
-    <style>
-        #admin-access:hover {
-            opacity: 0.4;
-        }
-    </style>
-
-    <script>
-        // Admin button access
-        const adminBtn = document.getElementById('admin-access');
-        
-        // Click access
-        adminBtn.addEventListener('click', function() {
-            window.location.href = "/admin.html";
-        });
-
-        // Keyboard shortcut: Ctrl+Shift+A
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
-                e.preventDefault();
-                window.location.href = "/admin.html";
-            }
-        });
-    </script>
-
+    <script src="/static/js/edital-loader.js"></script>
 </body>
 </html>
 

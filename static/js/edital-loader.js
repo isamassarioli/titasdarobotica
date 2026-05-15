@@ -135,7 +135,7 @@ function createEditalSlideHtml(slideContent) {
                 <p class="blog-date">${formatDateRange(edital.start_date, edital.end_date)}</p>
                 <h3 class="blog-title">${edital.title}</h3>
                 <p class="blog-excerpt">${edital.description}</p>
-                ${edital.document ? `<a href="${edital.document}" target="_blank" class="blog-read-more">Abrir edital &rarr;</a>` : `<a href="editais.html#${edital.slug || edital.id}" class="blog-read-more">Leia mais &rarr;</a>`}
+                ${edital.document ? `<a href="${edital.document}" target="_blank" class="blog-read-more">Abrir edital &rarr;</a>` : `<a href="inscreva-se.html#${edital.slug || edital.id}" class="blog-read-more">Leia mais &rarr;</a>`}
             </div>
         </div>
     `).join('');
