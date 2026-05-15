@@ -9,11 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/footer.css">
-    <link rel="stylesheet" href="/static/css/pages.css">
     <link rel="stylesheet" href="/static/css/contact.css">
-    </head>
-<body>
-    <!-- Header -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="contact-page">
     <header class="header">
         <div class="header-content">
             <div class="logo-container">
@@ -43,7 +42,6 @@
         </div>
     </header>
 
-    <!-- Menu Fixo (aparece ao rolar) -->
     <nav class="fixed-nav">
         <div class="fixed-nav-content">
             <a href="index.html" class="fixed-nav-logo">
@@ -51,20 +49,7 @@
             </a>
             <div class="fixed-nav-menu">
                 <a href="index.html" class="nav-item">HOME</a>
-                <div class="dropdown">
-                    <a href="equipes.html" class="nav-item">EQUIPES ↓</a>
-                    <div class="dropdown-content">
-                        <a href="equipes.html#cospace" class="dropdown-item">COSPACE</a>
-                        <a href="equipes.html#futebol2d" class="dropdown-item">FUTEBOL 2D</a>
-                        <a href="equipes.html#humanoide" class="dropdown-item">HUMANÓIDE</a>
-                        <a href="equipes.html#pesquisa" class="dropdown-item">PESQUISA</a>
-                        <a href="equipes.html#pratica" class="dropdown-item">PRÁTICA</a>
-                        <a href="equipes.html#seguidor" class="dropdown-item">SEGUIDOR DE LINHA</a>
-                        <a href="equipes.html#challenger" class="dropdown-item">SEK/CHALLENGER</a>
-                        <a href="equipes.html#teorica" class="dropdown-item">TEÓRICA</a>
-                        <a href="equipes.html#coordenacao" class="dropdown-item">COORDENAÇÃO</a>
-                    </div>
-                </div>
+                <a href="equipes.html" class="nav-item">EQUIPES</a>
                 <a href="inscreva-se.html" class="nav-item">INSCREVA-SE</a>
                 <a href="blog.html" class="nav-item">BLOG</a>
                 <a href="apoio.html" class="nav-item">APOIO</a>
@@ -73,82 +58,87 @@
         </div>
     </nav>
 
-    <!-- Main Container -->
-    <main class="contact-hero">
-        <section class="contact-shell">
+    <main class="contact-main">
+        <section class="contact-hero">
             <div class="contact-intro">
-                <div class="eyebrow">Contato direto</div>
-                <h1>Vamos conversar sobre robótica, parceria ou suporte.</h1>
-                <p>
-                    Use o formulário ao lado para enviar dúvidas, propostas, convites ou mensagens para a equipe.
-                    Nós respondemos com prioridade para assuntos de apoio, parcerias e participação em projetos.
+                <div class="contact-kicker">Contato</div>
+                <h1 class="contact-title">Fale com os Titãs da Robótica</h1>
+                <p class="contact-copy">
+                    Envie dúvidas, propostas de parceria, convites para eventos ou mensagens para a equipe.
+                    Quanto mais contexto você trouxer, mais rápido conseguimos responder.
                 </p>
 
-                <div class="contact-points">
-                    <div class="contact-point">
-                        <strong>E-mail oficial</strong>
-                        <span>contato@titasdarobotica.com.br</span>
+                <div class="contact-info-grid">
+                    <div class="contact-info">
+                        <i class="fa-solid fa-envelope"></i>
+                        <strong>E-mail</strong>
+                        <a href="mailto:contato@titasdarobotica.com.br">contato@titasdarobotica.com.br</a>
                     </div>
-                    <div class="contact-point">
-                        <strong>Atendimento</strong>
-                        <span>Segunda a sexta, em horário comercial</span>
+                    <div class="contact-info">
+                        <i class="fa-solid fa-phone"></i>
+                        <strong>Telefone</strong>
+                        <a href="tel:+5527987654321">(27) 98765-4321</a>
                     </div>
-                    <div class="contact-point">
+                    <div class="contact-info">
+                        <i class="fa-solid fa-location-dot"></i>
                         <strong>Localização</strong>
                         <span>IFES Campus Colatina, Colatina - ES</span>
                     </div>
-                    <div class="contact-point">
-                        <strong>Redes sociais</strong>
-                        <span>Instagram, YouTube, Facebook e LinkedIn</span>
+                    <div class="contact-info">
+                        <i class="fa-solid fa-clock"></i>
+                        <strong>Atendimento</strong>
+                        <span>Segunda a sexta, em horário comercial</span>
                     </div>
                 </div>
             </div>
 
-            <div class="contact-card">
+            <section class="contact-card">
                 <h2>Envie sua mensagem</h2>
-                <p class="form-subtitle">Responda com o máximo de contexto possível para agilizar o retorno.</p>
+                <p>Preencha os campos abaixo e retornaremos assim que possível.</p>
 
                 <form id="contactForm">
-                    <div class="contact-grid">
+                    <div class="contact-form-grid">
                         <div class="contact-field">
-                            <label for="nome">Nome completo</label>
+                            <label for="nome">Nome</label>
                             <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
                         </div>
                         <div class="contact-field">
                             <label for="email">E-mail</label>
                             <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
                         </div>
-                        <div class="contact-field full">
+                        <div class="contact-field contact-field-full">
+                            <label for="assunto">Assunto</label>
+                            <input type="text" id="assunto" name="assunto" placeholder="Sobre o que você quer falar?" required>
+                        </div>
+                        <div class="contact-field contact-field-full">
                             <label for="mensagem">Mensagem</label>
                             <textarea id="mensagem" name="mensagem" placeholder="Conte como podemos ajudar" required></textarea>
                         </div>
                     </div>
 
                     <div class="contact-actions">
-                        <p class="contact-note">Ao enviar, você concorda em compartilhar seus dados para retorno da equipe.</p>
                         <button type="submit" class="contact-button">Enviar mensagem</button>
                     </div>
                 </form>
-            </div>
+            </section>
         </section>
 
-        <section class="contact-band">
-            <div class="contact-band-inner">
-                <div>
-                    <strong>Quer falar mais rápido?</strong>
-                    <span>Envie um e-mail direto para contato@titasdarobotica.com.br</span>
-                </div>
-                <div>
-                    <strong>Parcerias e mídia</strong>
-                    <span>Também atendemos convites e colaborações institucionais</span>
-                </div>
+        <section class="contact-social-band">
+            <div>
+                <h2>Acompanhe a equipe</h2>
+                <p>Veja novidades, bastidores, competições e projetos nas redes sociais.</p>
+            </div>
+            <div class="contact-social-links">
+                <a href="https://www.instagram.com/titasdarobotica" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/titasdarobotica" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.youtube.com/@titasdarobotica" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/tit%C3%A3s-da-rob%C3%B3tica/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
         </section>
     </main>
-    <!-- Footer -->
+
     <footer>
         <div class="footer-content">
-            <!-- Redes Sociais -->
             <div class="footer-section">
                 <h3>Redes Sociais</h3>
                 <p>Siga-nos nas redes sociais e fique por dentro de todas as novidades!</p>
@@ -156,11 +146,9 @@
                     <a href="https://www.instagram.com/titasdarobotica" target="_blank" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.facebook.com/titasdarobotica" target="_blank" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.youtube.com/@titasdarobotica" target="_blank" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.linkedin.com/company/tit%C3%A3s-da-rob%C3%B3tica/ " target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/company/tit%C3%A3s-da-rob%C3%B3tica/" target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
-
-            <!-- Links Rápidos -->
             <div class="footer-section">
                 <h3>Links Rápidos</h3>
                 <a href="index.html">Home</a>
@@ -169,90 +157,23 @@
                 <a href="blog.html">Blog</a>
                 <a href="apoio.html">Apoio</a>
             </div>
-
-            <!-- Contato -->
             <div class="footer-section">
                 <h3>Contato</h3>
                 <p><strong>E-mail:</strong><br>
                 <a href="mailto:contato@titasdarobotica.com.br">contato@titasdarobotica.com.br</a></p>
                 <p><strong>Telefone:</strong><br>
                 <a href="tel:+5527987654321">(27) 98765-4321</a></p>
-                <p><strong>Localização:</strong><br>
-                IFES Campus Colatina<br>
-                Colatina - ES, Brasil</p>
             </div>
-
-            <!-- Sobre -->
             <div class="footer-section">
                 <h3>Sobre Titãs</h3>
                 <p>Somos um projeto de extensão dedicado à educação em robótica, promovendo competências técnicas e inovação desde 2015.</p>
             </div>
         </div>
-
-        <!-- Avisos Legais -->
-        <div class="footer-bottom">
-            <div>
-                <p><strong>Política de Privacidade</strong><br>
-                Respeitamos sua privacidade e seus dados são protegidos. Consulte nossa <a href="#">política de privacidade</a> completa.</p>
-            </div>
-            <div>
-                <p><strong>Termos de Uso</strong><br>
-                Ao usar este site, você concorda com nossos <a href="#">termos de uso</a>.</p>
-            </div>
-            <div>
-                <p><strong>Cookies</strong><br>
-                Utilizamos cookies para melhorar sua experiência. Saiba mais em nossa <a href="#">política de cookies</a>.</p>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Titãs da Robótica - IFES Colatina. Todos os direitos reservados.</p>
-            </div>
-        </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="/static/js/navigation.js"></script>
-    <script src="/static/js/carousel.js"></script>
     <script src="/static/js/forms.js"></script>
     <script src="/static/js/animations.js"></script>
     <script src="/static/js/main.js"></script>
-
-    <!-- Admin Hidden Access -->
-    <div id="admin-access" style="
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 9999;
-        opacity: 0.15;
-        cursor: pointer;
-        transition: opacity 0.3s;
-        font-size: 24px;
-    " title="Admin (Ctrl+Shift+A)">⚙️</div>
-
-    <style>
-        #admin-access:hover {
-            opacity: 0.4;
-        }
-    </style>
-
-    <script>
-        // Admin button access
-        const adminBtn = document.getElementById('admin-access');
-        
-        // Click access
-        adminBtn.addEventListener('click', function() {
-            window.location.href = '/admin/';
-        });
-
-        // Keyboard shortcut: Ctrl+Shift+A
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
-                e.preventDefault();
-                window.location.href = '/admin/';
-            }
-        });
-    </script>
-
 </body>
 </html>
-
-

@@ -117,7 +117,7 @@ function createSlideHtml(slideContent) {
                 <p class="blog-date">${formatDate(post.published_at)}</p>
                 <h3 class="blog-title">${post.title}</h3>
                 <p class="blog-excerpt">${post.summary}</p>
-                <a href="blog.html#${post.slug || post.id}" class="blog-read-more">Leia mais &rarr;</a>
+                <a href="blog-post.html?slug=${encodeURIComponent(post.slug || post.id)}" class="blog-read-more">Leia mais &rarr;</a>
             </div>
         </div>
     `).join('');
