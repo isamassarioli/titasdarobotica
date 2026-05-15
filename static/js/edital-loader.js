@@ -26,8 +26,11 @@ function readLocalEditais() {
 }
 
 function normalizeEdital(edital) {
+    const status = (edital.status || '').toString().trim().toLowerCase();
+
     return {
         ...edital,
+        status: status === 'publicado' ? 'published' : status,
         image: edital.image || edital.cover_image || null,
         document: edital.document || null,
         description: edital.description || edital.summary || '',
@@ -35,6 +38,22 @@ function normalizeEdital(edital) {
         start_date: edital.start_date || edital.created_at || new Date().toISOString(),
         end_date: edital.end_date || edital.start_date || edital.created_at || new Date().toISOString()
     };
+}
+
+function isVisibleEdital(edital) {
+    const status = (edital.status || '').toString().trim().toLowerCase();
+    return status === 'published'
+        || status === 'open'
+        || status === 'aberto'
+        || status === 'publicado'
+        || Boolean(edital.published_at);
+}
+
+function prepareEditais(editais) {
+    return editais
+        .map(normalizeEdital)
+        .filter(isVisibleEdital)
+        .sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
 }
 
 async function fetchSupabaseEditais() {
@@ -57,9 +76,7 @@ async function fetchSupabaseEditais() {
 async function loadEditais() {
     try {
         console.log('Carregando editais do Supabase...');
-        const editals = (await fetchSupabaseEditais())
-            .map(normalizeEdital)
-            .filter(edital => edital.status === 'published' || edital.status === 'open');
+        const editals = prepareEditais(await fetchSupabaseEditais());
 
         if (editals.length === 0) {
             showEmptyState();
@@ -70,10 +87,7 @@ async function loadEditais() {
     } catch (error) {
         console.error('Erro ao carregar editais do Supabase:', error);
 
-        const localEditais = readLocalEditais()
-            .filter(edital => edital.status === 'published' || edital.status === 'open')
-            .map(normalizeEdital)
-            .sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
+        const localEditais = prepareEditais(readLocalEditais());
 
         if (localEditais.length > 0) {
             renderEditals(localEditais);
