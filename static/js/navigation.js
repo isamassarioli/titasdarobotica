@@ -2,6 +2,8 @@
  * Header e Navegação
  */
 
+let navigationInitialized = false;
+
 // Menu Fixo ao Scroll
 function initFixedNav() {
     const fixedNav = document.querySelector('.fixed-nav');
@@ -99,12 +101,95 @@ function initDropdownClose() {
     });
 }
 
+function getTeamDetailHref(slug) {
+    return `equipe-detail.html?slug=${slug}`;
+}
+
+function normalizeTeamSlug(slug) {
+    const teamSlugMap = {
+        cospace: 'cospace',
+        futebol2d: 'futebol-2d',
+        humanoide: 'humanoide',
+        pesquisa: 'pesquisa',
+        pratica: 'pratica',
+        seguidor: 'seguidor-de-linha',
+        osorin: 'osorin',
+        'obrteórica': 'obr-teorica',
+        teorica: 'obr-teorica',
+        challenger: 'challenger',
+        coordenacao: 'coordenacao'
+    };
+
+    return teamSlugMap[slug] || null;
+}
+
+function initTeamDetailLinks() {
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+    dropdownItems.forEach(item => {
+        const href = item.getAttribute('href') || '';
+        const fragmentMatch = href.match(/^(?:equipes\.html)?#(.+)$/);
+
+        if (!fragmentMatch) return;
+
+        const normalizedSlug = normalizeTeamSlug(fragmentMatch[1]);
+        if (normalizedSlug) {
+            item.setAttribute('href', getTeamDetailHref(normalizedSlug));
+        }
+    });
+
+    if (!document.querySelector('.team-card')) return;
+
+    const cardSlugMap = {
+        cospace: 'cospace',
+        futebol2d: 'futebol-2d',
+        humanoide: 'humanoide',
+        pesquisa: 'pesquisa',
+        pratica: 'pratica',
+        seguidor: 'seguidor-de-linha',
+        osorin: 'osorin',
+        'obrteórica': 'obr-teorica',
+        challenger: 'challenger',
+        coordenacao: 'coordenacao'
+    };
+
+    document.querySelectorAll('.team-card').forEach(card => {
+        const slug = cardSlugMap[card.id];
+        if (!slug) return;
+
+        card.style.cursor = 'pointer';
+        card.setAttribute('role', 'link');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', `Ver detalhes da equipe ${card.querySelector('.team-name')?.textContent || card.id}`);
+
+        const goToDetail = () => {
+            window.location.href = getTeamDetailHref(slug);
+        };
+
+        card.addEventListener('click', goToDetail);
+        card.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                goToDetail();
+            }
+        });
+    });
+}
+
 // Inicializar todas as funções de navegação
 function initNavigation() {
+    if (navigationInitialized) return;
+    navigationInitialized = true;
+
     initFixedNav();
     initHeaderScroll();
     initActiveMenuItem();
     initMobileMenu();
+    initTeamDetailLinks();
+}
+
+if (typeof window !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', initNavigation);
 }
 
 // Exportar para uso global
