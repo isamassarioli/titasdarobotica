@@ -91,7 +91,7 @@ const TEAM_DETAILS = {
         title: 'OBR Prática',
         kicker: 'Montagem e treino',
         summary: 'Subequipe voltada para a modalidade prática da OBR, unindo construção, testes e ajustes de desempenho.',
-        image: '/static/images/obrprática2025.jpg',
+        image: '/static/images/obrpratica.png',
         badge: 'Categoria prática',
         stats: [],
         description: [

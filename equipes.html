@@ -26,6 +26,7 @@
                         <a href="#futebol2d" class="dropdown-item">FUTEBOL 2D</a>
                         <a href="#humanoide" class="dropdown-item">HUMANÓIDE</a>
                         <a href="#pesquisa" class="dropdown-item">PESQUISA</a>
+                        <a href="#pratica" class="dropdown-item">PRÁTICA</a>
                         <a href="#seguidor" class="dropdown-item">SEGUIDOR DE LINHA</a>
                         <a href="#osorin" class="dropdown-item">OSORIN</a>
                         <a href="#obrteórica" class="dropdown-item">OBR TEÓRICA</a>
@@ -49,7 +50,9 @@
         <!-- Equipes Principais -->
         <section class="content-section">
             <h2 class="section-title">Equipes</h2>
-            <div class="image-grid">
+            <div class="teams-carousel" id="teamsCarousel" style="position: relative;">
+                <!-- Slide 1 (3 equipes) -->
+                <div class="team-slide-group" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 20px;">
                 <div class="team-card" id="cospace">
                     <img src="/static/images/cospace1.jpg" alt="CoSpace" class="team-image">
                     <div class="team-content">
@@ -116,6 +119,10 @@
                     </div>
                 </div>
 
+                </div>
+
+                <!-- Slide 2 (3 equipes) -->
+                <div class="team-slide-group" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 20px;">
                 <div class="team-card" id="futebol2d">
                     <img src="/static/images/futebol2d2025.jpg" alt="Futebol 2D" class="team-image">
                     <div class="team-content">
@@ -152,8 +159,13 @@
                         <p class="team-description">Desenvolvimento de projetos de pesquisa em robótica.</p>
                     </div>
                 </div>
+
+                </div>
+
+                <!-- Slide 3 (3 equipes) -->
+                <div class="team-slide-group" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 20px;">
                 <div class="team-card" id="pratica">
-                    <img src="/static/images/obrprática2025.jpg" alt="OBR Prática" class="team-image">
+                    <img src="/static/images/obrpratica.png" alt="OBR Prática" class="team-image">
                     <div class="team-content">
                         <h3 class="team-name">OBR PRÁTICA</h3>
                         <p class="team-description">Treino, montagem e ajustes da modalidade prática da OBR.</p>
@@ -172,6 +184,19 @@
                         <h3 class="team-name">CHALLENGER</h3>
                         <p class="team-description">Desafios especiais e competições alternativas.</p>
                     </div>
+                </div>
+
+                </div>
+
+                <!-- Controles do Carrossel -->
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 30px;">
+                    <button class="carousel-prev" onclick="teamsCarouselInstance.prevSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">&lsaquo;</button>
+                    <div class="team-indicators" style="display: flex; gap: 10px; justify-content: center;">
+                        <span class="team-indicator active" onclick="teamsCarouselInstance.goToSlide(0)" style="width: 12px; height: 12px; border-radius: 50%; background: #FFA500; cursor: pointer;"></span>
+                        <span class="team-indicator" onclick="teamsCarouselInstance.goToSlide(1)" style="width: 12px; height: 12px; border-radius: 50%; background: #555; cursor: pointer;"></span>
+                        <span class="team-indicator" onclick="teamsCarouselInstance.goToSlide(2)" style="width: 12px; height: 12px; border-radius: 50%; background: #555; cursor: pointer;"></span>
+                    </div>
+                    <button class="carousel-next" onclick="teamsCarouselInstance.nextSlide()" style="background: #FFA500; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;">&rsaquo;</button>
                 </div>
             </div>
         </section>
@@ -577,8 +602,10 @@
         let conquistasIntCarouselInstance;
         let titulosCarouselInstance;
         let orientadoresCarouselInstance;
+        let teamsCarouselInstance;
         
         document.addEventListener('DOMContentLoaded', function() {
+            teamsCarouselInstance = new GenericCarousel('#teamsCarousel', '.team-slide-group', '.team-indicator');
             conquistasIntCarouselInstance = new GenericCarousel('#conquistasIntCarousel', '.conquistas-int-slide-group', '.conquistas-int-indicator');
             titulosCarouselInstance = new GenericCarousel('#titulosCarousel', '.titulos-slide-group', '.titulos-indicator');
             orientadoresCarouselInstance = new GenericCarousel('#orientadoresCarousel', '.orientadores-slide-group', '.orientadores-indicator');
