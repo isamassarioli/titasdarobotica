@@ -53,5 +53,3 @@ titasdarobotica/
 ---
 
 Desenvolvido com ❤️ para a equipe Titãs da Robótica
-
-**Site 100% estático + Admin client-only. Sem dependências externas, sem backend, sem banco de dados.**
