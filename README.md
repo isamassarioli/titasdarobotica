@@ -191,5 +191,3 @@ Para trabalhos acadêmicos, este README pode ser usado como ponto de partida par
 Uso institucional e acadêmico da equipe Titãs da Robótica - IFES Campus Colatina.
 
 ---
-
-Documentação preparada para facilitar leitura técnica, avaliação institucional e reaproveitamento em trabalhos acadêmicos futuros.

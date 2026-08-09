@@ -26,6 +26,7 @@
                         <a href="futebol-2d.html" class="dropdown-item">FUTEBOL 2D</a>
                         <a href="humanoide.html" class="dropdown-item">HUMANÓIDE</a>
                         <a href="pesquisa.html" class="dropdown-item">PESQUISA</a>
+                        <a href="pratica.html" class="dropdown-item">PRÁTICA</a>
                         <a href="seguidor-de-linha.html" class="dropdown-item">SEGUIDOR DE LINHA</a>
                         <a href="osorin.html" class="dropdown-item">OSORIN</a>
                         <a href="obr-teorica.html" class="dropdown-item">OBR TEÓRICA</a>
@@ -37,16 +38,11 @@
                 <a href="blog.html" class="nav-item">BLOG</a>
                 <a href="apoio.html" class="nav-item">APOIO</a>
                 <a href="contato.html" class="nav-item">CONTATO</a>
-            </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <main class="main-container">
-        <!-- <div class="hero-simple">
-            <h1 class="hero-title">NOSSAS EQUIPES</h1>
-        </div> -->
-
-        <!-- Equipes Principais -->
         <section class="content-section">
             <h2 class="section-title">Equipes</h2>
             <div class="image-grid">
@@ -145,6 +141,7 @@
                         <p class="team-description">Equipe de robótica teórica focada em simulação e desenvolvimento de algoritmos avançados.</p>
                     </div>
                 </a>
+
                 <a href="pesquisa.html" class="team-card team-card-link" id="pesquisa" aria-label="Abrir página da equipe Pesquisa">
                     <img src="/static/images/pesquisa2025.jpeg" alt="Pesquisa" class="team-image">
                     <div class="team-content">
@@ -152,6 +149,7 @@
                         <p class="team-description">Desenvolvimento de projetos de pesquisa em robótica.</p>
                     </div>
                 </a>
+
                 <a href="obr-teorica.html" class="team-card team-card-link" id="obrteorica" aria-label="Abrir página da equipe OBR Teórica">
                     <img src="/static/images/obrteórica.jpg" alt="OBR Teórica" class="team-image">
                     <div class="team-content">
@@ -159,6 +157,7 @@
                         <p class="team-description">Modalidades teóricas da Olimpíada Brasileira de Robótica com foco em programação e lógica.</p>
                     </div>
                 </a>
+
                 <a href="challenger.html" class="team-card team-card-link" id="challenger" aria-label="Abrir página da equipe Challenger">
                     <img src="/static/images/challenger2025.jpg" alt="Challenger" class="team-image">
                     <div class="team-content">
@@ -489,6 +488,8 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="/static/js/navigation.js"></script>
+    <script src="/static/js/main.js"></script>
     <script>
         // Classe genérica para Carrossel
         class GenericCarousel {
@@ -569,8 +570,10 @@
         let conquistasIntCarouselInstance;
         let titulosCarouselInstance;
         let orientadoresCarouselInstance;
+        let teamsCarouselInstance;
         
         document.addEventListener('DOMContentLoaded', function() {
+            teamsCarouselInstance = new GenericCarousel('#teamsCarousel', '.team-slide-group', '.team-indicator');
             conquistasIntCarouselInstance = new GenericCarousel('#conquistasIntCarousel', '.conquistas-int-slide-group', '.conquistas-int-indicator');
             titulosCarouselInstance = new GenericCarousel('#titulosCarousel', '.titulos-slide-group', '.titulos-indicator');
             orientadoresCarouselInstance = new GenericCarousel('#orientadoresCarousel', '.orientadores-slide-group', '.orientadores-indicator');

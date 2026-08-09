@@ -197,6 +197,14 @@
     }
 }
 
+.team-slide-group {
+    align-items: stretch;
+}
+
+.team-slide-group .team-card {
+    height: 100%;
+}
+
 /* Página de Membros */
 .member-grid {
     display: grid;
@@ -502,6 +510,12 @@
 
 /* Responsividade */
 @media (max-width: 768px) {
+    .team-slide-group {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 20px 10px !important;
+    }
+
     .member-grid {
         grid-template-columns: 1fr;
     }
