@@ -3,75 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post - Titãs da Robótica</title>
+    <title>Titãs da Robótica - CoSpace Rescue</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .post-detail-wrap {
-            max-width: 920px;
-            margin: 120px auto 80px;
-            padding: 0 24px;
-            color: #fff;
-        }
-
-        .post-back-link {
-            display: inline-flex;
-            margin-bottom: 28px;
-            color: #FFA500;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        .post-detail-image {
-            width: 100%;
-            max-height: 460px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 28px;
-        }
-
-        .post-detail-meta {
-            color: #FFA500;
-            font-weight: 700;
-            margin-bottom: 12px;
-            text-transform: capitalize;
-        }
-
-        .post-detail-title {
-            font-size: clamp(2rem, 5vw, 3.6rem);
-            line-height: 1.08;
-            margin-bottom: 18px;
-        }
-
-        .post-detail-summary {
-            color: rgba(255,255,255,0.78);
-            font-size: 1.2rem;
-            line-height: 1.7;
-            margin-bottom: 32px;
-        }
-
-        .post-detail-body {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.06rem;
-            line-height: 1.85;
-        }
-
-        .post-detail-body p {
-            margin-bottom: 20px;
-        }
-
-        .post-detail-message {
-            min-height: 260px;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            gap: 18px;
-        }
-    </style>
 </head>
 <body>
     <header class="header">
@@ -90,12 +28,47 @@
         </div>
     </header>
 
-    <main class="post-detail-wrap">
-        <div id="post-detail">
-            <div class="post-detail-message">
-                <p>Carregando post...</p>
+    <main class="main-container">
+        <section class="team-detail-hero">
+            <div class="team-detail-layout">
+                <div>
+                    <div class="team-detail-kicker">Equipe competitiva</div>
+                    <h1 class="team-detail-title">CoSpace Rescue</h1>
+                    <p class="team-detail-copy">
+                        A CoSpace é a frente de simulação 3D da equipe, dedicada a programação de robôs virtuais para
+                        missões de resgate. É um espaço de estratégia, visão sistêmica e raciocínio algorítmico aplicado
+                        em cenários simulados.
+                    </p>
+                    <div class="team-detail-actions">
+                        <a href="equipes.html" class="btn btn-secondary">Voltar para equipes</a>
+                        <a href="contato.html" class="btn btn-primary">Fale com a equipe</a>
+                    </div>
+                </div>
+                <div class="team-detail-visual">
+                    <img src="/static/images/cospace1.jpg" alt="Equipe CoSpace Rescue">
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="team-detail-grid">
+            <div class="team-detail-section">
+                <h2>O que a equipe faz</h2>
+                <div class="team-detail-list">
+                    <div><span class="team-detail-highlight">Simulação 3D:</span> desenvolvimento e teste de robôs em ambientes virtuais.</div>
+                    <div><span class="team-detail-highlight">Missões de resgate:</span> foco em navegação, decisão e resposta a cenários complexos.</div>
+                    <div><span class="team-detail-highlight">Trabalho em equipe:</span> programação, análise e estratégia caminham juntas.</div>
+                </div>
+            </div>
+
+            <div class="team-detail-section">
+                <h2>Indicadores</h2>
+                <div class="team-detail-stats">
+                    <div class="team-detail-stat"><strong>5</strong><span>Membros ativos na categoria.</span></div>
+                    <div class="team-detail-stat"><strong>8</strong><span>Competições registradas.</span></div>
+                    <div class="team-detail-stat"><strong>3</strong><span>Prêmios conquistados.</span></div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -125,6 +98,9 @@
                 <p><strong>Telefone:</strong><br>
                 <a href="tel:+5528999698766">55 28 99969-8766</a><br>
                 <span style="color: #888; font-size: 12px;">Coordenador Júlio Vendramini</span></p>
+                <p><strong>Localização:</strong><br>
+                IFES Campus Colatina<br>
+                Colatina - ES, Brasil</p>
             </div>
             <div class="footer-section">
                 <h3>Sobre Titãs</h3>
@@ -135,6 +111,5 @@
 
     <script src="/static/js/navigation.js"></script>
     <script src="/static/js/main.js"></script>
-    <script src="/static/js/blog-post.js"></script>
 </body>
 </html>

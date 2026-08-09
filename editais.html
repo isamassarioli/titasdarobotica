@@ -3,121 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edital - Titãs da Robótica</title>
+    <title>Titãs da Robótica - Editais</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .edital-detail-wrap {
-            max-width: 920px;
-            margin: 120px auto 80px;
-            padding: 0 24px;
-            color: #fff;
-        }
-
-        .edital-back-link {
-            display: inline-flex;
-            margin-bottom: 28px;
-            color: #FFA500;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        .edital-detail-hero {
-            background: linear-gradient(180deg, rgba(255,165,0,0.12), rgba(26,26,26,0.92));
-            border: 1px solid rgba(255,165,0,0.22);
-            border-radius: 18px;
-            padding: 28px;
-            margin-bottom: 28px;
-        }
-
-        .edital-detail-image {
-            width: 100%;
-            max-height: 460px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 28px;
-        }
-
-        .edital-detail-meta {
-            color: #FFA500;
-            font-weight: 700;
-            margin-bottom: 12px;
-            text-transform: capitalize;
-        }
-
-        .edital-detail-title {
-            font-size: clamp(2rem, 5vw, 3.6rem);
-            line-height: 1.08;
-            margin-bottom: 18px;
-        }
-
-        .edital-detail-summary {
-            color: rgba(255,255,255,0.78);
-            font-size: 1.15rem;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .edital-detail-body {
-            color: rgba(255,255,255,0.92);
-            font-size: 1.06rem;
-            line-height: 1.85;
-        }
-
-        .edital-detail-body p {
-            margin-bottom: 20px;
-        }
-
-        .edital-links {
-            margin-top: 38px;
-            padding: 24px;
-            border-top: 1px solid rgba(255,255,255,0.14);
-        }
-
-        .edital-links h2 {
-            color: #FFA500;
-            margin-bottom: 12px;
-        }
-
-        .edital-link-list {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-            margin-top: 16px;
-        }
-
-        .edital-link-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 46px;
-            padding: 0 18px;
-            border-radius: 999px;
-            text-decoration: none;
-            font-weight: 700;
-            background: #333;
-            color: #FFA500;
-            border: 1px solid rgba(255,165,0,0.42);
-        }
-
-        .edital-link-btn.primary {
-            background: #FFA500;
-            color: #0D0D0D;
-            border-color: #FFA500;
-        }
-
-        .edital-detail-message {
-            min-height: 260px;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            gap: 18px;
-        }
-    </style>
 </head>
 <body>
     <header class="header">
@@ -150,12 +42,25 @@
         </div>
     </header>
 
-    <main class="edital-detail-wrap">
-        <div id="edital-detail">
-            <div class="edital-detail-message">
-                <p>Carregando edital...</p>
+    <main class="main-container">
+        <section class="content-section bg-dark" style="border-radius: 10px;">
+            <h2 class="section-title">Filtros</h2>
+            <div class="edital-filters" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                <button type="button" class="badge edital-filter active" data-edital-filter="all" style="cursor: pointer; padding: 12px 24px; font-size: 16px; border: none;">Todos</button>
+                <button type="button" class="badge edital-filter" data-edital-filter="open" style="cursor: pointer; padding: 12px 24px; font-size: 16px; border: none;">Aberto</button>
+                <button type="button" class="badge edital-filter" data-edital-filter="closed" style="cursor: pointer; padding: 12px 24px; font-size: 16px; border: none;">Fechado</button>
+                <button type="button" class="badge edital-filter" data-edital-filter="upcoming" style="cursor: pointer; padding: 12px 24px; font-size: 16px; border: none;">Próximos</button>
             </div>
-        </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Editais</h2>
+            <div class="edital-carousel hero-section" style="position: relative;">
+                <div class="loading-state" style="text-align: center; padding: 40px; color: rgba(255,255,255,0.7);">
+                    <p style="font-size: 18px;">⏳ Carregando editais...</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -170,6 +75,7 @@
                     <a href="https://www.linkedin.com/company/tit%C3%A3s-da-rob%C3%B3tica/" target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
+
             <div class="footer-section">
                 <h3>Links Rápidos</h3>
                 <a href="index.html">Home</a>
@@ -179,6 +85,7 @@
                 <a href="editais.html">Editais</a>
                 <a href="apoio.html">Apoio</a>
             </div>
+
             <div class="footer-section">
                 <h3>Contato</h3>
                 <p><strong>E-mail:</strong><br>
@@ -190,15 +97,38 @@
                 IFES Campus Colatina<br>
                 Colatina - ES, Brasil</p>
             </div>
+
             <div class="footer-section">
                 <h3>Sobre Titãs</h3>
                 <p>Somos um projeto de extensão dedicado à educação em robótica, promovendo competências técnicas e inovação desde 2015.</p>
             </div>
         </div>
+
+        <div class="footer-bottom">
+            <div>
+                <p><strong>Política de Privacidade</strong><br>
+                Respeitamos sua privacidade e seus dados são protegidos. Consulte nossa <a href="#">política de privacidade</a> completa.</p>
+            </div>
+            <div>
+                <p><strong>Termos de Uso</strong><br>
+                Ao usar este site, você concorda com nossos <a href="#">termos de uso</a>.</p>
+            </div>
+            <div>
+                <p><strong>Cookies</strong><br>
+                Utilizamos cookies para melhorar sua experiência. Saiba mais em nossa <a href="#">política de cookies</a>.</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Titãs da Robótica - IFES Colatina. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
 
+    <script src="/static/js/config.js"></script>
     <script src="/static/js/navigation.js"></script>
-    <script src="/static/js/blog-api.js"></script>
-    <script src="/static/js/edital-detail.js"></script>
+    <script src="/static/js/carousel.js"></script>
+    <script src="/static/js/forms.js"></script>
+    <script src="/static/js/animations.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/edital-loader.js"></script>
 </body>
 </html>

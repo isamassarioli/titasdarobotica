@@ -7,6 +7,9 @@ const SUPABASE_URL = 'https://mbpwppopfqensjeksxoy.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1icHdwcG9wZnFlbnNqZWtzeG95Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3OTI3MTEsImV4cCI6MjA5NDM2ODcxMX0.xkXGSgSlq1Vavtf5gULVD6h7M60C3h3SP3GLNLvT2nM';
 const EDITAIS_KEY = 'titas_editais';
 
+let allEditais = [];
+let activeEditalFilter = 'all';
+
 function supabaseHeaders(token = SUPABASE_ANON_KEY) {
     return {
         apikey: SUPABASE_ANON_KEY,
@@ -37,6 +40,67 @@ function normalizeEdital(edital) {
     };
 }
 
+function normalizeEditalStatus(status) {
+    return (status || '')
+        .toString()
+        .trim()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+}
+
+function isEditalVisible(edital, filter = 'all') {
+    const status = normalizeEditalStatus(edital.status);
+    const startDate = edital.start_date ? new Date(edital.start_date) : null;
+    const endDate = edital.end_date ? new Date(edital.end_date) : null;
+    const now = new Date();
+
+    if (filter === 'open') {
+        return ['open', 'published', 'aberto', 'publicado'].includes(status)
+            || (endDate instanceof Date && !Number.isNaN(endDate.getTime()) && endDate >= now);
+    }
+
+    if (filter === 'closed') {
+        return ['closed', 'archived', 'fechado'].includes(status)
+            || (endDate instanceof Date && !Number.isNaN(endDate.getTime()) && endDate < now);
+    }
+
+    if (filter === 'upcoming') {
+        return ['draft', 'upcoming', 'future', 'futuro', 'proximo'].includes(status)
+            || (startDate instanceof Date && !Number.isNaN(startDate.getTime()) && startDate > now);
+    }
+
+    return true;
+}
+
+function getEditalFilterButtons() {
+    return Array.from(document.querySelectorAll('.edital-filter'));
+}
+
+function updateEditalFilterState() {
+    getEditalFilterButtons().forEach(button => {
+        const isActive = button.dataset.editalFilter === activeEditalFilter;
+        button.classList.toggle('active', isActive);
+        button.style.background = isActive ? '#FFA500' : '#333';
+        button.style.color = isActive ? '#0D0D0D' : '#FFA500';
+    });
+}
+
+function setupEditalFilters() {
+    getEditalFilterButtons().forEach(button => {
+        if (button.dataset.editalFilterReady === 'true') return;
+
+        button.dataset.editalFilterReady = 'true';
+        button.addEventListener('click', () => {
+            activeEditalFilter = button.dataset.editalFilter || 'all';
+            updateEditalFilterState();
+            renderFilteredEditais();
+        });
+    });
+
+    updateEditalFilterState();
+}
+
 async function fetchSupabaseEditais() {
     const params = new URLSearchParams({
         select: '*',
@@ -57,31 +121,40 @@ async function fetchSupabaseEditais() {
 async function loadEditais() {
     try {
         console.log('Carregando editais do Supabase...');
-        const editals = (await fetchSupabaseEditais())
-            .map(normalizeEdital)
-            .filter(edital => edital.status === 'published' || edital.status === 'open');
-
-        if (editals.length === 0) {
-            showEmptyState();
-            return;
-        }
-
-        renderEditals(editals);
-    } catch (error) {
-        console.error('Erro ao carregar editais do Supabase:', error);
-
-        const localEditais = readLocalEditais()
-            .filter(edital => edital.status === 'published' || edital.status === 'open')
+        allEditais = (await fetchSupabaseEditais())
             .map(normalizeEdital)
             .sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
 
-        if (localEditais.length > 0) {
-            renderEditals(localEditais);
-            return;
-        }
+        setupEditalFilters();
+        renderFilteredEditais();
+    } catch (error) {
+        console.error('Erro ao carregar editais do Supabase:', error);
 
-        showEmptyState();
+        allEditais = readLocalEditais()
+            .map(normalizeEdital)
+            .sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
+
+        setupEditalFilters();
+        renderFilteredEditais();
     }
+}
+
+function renderFilteredEditais() {
+    const filteredEditais = allEditais.filter(edital => isEditalVisible(edital, activeEditalFilter));
+
+    if (filteredEditais.length === 0) {
+        const emptyMessages = {
+            open: 'Nenhum edital aberto no momento.',
+            closed: 'Nenhum edital fechado encontrado.',
+            upcoming: 'Nenhum edital futuro cadastrado.',
+            all: 'Nenhum edital disponível no momento.'
+        };
+
+        showEmptyState(emptyMessages[activeEditalFilter] || emptyMessages.all);
+        return;
+    }
+
+    renderEditals(filteredEditais);
 }
 
 function renderEditals(editals) {
@@ -191,12 +264,12 @@ function formatDateRange(startDate, endDate) {
     return `${startStr} a ${endStr}`;
 }
 
-function showEmptyState() {
+function showEmptyState(message = 'Nenhum edital aberto no momento') {
     const container = document.querySelector('.edital-carousel');
     if (container) {
         container.innerHTML = `
             <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.7);">
-                <p style="font-size: 18px;">Nenhum edital aberto no momento</p>
+                <p style="font-size: 18px;">${message}</p>
                 <p style="font-size: 14px; margin-top: 10px;">Fique atento para os proximos editais!</p>
             </div>
         `;

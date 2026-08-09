@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof initAnimations === 'function') {
         initAnimations();
     }
+
 });
 
 // Prevenir comportamento padrão de arrastar imagens
