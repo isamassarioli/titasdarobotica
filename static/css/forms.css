@@ -175,3 +175,43 @@
         font-size: 20px;
     }
 }
+
+/* Mensagens de feedback (contato, newsletter, etc.) */
+.message {
+    display: none;
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.message.show {
+    display: block;
+    animation: fadeInUp 0.3s ease;
+}
+
+.success-message {
+    background: rgba(46, 160, 67, 0.15);
+    border: 1px solid rgba(46, 160, 67, 0.5);
+    color: #4ade80;
+}
+
+.error-message {
+    background: rgba(255, 107, 107, 0.12);
+    border: 1px solid rgba(255, 107, 107, 0.5);
+    color: #ff8a8a;
+}
+
+/* Dica de erro por campo */
+.field-hint {
+    display: block;
+    margin-top: 6px;
+    color: #ff8a8a;
+    font-size: 13px;
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+    border-color: #ff6b6b !important;
+}

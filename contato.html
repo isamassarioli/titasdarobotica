@@ -98,6 +98,9 @@
                 <p>Preencha os campos abaixo e retornaremos assim que possível.</p>
 
                 <form id="contactForm">
+                    <!-- Honeypot anti-spam: invisível para pessoas, atrai bots -->
+                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+                           aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
                     <div class="contact-form-grid">
                         <div class="contact-field">
                             <label for="nome">Nome</label>
@@ -173,6 +176,14 @@
         </div>
     </footer>
 
+    <script>
+        // Endpoint de envio do formulário de contato.
+        // Enquanto estiver vazio, o site abre o app de e-mail do visitante (fallback).
+        // Para envio automático, crie um formulário gratuito em https://formspree.io
+        // (ou Web3Forms / FormSubmit) e cole a URL abaixo, ex.:
+        // window.CONTACT_ENDPOINT = 'https://formspree.io/f/xxxxxxxx';
+        window.CONTACT_ENDPOINT = '';
+    </script>
     <script src="/static/js/navigation.js"></script>
     <script src="/static/js/forms.js"></script>
     <script src="/static/js/animations.js"></script>

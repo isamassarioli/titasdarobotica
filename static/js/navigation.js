@@ -68,17 +68,75 @@ function initActiveMenuItem() {
     });
 }
 
-// Menu Mobile Toggle (para futuras implementações)
+// Menu Mobile Toggle
+// O botão hambúrguer é injetado por JS para manter um único ponto de manutenção,
+// já que o header/rodapé são replicados em todas as páginas.
+function buildToggleButton(controlsId) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'menu-toggle';
+    btn.setAttribute('aria-label', 'Abrir menu de navegação');
+    btn.setAttribute('aria-expanded', 'false');
+    if (controlsId) btn.setAttribute('aria-controls', controlsId);
+    btn.innerHTML = '<span class="menu-toggle-bar"></span>' +
+                    '<span class="menu-toggle-bar"></span>' +
+                    '<span class="menu-toggle-bar"></span>';
+    return btn;
+}
+
+function wireMenu(container, menu, idSuffix) {
+    if (!container || !menu || container.querySelector('.menu-toggle')) return;
+
+    if (!menu.id) menu.id = 'nav-menu-' + idSuffix;
+    const toggle = buildToggleButton(menu.id);
+    container.appendChild(toggle);
+
+    const closeMenu = () => {
+        menu.classList.remove('is-open');
+        toggle.classList.remove('is-active');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menu de navegação');
+    };
+
+    const openMenu = () => {
+        menu.classList.add('is-open');
+        toggle.classList.add('is-active');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Fechar menu de navegação');
+    };
+
+    toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menu.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+
+    // Fecha ao clicar em um link do menu
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Fecha ao clicar fora ou pressionar Esc
+    document.addEventListener('click', function (e) {
+        if (menu.classList.contains('is-open') &&
+            !menu.contains(e.target) && !toggle.contains(e.target)) {
+            closeMenu();
+        }
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+    });
+
+    // Garante estado limpo ao voltar para desktop
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) closeMenu();
+    });
+}
+
 function initMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-    }
+    wireMenu(document.querySelector('.header .header-content'),
+             document.querySelector('.header .nav-menu'), 'header');
+    wireMenu(document.querySelector('.fixed-nav .fixed-nav-content'),
+             document.querySelector('.fixed-nav .fixed-nav-menu'), 'fixed');
 }
 
 // Fechar dropdown ao clicar fora
