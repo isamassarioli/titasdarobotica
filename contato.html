@@ -3,6 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO-BLOCK -->
+    <meta name="description" content="Fale com a equipe Titãs da Robótica: dúvidas, propostas de parceria, convites para eventos e imprensa.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://titasdarobotica.vercel.app/contato.html">
+    <link rel="icon" href="/static/images/logotitas.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Titãs da Robótica">
+    <meta property="og:title" content="Contato - Titãs da Robótica">
+    <meta property="og:description" content="Fale com a equipe Titãs da Robótica: dúvidas, propostas de parceria, convites para eventos e imprensa.">
+    <meta property="og:url" content="https://titasdarobotica.vercel.app/contato.html">
+    <meta property="og:image" content="https://titasdarobotica.vercel.app/static/images/logotitas.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contato - Titãs da Robótica">
+    <meta name="twitter:description" content="Fale com a equipe Titãs da Robótica: dúvidas, propostas de parceria, convites para eventos e imprensa.">
+    <meta name="twitter:image" content="https://titasdarobotica.vercel.app/static/images/logotitas.png">
+    <!-- /SEO-BLOCK -->
     <title>Titãs da Robótica - Contato</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,7 +94,7 @@
                         <i class="fa-solid fa-phone"></i>
                         <strong>Telefone</strong>
                         <a href="tel:+5528999698766">55 28 99969-8766</a>
-                        <span style="display: block; margin-top: 6px; color: #888; font-size: 13px;">Coordenador Júlio Vendramini</span>
+                        <span style="display: block; margin-top: 6px; color: #a0a0a0; font-size: 13px;">Coordenador Júlio Vendramini</span>
                     </div>
                     <div class="contact-info">
                         <i class="fa-solid fa-location-dot"></i>
@@ -98,6 +114,9 @@
                 <p>Preencha os campos abaixo e retornaremos assim que possível.</p>
 
                 <form id="contactForm">
+                    <!-- Honeypot anti-spam: invisível para pessoas, atrai bots -->
+                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+                           aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
                     <div class="contact-form-grid">
                         <div class="contact-field">
                             <label for="nome">Nome</label>
@@ -164,7 +183,7 @@
                 <a href="mailto:titasdarobotica@gmail.com">titasdarobotica@gmail.com</a></p>
                 <p><strong>Telefone:</strong><br>
                 <a href="tel:+5528999698766">55 28 99969-8766</a><br>
-                <span style="color: #888; font-size: 12px;">Coordenador Júlio Vendramini</span></p>
+                <span style="color: #a0a0a0; font-size: 12px;">Coordenador Júlio Vendramini</span></p>
             </div>
             <div class="footer-section">
                 <h3>Sobre Titãs</h3>
@@ -173,6 +192,14 @@
         </div>
     </footer>
 
+    <script>
+        // Endpoint de envio do formulário de contato.
+        // Enquanto estiver vazio, o site abre o app de e-mail do visitante (fallback).
+        // Para envio automático, crie um formulário gratuito em https://formspree.io
+        // (ou Web3Forms / FormSubmit) e cole a URL abaixo, ex.:
+        // window.CONTACT_ENDPOINT = 'https://formspree.io/f/xxxxxxxx';
+        window.CONTACT_ENDPOINT = '';
+    </script>
     <script src="/static/js/navigation.js"></script>
     <script src="/static/js/forms.js"></script>
     <script src="/static/js/animations.js"></script>

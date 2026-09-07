@@ -20,9 +20,23 @@ class Carousel {
         
         this.showSlide(0);
         this.initIndicators();
-        this.startAutoPlay();
         this.initSwipe();
         this.bindControls();
+
+        // Respeita quem prefere menos animação
+        this.reduceMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!this.reduceMotion) this.startAutoPlay();
+
+        // Pausa o autoplay no hover e no foco (acessibilidade)
+        this.container.addEventListener('mouseenter', () => this.stopAutoPlay());
+        this.container.addEventListener('mouseleave', () => {
+            if (!this.reduceMotion) this.startAutoPlay();
+        });
+        this.container.addEventListener('focusin', () => this.stopAutoPlay());
+        this.container.addEventListener('focusout', () => {
+            if (!this.reduceMotion) this.startAutoPlay();
+        });
     }
     
     showSlide(index) {
