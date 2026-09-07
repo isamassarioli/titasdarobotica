@@ -286,6 +286,17 @@ function initDropdownClose() {
     });
 }
 
+// Atalho discreto para a equipe chegar ao painel (Ctrl+Shift+A).
+// Não há botão visível: o acesso real é protegido pelo login em admin.html.
+function initAdminShortcut() {
+    document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+            e.preventDefault();
+            window.location.href = '/admin.html';
+        }
+    });
+}
+
 // Inicializar todas as funções de navegação
 function initNavigation() {
     normalizeChrome();
@@ -293,6 +304,7 @@ function initNavigation() {
     initHeaderScroll();
     initActiveMenuItem();
     initMobileMenu();
+    initAdminShortcut();
 }
 
 // Exportar para uso global
