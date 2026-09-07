@@ -72,7 +72,17 @@
 
 .team-stat-label {
     font-size: 14px;
-    color: #aaa;
+    color: #c4c4c4;
+}
+
+/* Prefixo "+ de" nas estatísticas (antes era texto solto no HTML) */
+.stat-prefix {
+    font-size: 0.45em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    opacity: 0.85;
 }
 
 /* Página de detalhe de equipe */
@@ -539,5 +549,18 @@
     .sponsors-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 20px;
+    }
+
+    /* Colapsa grids fixos de 2/3 colunas definidos por style inline
+       (carrosséis de marcos, robôs, títulos, orientadores, etc.) */
+    .marcos-slide-group,
+    .robot-slide-group,
+    .conquistas-int-slide-group,
+    .titulos-slide-group,
+    .orientadores-slide-group,
+    [style*="repeat(3, 1fr)"],
+    [style*="repeat(2, minmax(0, 1fr))"],
+    [style*="repeat(3, minmax(0, 1fr))"] {
+        grid-template-columns: 1fr !important;
     }
 }

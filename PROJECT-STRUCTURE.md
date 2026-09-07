@@ -1,138 +1,100 @@
 # Estrutura do Projeto - Titãs da Robótica
 
-## 📁 Organização de Pastas
+Site **estático** (HTML + CSS + JavaScript), sem backend próprio nem framework
+frontend. O conteúdo dinâmico (blog e editais) é lido diretamente do Supabase
+pelo navegador; a área administrativa é client-side.
+
+> Histórico: versões anteriores deste repositório chegaram a ter um backend
+> Django. Ele foi removido. Se encontrar referências a `blog_app/`, `backend/`,
+> `manage.py` ou `Procfile`, estão obsoletas.
+
+## Organização de pastas
 
 ```
 titasdarobotica/
-├── docs/                          # 📚 Documentação do Projeto
-│   ├── SUPABASE-SETUP.md         # Guia de integração Supabase
-│   └── AUTOSYNC-CHECKLIST.md     # Checklist de autosync Django ↔ Supabase
+├── index.html                 # Home (institucional + histórico)
+├── equipes.html               # Catálogo de equipes e frentes
+├── cospace.html … osorin.html # Páginas individuais de equipe/frente
+├── blog.html / blog-post.html # Listagem e detalhe de post (dados do Supabase)
+├── editais.html / edital-detail.html
+├── inscreva-se.html           # Editais/oportunidades de entrada
+├── depoimentos.html
+├── apoio.html                 # Apoiadores e parceiros
+├── contato.html               # Formulário de contato
+├── politicas.html             # Privacidade, termos e cookies
+├── admin.html                 # Painel administrativo client-side (Supabase Auth)
 │
-├── templates/                     # 🎨 Templates HTML
-│   ├── blog/
-│   │   ├── list.html             # Listagem de posts
-│   │   └── detail.html           # Detalhe de um post
-│   ├── editais/
-│   │   ├── list.html             # Listagem de editais
-│   │   └── detail.html           # Detalhe de um edital
-│   ├── index.html                # Homepage (raiz)
-│   └── ...                        # Outros templates
+├── static/
+│   ├── css/                   # reset, header, hero, components, forms, pages, footer, contact, admin
+│   ├── js/                    # ver "Organização dos scripts"
+│   └── images/
 │
-├── blog_app/                      # 🐍 App Django de Blog/Editais
-│   ├── models.py                 # Post, Edital (com autosync Supabase)
-│   ├── admin.py                  # Admin interface
-│   ├── views.py                  # API (DRF) + Frontend (templates)
-│   ├── urls.py                   # Rotas da app
-│   ├── serializers.py            # DRF serializers
-│   ├── supabase_client.py        # Cliente Supabase (upload, queries)
-│   ├── supabase_examples.py      # Exemplos de uso
-│   ├── supabase_setup.sql        # SQL para criar tabelas Supabase
-│   └── migrations/               # Migrações Django
-│
-├── backend/                       # ⚙️ Configuração Django
-│   ├── settings.py               # Configurações (+ Supabase config)
-│   ├── urls.py                   # Rotas principais
-│   ├── wsgi.py                   # WSGI para deployment
-│   └── __init__.py
-│
-├── css/                           # 🎨 Estilos
-├── js/                            # 🔧 Scripts frontend
-├── images/                        # 🖼️ Imagens
-├── media/                         # 📦 Uploads de usuários
-├── staticfiles/                   # 📄 Static files coletados
-│
-├── .env                           # 🔐 Variáveis de ambiente (NÃO comitar)
-├── .gitignore                     # Arquivos ignorados
-├── requirements.txt               # Dependências Python
-├── manage.py                      # CLI Django
-├── Procfile                       # Deploy em Railway/Render
-├── vercel.json                    # Config Vercel
-└── README.md                      # Documentação principal
-
+├── robots.txt
+├── sitemap.xml
+├── vercel.json                # Configuração de deploy estático (Vercel)
+├── supabase-admin-policies.sql
+├── README.md
+└── PROJECT-STRUCTURE.md
 ```
 
-## 🔄 Fluxo de Dados
+## Organização dos scripts (`static/js/`)
 
+| Arquivo            | Responsabilidade |
+|--------------------|------------------|
+| `config.js`        | Define `window.API_URL` (fallback e override via localStorage) |
+| `navigation.js`    | **Chrome compartilhado** (menu + rodapé injetados em runtime), menu fixo ao rolar, **menu mobile** (hambúrguer), item ativo |
+| `carousel.js`      | Carrosséis e controles de destaque |
+| `animations.js`    | Animações de scroll, contadores, lightbox, back-to-top |
+| `forms.js`         | Validação e **envio real** do formulário de contato (endpoint configurável + fallback `mailto:`) |
+| `blog-api.js` / `blog-loader.js` / `blog-post.js` | Listagem, filtro e detalhe do blog (Supabase REST) |
+| `edital-loader.js` / `edital-detail.js` | Listagem, filtro e detalhe de editais (Supabase REST) |
+| `admin.js`         | CRUD de posts/editais no Supabase; localStorage como fallback/offline |
+| `main.js`          | Bootstrap (`DOMContentLoaded`), Vercel Analytics em produção |
+
+### Menu e rodapé compartilhados
+
+Cada página traz o `<header>` e o `<footer>` no HTML (fallback para buscadores e
+navegação sem JS). Em runtime, `navigation.js` **substitui** o conteúdo desses
+blocos pelo markup canônico definido em `NAV_LINKS` / `SOCIAL_LINKS` /
+`footerMarkup()`. Para mudar um item de menu ou um link do rodapé em todo o site,
+edite **apenas** `static/js/navigation.js`.
+
+### Formulário de contato
+
+`forms.js` envia via `fetch` para `window.CONTACT_ENDPOINT` (definido em
+`contato.html`). Enquanto o endpoint estiver vazio, o site abre o app de e-mail
+do visitante já preenchido. Para envio automático, crie um formulário gratuito
+(Formspree, Web3Forms ou FormSubmit) e cole a URL em `contato.html`.
+
+## Conteúdo dinâmico (Supabase)
+
+- Blog e editais são lidos via API REST do Supabase direto do navegador.
+- A chave usada nos scripts é a **anon key** (pública por design); a proteção
+  real vem das *policies* de RLS — ver `supabase-admin-policies.sql`.
+- `admin.html` autentica com Supabase Auth e faz CRUD nas tabelas `posts` e
+  `editals`.
+
+## Como executar localmente
+
+Servir a pasta com qualquer servidor estático a partir da raiz (os assets usam
+caminhos absolutos `/static/...`):
+
+```bash
+python -m http.server 4173
+# ou: npx serve .
+# ou: extensão Live Server no VS Code
 ```
-📝 Admin Django (cria/edita Post ou Edital)
-    ↓
-💾 Salva em Django Models (banco local)
-    ↓
-🚀 Trigger automático: _sync_to_supabase()
-    ↓
-📤 Dados enviados para Supabase (tabelas: posts, editals)
-    ↓
-✅ supabase_id preenchido
-    ↓
-📡 Frontend carrega dados do Django (renderiza templates)
-    ↓
-🌐 Página pública: /blog/, /blog/<slug>, /editais/, /editais/<slug>
-```
 
-## 📖 Como Usar
+## Deploy
 
-### Novo Post/Edital
-1. Acesse `http://localhost:8000/admin/`
-2. Crie um novo **Post** ou **Edital**
-3. Preencha campos e salve
-4. Automaticamente sincroniza com Supabase
-5. Aparece em `/blog/` ou `/editais/`
+Deploy estático na Vercel. `vercel.json` só define `trailingSlash` e cache dos
+assets — os arquivos `.html` são servidos diretamente.
 
-### Modificar Código Supabase
-- Cliente SDK: `blog_app/supabase_client.py`
-- Exemplos: `blog_app/supabase_examples.py`
-- SQL: `blog_app/supabase_setup.sql`
+## SEO
 
-### Documentação
-- Setup inicial: `docs/SUPABASE-SETUP.md`
-- Checklist: `docs/AUTOSYNC-CHECKLIST.md`
-
-## 📝 Arquivos Principais Modificados
-
-| Arquivo | O que mudou |
-|---------|-----------|
-| `blog_app/models.py` | +`supabase_id`, +`_sync_to_supabase()`, +`get_absolute_url()` |
-| `blog_app/admin.py` | +badge de sincronização Supabase |
-| `blog_app/views.py` | +templates views (blog/edital list + detail) |
-| `blog_app/supabase_client.py` | **NOVO** - Cliente Supabase |
-| `blog_app/supabase_examples.py` | **NOVO** - Exemplos |
-| `blog_app/supabase_setup.sql` | **NOVO** - SQL tabelas |
-| `backend/settings.py` | +Supabase config (SUPABASE_URL, KEY) |
-| `backend/urls.py` | +rotas públicas: `/blog/`, `/editais/` |
-| `requirements.txt` | +`supabase`, +`python-dotenv` |
-| `.env` | +SUPABASE_URL, +SUPABASE_KEY |
-| `templates/blog/` | **NOVO** - Templates blog (list, detail) |
-| `templates/editais/` | **NOVO** - Templates editais (list, detail) |
-| `docs/SUPABASE-SETUP.md` | **NOVO** - Guia |
-| `docs/AUTOSYNC-CHECKLIST.md` | **NOVO** - Checklist |
-
-## 🚀 Deploy
-
-### Railway / Render
-1. Conectar repositório
-2. Adicionar env vars:
-   - `SUPABASE_URL`
-   - `SUPABASE_KEY`
-   - `DEBUG=false`
-   - `SECRET_KEY`
-   - `DATABASE_URL` (Postgres)
-3. Build automático via Procfile
-
-### Vercel (Frontend)
-- Deploy estático via `vercel.json`
-
-## 🐛 Troubleshooting
-
-**Templates não aparecem?**
-- Verifique o caminho em `blog_app/views.py`
-- Execute `python manage.py collectstatic`
-
-**Supabase não sincroniza?**
-- Confira `.env`: `SUPABASE_URL` e `SUPABASE_KEY` corretos
-- Rode SQL de `blog_app/supabase_setup.sql`
-- Verifique console Django para erros
-
-**Migrações falhando?**
-- `python manage.py makemigrations blog_app`
-- `python manage.py migrate`
-
+- Cada página tem bloco `<!-- SEO-BLOCK -->` no `<head>`: `description`,
+  `canonical`, Open Graph, Twitter Card e favicon.
+- `robots.txt` e `sitemap.xml` na raiz.
+- **A URL base `https://titasdarobotica.vercel.app` está fixa nesses arquivos.**
+  Se o domínio oficial mudar, atualize `sitemap.xml`, `robots.txt` e o
+  `SEO-BLOCK` de cada página (o script `scripts/seo` pode ser reaproveitado).

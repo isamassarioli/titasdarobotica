@@ -29,6 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+// Vercel Web Analytics (site estático): injeta o script oficial só em produção
+(function () {
+    var host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1' || host === '') return;
+    var s = document.createElement('script');
+    s.defer = true;
+    s.src = '/_vercel/insights/script.js';
+    document.head.appendChild(s);
+})();
+
 // Prevenir comportamento padrão de arrastar imagens
 document.addEventListener('dragstart', function(e) {
     if (e.target.tagName === 'IMG') {
